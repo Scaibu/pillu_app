@@ -1,12 +1,12 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 import 'custom_message.dart';
 
 part 'partial_custom.g.dart';
 
-/// A class that represents partial custom message.
+/// A class that represents a partial custom message.
 @JsonSerializable()
 @immutable
 class PartialCustom {

@@ -1,13 +1,14 @@
+// @dart=3.0
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 import '../user.dart' show User;
 import 'partial_image.dart';
 
 part 'image_message.g.dart';
 
-/// A class that represents image message.
+/// A class that represents an image message.
 @JsonSerializable()
 @immutable
 abstract class ImageMessage extends Message {
@@ -103,22 +104,22 @@ abstract class ImageMessage extends Message {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        author,
-        createdAt,
-        height,
-        id,
-        metadata,
-        name,
-        remoteId,
-        repliedMessage,
-        roomId,
-        showStatus,
-        size,
-        status,
-        updatedAt,
-        uri,
-        width,
-      ];
+    author,
+    createdAt,
+    height,
+    id,
+    metadata,
+    name,
+    remoteId,
+    repliedMessage,
+    roomId,
+    showStatus,
+    size,
+    status,
+    updatedAt,
+    uri,
+    width,
+  ];
 
   @override
   Message copyWith({
@@ -197,8 +198,7 @@ class _ImageMessage extends ImageMessage {
             ? this.repliedMessage
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

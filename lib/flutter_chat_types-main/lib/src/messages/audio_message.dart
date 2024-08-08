@@ -1,6 +1,7 @@
+// @dart=3.0
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 import '../user.dart' show User;
 import 'partial_audio.dart';
@@ -53,8 +54,7 @@ abstract class AudioMessage extends Message {
   }) = _AudioMessage;
 
   /// Creates an audio message from a map (decoded JSON).
-  factory AudioMessage.fromJson(Map<String, dynamic> json) =>
-      _$AudioMessageFromJson(json);
+  factory AudioMessage.fromJson(Map<String, dynamic> json) => _$AudioMessageFromJson(json);
 
   /// Creates a full audio message from a partial one.
   factory AudioMessage.fromPartial({
@@ -109,23 +109,23 @@ abstract class AudioMessage extends Message {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        author,
-        createdAt,
-        duration,
-        id,
-        metadata,
-        mimeType,
-        name,
-        remoteId,
-        repliedMessage,
-        roomId,
-        showStatus,
-        size,
-        status,
-        updatedAt,
-        uri,
-        waveForm,
-      ];
+    author,
+    createdAt,
+    duration,
+    id,
+    metadata,
+    mimeType,
+    name,
+    remoteId,
+    repliedMessage,
+    roomId,
+    showStatus,
+    size,
+    status,
+    updatedAt,
+    uri,
+    waveForm,
+  ];
 
   @override
   Message copyWith({
@@ -198,24 +198,18 @@ class _AudioMessage extends AudioMessage {
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         duration: duration ?? this.duration,
         id: id ?? this.id,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         mimeType: mimeType == _Unset ? this.mimeType : mimeType as String?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
         uri: uri ?? this.uri,
-        waveForm:
-            waveForm == _Unset ? this.waveForm : waveForm as List<double>?,
+        waveForm: waveForm == _Unset ? this.waveForm : waveForm as List<double>?,
       );
 }
 

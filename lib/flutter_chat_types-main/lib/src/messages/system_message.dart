@@ -1,3 +1,4 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -6,14 +7,14 @@ import '../user.dart' show User;
 
 part 'system_message.g.dart';
 
-/// A class that represents a system message (anything around chat management). Use [metadata] to store anything
-/// you want.
+/// A class that represents a system message (anything around chat management).
+/// Use [metadata] to store anything you want.
 @JsonSerializable()
 @immutable
 abstract class SystemMessage extends Message {
   /// Creates a custom message.
   const SystemMessage._({
-    super.author = const User(id: 'system'),
+    User? author, // Change this to be nullable
     super.createdAt,
     required super.id,
     super.metadata,
@@ -25,10 +26,10 @@ abstract class SystemMessage extends Message {
     required this.text,
     MessageType? type,
     super.updatedAt,
-  }) : super(type: type ?? MessageType.system);
+  }) : super(author: author ?? const User(id: 'system'), type: type ?? MessageType.system); // Default value applied here
 
   const factory SystemMessage({
-    User author,
+    User? author,
     int? createdAt,
     required String id,
     Map<String, dynamic>? metadata,
@@ -52,18 +53,18 @@ abstract class SystemMessage extends Message {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        author,
-        createdAt,
-        id,
-        metadata,
-        remoteId,
-        repliedMessage,
-        roomId,
-        showStatus,
-        status,
-        text,
-        updatedAt,
-      ];
+    author,
+    createdAt,
+    id,
+    metadata,
+    remoteId,
+    repliedMessage,
+    roomId,
+    showStatus,
+    status,
+    text,
+    updatedAt,
+  ];
 
   @override
   Message copyWith({
@@ -89,7 +90,7 @@ abstract class SystemMessage extends Message {
 /// A utility class to enable better copyWith.
 class _SystemMessage extends SystemMessage {
   const _SystemMessage({
-    super.author,
+    User? author, // Change this to be nullable
     super.createdAt,
     required super.id,
     super.metadata,
@@ -101,7 +102,7 @@ class _SystemMessage extends SystemMessage {
     required super.text,
     super.type,
     super.updatedAt,
-  }) : super._();
+  }) : super._(author: author);
 
   @override
   Message copyWith({
@@ -130,7 +131,7 @@ class _SystemMessage extends SystemMessage {
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
         showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

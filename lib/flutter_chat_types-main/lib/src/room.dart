@@ -1,3 +1,4 @@
+// @dart = 3.0
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
@@ -39,7 +40,7 @@ abstract class Room extends Equatable {
     required List<User> users,
   }) = _Room;
 
-  /// Creates room from a map (decoded JSON).
+  /// Creates a room from a map (decoded JSON).
   factory Room.fromJson(Map<String, dynamic> json) => _$RoomFromJson(json);
 
   /// Created room timestamp, in ms.
@@ -74,22 +75,22 @@ abstract class Room extends Equatable {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        createdAt,
-        id,
-        imageUrl,
-        lastMessages,
-        metadata,
-        name,
-        type,
-        updatedAt,
-        users,
-      ];
+    createdAt,
+    id,
+    imageUrl,
+    lastMessages,
+    metadata,
+    name,
+    type,
+    updatedAt,
+    users,
+  ];
 
-  /// Creates a copy of the room with an updated data.
-  /// [imageUrl], [name] and [updatedAt] with null values will nullify existing values
+  /// Creates a copy of the room with updated data.
+  /// [imageUrl], [name] and [updatedAt] with null values will nullify existing values,
   /// [metadata] with null value will nullify existing metadata, otherwise
   /// both metadatas will be merged into one Map, where keys from a passed
-  /// metadata will overwite keys from the previous one.
+  /// metadata will overwrite keys from the previous one.
   /// [type] and [users] with null values will be overwritten by previous values.
   Room copyWith({
     int? createdAt,

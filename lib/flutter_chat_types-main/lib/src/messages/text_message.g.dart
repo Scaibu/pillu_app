@@ -1,4 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// @dart=3.0
 
 part of 'text_message.dart';
 
@@ -8,7 +9,7 @@ part of 'text_message.dart';
 
 TextMessage _$TextMessageFromJson(Map<String, dynamic> json) => TextMessage(
       author: User.fromJson(json['author'] as Map<String, dynamic>),
-      createdAt: json['createdAt'] as int?,
+      createdAt: (json['createdAt'] as num?)?.toInt(),
       id: json['id'] as String,
       metadata: json['metadata'] as Map<String, dynamic>?,
       previewData: json['previewData'] == null
@@ -23,7 +24,7 @@ TextMessage _$TextMessageFromJson(Map<String, dynamic> json) => TextMessage(
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
       text: json['text'] as String,
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
-      updatedAt: json['updatedAt'] as int?,
+      updatedAt: (json['updatedAt'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$TextMessageToJson(TextMessage instance) {

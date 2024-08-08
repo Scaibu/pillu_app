@@ -1,13 +1,13 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 import '../preview_data.dart' show PreviewData;
 import 'text_message.dart';
 
 part 'partial_text.g.dart';
 
-/// A class that represents partial text message.
+/// A class that represents a partial text message.
 @JsonSerializable()
 @immutable
 class PartialText {

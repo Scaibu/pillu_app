@@ -1,11 +1,14 @@
+// File: partial_audio.dart
+// Specify the Dart language version to ensure compatibility with all parts.
+///
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 
 part 'partial_audio.g.dart';
 
-/// A class that represents partial audio message.
+/// A class that represents a partial audio message.
 @JsonSerializable()
 @immutable
 class PartialAudio {
@@ -44,7 +47,7 @@ class PartialAudio {
   final Message? repliedMessage;
 
   /// Size of the audio in bytes.
-  final num size;
+  final int size; // Changed to int for better type consistency
 
   /// The audio file source (either a remote URL or a local resource).
   final String uri;

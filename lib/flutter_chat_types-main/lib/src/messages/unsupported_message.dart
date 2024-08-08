@@ -1,3 +1,4 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -6,7 +7,7 @@ import '../user.dart' show User;
 
 part 'unsupported_message.g.dart';
 
-/// A class that represents unsupported message. Used for backwards
+/// A class that represents an unsupported message. Used for backwards
 /// compatibility. If chat's end user doesn't update to a new version
 /// where new message types are being sent, some of them will result
 /// to unsupported.
@@ -49,17 +50,17 @@ abstract class UnsupportedMessage extends Message {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        author,
-        createdAt,
-        id,
-        metadata,
-        remoteId,
-        repliedMessage,
-        roomId,
-        showStatus,
-        status,
-        updatedAt,
-      ];
+    author,
+    createdAt,
+    id,
+    metadata,
+    remoteId,
+    repliedMessage,
+    roomId,
+    showStatus,
+    status,
+    updatedAt,
+  ];
 
   @override
   Message copyWith({
@@ -123,7 +124,7 @@ class _UnsupportedMessage extends UnsupportedMessage {
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
         showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
       );

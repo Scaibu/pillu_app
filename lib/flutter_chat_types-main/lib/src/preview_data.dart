@@ -1,3 +1,4 @@
+// @dart = 3.0
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
@@ -45,7 +46,7 @@ abstract class PreviewData extends Equatable {
   @override
   List<Object?> get props => [description, image, link, title];
 
-  /// Creates a copy of the preview data with an updated data.
+  /// Creates a copy of the preview data with updated data.
   PreviewData copyWith({
     String? description,
     PreviewDataImage? image,
@@ -75,7 +76,7 @@ class _PreviewData extends PreviewData {
   }) =>
       _PreviewData(
         description:
-            description == _Unset ? this.description : description as String?,
+        description == _Unset ? this.description : description as String?,
         image: image == _Unset ? this.image : image as PreviewDataImage?,
         link: link == _Unset ? this.link : link as String?,
         title: title == _Unset ? this.title : title as String?,
@@ -85,7 +86,7 @@ class _PreviewData extends PreviewData {
 class _Unset {}
 
 /// A utility class that forces image's width and height to be stored
-/// alongside the url.
+/// alongside the URL.
 ///
 /// See https://github.com/flyerhq/flutter_link_previewer.
 @JsonSerializable()

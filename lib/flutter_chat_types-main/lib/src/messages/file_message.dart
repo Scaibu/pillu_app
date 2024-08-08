@@ -1,13 +1,14 @@
+// @dart=3.0
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 import '../user.dart' show User;
 import 'partial_file.dart';
 
 part 'file_message.g.dart';
 
-/// A class that represents file message.
+/// A class that represents a file message.
 @JsonSerializable()
 @immutable
 abstract class FileMessage extends Message {
@@ -51,8 +52,7 @@ abstract class FileMessage extends Message {
   }) = _FileMessage;
 
   /// Creates a file message from a map (decoded JSON).
-  factory FileMessage.fromJson(Map<String, dynamic> json) =>
-      _$FileMessageFromJson(json);
+  factory FileMessage.fromJson(Map<String, dynamic> json) => _$FileMessageFromJson(json);
 
   /// Creates a full file message from a partial one.
   factory FileMessage.fromPartial({
@@ -104,22 +104,22 @@ abstract class FileMessage extends Message {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        author,
-        createdAt,
-        id,
-        isLoading,
-        metadata,
-        mimeType,
-        name,
-        remoteId,
-        repliedMessage,
-        roomId,
-        showStatus,
-        size,
-        status,
-        updatedAt,
-        uri,
-      ];
+    author,
+    createdAt,
+    id,
+    isLoading,
+    metadata,
+    mimeType,
+    name,
+    remoteId,
+    repliedMessage,
+    roomId,
+    showStatus,
+    size,
+    status,
+    updatedAt,
+    uri,
+  ];
 
   @override
   Message copyWith({
@@ -170,7 +170,6 @@ class _FileMessage extends FileMessage {
   Message copyWith({
     User? author,
     dynamic createdAt = _Unset,
-    dynamic height = _Unset,
     String? id,
     dynamic isLoading = _Unset,
     dynamic metadata = _Unset,
@@ -184,25 +183,19 @@ class _FileMessage extends FileMessage {
     dynamic status = _Unset,
     dynamic updatedAt = _Unset,
     String? uri,
-    dynamic width = _Unset,
   }) =>
       _FileMessage(
         author: author ?? this.author,
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,
         id: id ?? this.id,
         isLoading: isLoading == _Unset ? this.isLoading : isLoading as bool?,
-        metadata: metadata == _Unset
-            ? this.metadata
-            : metadata as Map<String, dynamic>?,
+        metadata: metadata == _Unset ? this.metadata : metadata as Map<String, dynamic>?,
         mimeType: mimeType == _Unset ? this.mimeType : mimeType as String?,
         name: name ?? this.name,
         remoteId: remoteId == _Unset ? this.remoteId : remoteId as String?,
-        repliedMessage: repliedMessage == _Unset
-            ? this.repliedMessage
-            : repliedMessage as Message?,
+        repliedMessage: repliedMessage == _Unset ? this.repliedMessage : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

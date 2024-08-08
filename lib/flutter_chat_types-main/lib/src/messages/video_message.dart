@@ -1,3 +1,4 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -7,7 +8,7 @@ import 'partial_video.dart';
 
 part 'video_message.g.dart';
 
-/// A class that represents video message.
+/// A class that represents a video message.
 @JsonSerializable()
 @immutable
 abstract class VideoMessage extends Message {
@@ -103,22 +104,22 @@ abstract class VideoMessage extends Message {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        author,
-        createdAt,
-        height,
-        id,
-        metadata,
-        name,
-        remoteId,
-        repliedMessage,
-        roomId,
-        showStatus,
-        size,
-        status,
-        updatedAt,
-        uri,
-        width,
-      ];
+    author,
+    createdAt,
+    height,
+    id,
+    metadata,
+    name,
+    remoteId,
+    repliedMessage,
+    roomId,
+    showStatus,
+    size,
+    status,
+    updatedAt,
+    uri,
+    width,
+  ];
 
   @override
   Message copyWith({
@@ -139,7 +140,7 @@ abstract class VideoMessage extends Message {
     double? width,
   });
 
-  /// Converts an video message to the map representation, encodable to JSON.
+  /// Converts a video message to the map representation, encodable to JSON.
   @override
   Map<String, dynamic> toJson() => _$VideoMessageToJson(this);
 }
@@ -198,7 +199,7 @@ class _VideoMessage extends VideoMessage {
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
         showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

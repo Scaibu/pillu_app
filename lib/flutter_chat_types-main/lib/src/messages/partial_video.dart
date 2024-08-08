@@ -1,12 +1,12 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 import 'video_message.dart';
 
 part 'partial_video.g.dart';
 
-/// A class that represents partial video message.
+/// A class that represents a partial video message.
 @JsonSerializable()
 @immutable
 class PartialVideo {

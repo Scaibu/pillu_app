@@ -1,16 +1,16 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 import 'file_message.dart';
 
 part 'partial_file.g.dart';
 
-/// A class that represents partial file message.
+/// A class that represents a partial file message.
 @JsonSerializable()
 @immutable
 class PartialFile {
-  /// Creates a partial file message with all variables file can have.
+  /// Creates a partial file message with all variables a file can have.
   /// Use [FileMessage] to create a full message.
   /// You can use [FileMessage.fromPartial] constructor to create a full
   /// message from a partial one.
@@ -30,7 +30,7 @@ class PartialFile {
   /// Additional custom metadata or attributes related to the message.
   final Map<String, dynamic>? metadata;
 
-  /// Media type.
+  /// Media type of the file.
   final String? mimeType;
 
   /// The name of the file.

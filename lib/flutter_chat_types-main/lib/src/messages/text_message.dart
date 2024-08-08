@@ -1,3 +1,4 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
@@ -8,7 +9,7 @@ import 'partial_text.dart';
 
 part 'text_message.g.dart';
 
-/// A class that represents text message.
+/// A class that represents a text message.
 @JsonSerializable()
 @immutable
 abstract class TextMessage extends Message {
@@ -86,19 +87,19 @@ abstract class TextMessage extends Message {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        author,
-        createdAt,
-        id,
-        metadata,
-        previewData,
-        remoteId,
-        repliedMessage,
-        roomId,
-        showStatus,
-        status,
-        text,
-        updatedAt,
-      ];
+    author,
+    createdAt,
+    id,
+    metadata,
+    previewData,
+    remoteId,
+    repliedMessage,
+    roomId,
+    showStatus,
+    status,
+    text,
+    updatedAt,
+  ];
 
   @override
   Message copyWith({
@@ -170,7 +171,7 @@ class _TextMessage extends TextMessage {
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
         showStatus:
-            showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

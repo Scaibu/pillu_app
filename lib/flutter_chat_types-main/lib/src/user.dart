@@ -1,13 +1,14 @@
+// @dart = 3.0
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
 part 'user.g.dart';
 
-/// All possible roles user can have.
+/// All possible roles a user can have.
 enum Role { admin, agent, moderator, user }
 
-/// A class that represents user.
+/// A class that represents a user.
 @JsonSerializable()
 @immutable
 abstract class User extends Equatable {
@@ -36,7 +37,7 @@ abstract class User extends Equatable {
     int? updatedAt,
   }) = _User;
 
-  /// Creates user from a map (decoded JSON).
+  /// Creates a user from a map (decoded JSON).
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   /// Created user timestamp, in ms.
@@ -48,13 +49,13 @@ abstract class User extends Equatable {
   /// Unique ID of the user.
   final String id;
 
-  /// Remote image URL representing user's avatar.
+  /// Remote image URL representing the user's avatar.
   final String? imageUrl;
 
   /// Last name of the user.
   final String? lastName;
 
-  /// Timestamp when user was last visible, in ms.
+  /// Timestamp when the user was last visible, in ms.
   final int? lastSeen;
 
   /// Additional custom metadata or attributes related to the user.
@@ -69,16 +70,16 @@ abstract class User extends Equatable {
   /// Equatable props.
   @override
   List<Object?> get props => [
-        createdAt,
-        firstName,
-        id,
-        imageUrl,
-        lastName,
-        lastSeen,
-        metadata,
-        role,
-        updatedAt,
-      ];
+    createdAt,
+    firstName,
+    id,
+    imageUrl,
+    lastName,
+    lastSeen,
+    metadata,
+    role,
+    updatedAt,
+  ];
 
   User copyWith({
     int? createdAt,

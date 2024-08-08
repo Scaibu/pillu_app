@@ -1,16 +1,16 @@
+// @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
 import '../message.dart';
 import 'image_message.dart';
 
 part 'partial_image.g.dart';
 
-/// A class that represents partial image message.
+/// A class that represents a partial image message.
 @JsonSerializable()
 @immutable
 class PartialImage {
-  /// Creates a partial image message with all variables image can have.
+  /// Creates a partial image message with all variables an image can have.
   /// Use [ImageMessage] to create a full message.
   /// You can use [ImageMessage.fromPartial] constructor to create a full
   /// message from a partial one.
