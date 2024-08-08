@@ -6,6 +6,15 @@
       <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_chat_types-main/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_chat_types-main/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_chat_types-main/build" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_chat_ui-main/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_chat_ui-main/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_chat_ui-main/build" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_link_previewer-main/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_link_previewer-main/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/lib/flutter_link_previewer-main/build" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Dart SDK" level="project" />
