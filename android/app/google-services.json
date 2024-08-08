@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "693866944655",
+    "firebase_url": "https://pillu-darling-default-rtdb.firebaseio.com",
+    "project_id": "pillu-darling",
+    "storage_bucket": "pillu-darling.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693866944655:android:ee65887ee8b06f6300f8fa",
+        "android_client_info": {
+          "package_name": "com.scaibu.pillu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693866944655-6c4dp9s9moc545a8g3958k8vtj351tqr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scaibu.pillu",
+            "certificate_hash": "bfe2fb21be7a6851d589753842fc582d371c8e26"
+          }
+        },
+        {
+          "client_id": "693866944655-asbefv187r2f9lh44u534gogervs24cd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scaibu.pillu",
+            "certificate_hash": "bea12a7f46ef409cd543ec6b1a142514245cd4fd"
+          }
+        },
+        {
+          "client_id": "693866944655-d5t59ta0fu5dveb38ej0ibfremkpkm3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIPOWRe8iwu644VFA6otojEx2zCefJ1FM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693866944655-d5t59ta0fu5dveb38ej0ibfremkpkm3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693866944655:android:c0519065b82dc15800f8fa",
+        "android_client_info": {
+          "package_name": "scaibu.pillu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693866944655-d5t59ta0fu5dveb38ej0ibfremkpkm3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIPOWRe8iwu644VFA6otojEx2zCefJ1FM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693866944655-d5t59ta0fu5dveb38ej0ibfremkpkm3k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
