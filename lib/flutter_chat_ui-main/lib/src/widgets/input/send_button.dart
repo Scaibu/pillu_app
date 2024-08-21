@@ -31,7 +31,7 @@ class SendButton extends StatelessWidget {
             ),
             icon: InheritedChatTheme.of(context).theme.sendButtonIcon ??
                 Image.asset(
-                  'assets/icon-send.png',
+                  'lib/flutter_chat_ui-main/lib/assets/icon-send.png',
                   color: InheritedChatTheme.of(context).theme.inputTextColor,
                   package: 'flutter_chat_ui',
                 ),

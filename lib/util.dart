@@ -1,6 +1,5 @@
 import 'dart:ui';
-
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
 
 const colors = [
   Color(0xffff6767),

@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
+import 'package:pillu_app/flutter_firebase_chat_core-main/lib/flutter_firebase_chat_core.dart';
 import 'package:pillu_app/login.dart';
 
 import 'chat.dart';

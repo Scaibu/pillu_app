@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
 import '../../flutter_chat_ui.dart';
 import '../util.dart';
 import 'state/inherited_chat_theme.dart';

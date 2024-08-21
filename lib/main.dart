@@ -15,12 +15,14 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        title: 'Firebase Chat',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: const RoomsPage(),
-      );
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Firebase Chat',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: const RoomsPage(),
+    );
+  }
 }

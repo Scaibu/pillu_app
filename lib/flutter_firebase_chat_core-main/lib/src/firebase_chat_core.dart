@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
 
 import 'firebase_chat_core_config.dart';
 import 'util.dart';
