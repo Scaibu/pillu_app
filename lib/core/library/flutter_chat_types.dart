@@ -1,0 +1,20 @@
+library flutter_chat_types;
+
+export '../../flutter_chat_types-main/lib/src/message.dart';
+export '../../flutter_chat_types-main/lib/src/messages/audio_message.dart';
+export '../../flutter_chat_types-main/lib/src/messages/custom_message.dart';
+export '../../flutter_chat_types-main/lib/src/messages/file_message.dart';
+export '../../flutter_chat_types-main/lib/src/messages/image_message.dart';
+export '../../flutter_chat_types-main/lib/src/messages/partial_audio.dart';
+export '../../flutter_chat_types-main/lib/src/messages/partial_custom.dart';
+export '../../flutter_chat_types-main/lib/src/messages/partial_file.dart';
+export '../../flutter_chat_types-main/lib/src/messages/partial_image.dart';
+export '../../flutter_chat_types-main/lib/src/messages/partial_text.dart';
+export '../../flutter_chat_types-main/lib/src/messages/partial_video.dart';
+export '../../flutter_chat_types-main/lib/src/messages/system_message.dart';
+export '../../flutter_chat_types-main/lib/src/messages/text_message.dart';
+export '../../flutter_chat_types-main/lib/src/messages/unsupported_message.dart';
+export '../../flutter_chat_types-main/lib/src/messages/video_message.dart';
+export '../../flutter_chat_types-main/lib/src/preview_data.dart';
+export '../../flutter_chat_types-main/lib/src/room.dart';
+export '../../flutter_chat_types-main/lib/src/user.dart';

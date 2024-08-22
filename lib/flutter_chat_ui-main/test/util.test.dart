@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
-import 'package:pillu_app/flutter_chat_ui-main/lib/flutter_chat_ui.dart';
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+import 'package:pillu_app/core/library/flutter_chat_ui.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/date_header.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/message_spacer.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/preview_image.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../flutter_chat_ui.dart';
+import '../../../../../core/library/flutter_chat_ui.dart';
 import '../state/inherited_chat_theme.dart';
 
 /// A class that represents system message widget.

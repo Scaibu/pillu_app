@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 
 import '../../models/input_clear_mode.dart';
 import '../../models/send_button_visibility_mode.dart';

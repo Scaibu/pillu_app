@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart'  show PreviewData;
+import 'package:pillu_app/core/library/flutter_chat_types.dart'  show PreviewData;
 import 'package:flutter_linkify/flutter_linkify.dart' hide UrlLinkifier;
 import 'package:url_launcher/url_launcher.dart';
 

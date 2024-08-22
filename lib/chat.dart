@@ -9,9 +9,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:mime/mime.dart';
 import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
-import 'package:pillu_app/flutter_chat_ui-main/lib/flutter_chat_ui.dart';
-import 'package:pillu_app/flutter_firebase_chat_core-main/lib/flutter_firebase_chat_core.dart';
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+import 'package:pillu_app/core/library/flutter_chat_ui.dart';
+import 'package:pillu_app/core/library/flutter_firebase_chat_core.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({

@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart' hide Element;
-import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' show PreviewData, PreviewDataImage;
+import 'package:pillu_app/core/library/flutter_chat_types.dart' show PreviewData, PreviewDataImage;
 import 'package:html/dom.dart' show Document, Element;
 import 'package:html/parser.dart' as parser show parse;
 import 'package:http/http.dart' as http show get;

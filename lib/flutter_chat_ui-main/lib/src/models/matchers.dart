@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
-import 'package:pillu_app/flutter_link_previewer-main/lib/flutter_link_previewer.dart';
+import 'package:pillu_app/core/library/flutter_link_previewer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../flutter_chat_ui.dart';
+import '../../../../core/library/flutter_chat_ui.dart';
 
 MatchText mailToMatcher({
   final TextStyle? style,

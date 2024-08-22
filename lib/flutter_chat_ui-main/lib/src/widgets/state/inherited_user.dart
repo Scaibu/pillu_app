@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 
 /// Used to make provided [types.User] class available through the whole package.
 class InheritedUser extends InheritedWidget {

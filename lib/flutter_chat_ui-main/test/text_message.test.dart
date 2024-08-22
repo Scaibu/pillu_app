@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pillu_app/flutter_chat_ui-main/lib/flutter_chat_ui.dart';
-import 'package:pillu_app/flutter_link_previewer-main/lib/flutter_link_previewer.dart';
+import 'package:pillu_app/core/library/flutter_chat_ui.dart';
+import 'package:pillu_app/core/library/flutter_link_previewer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 void main() {

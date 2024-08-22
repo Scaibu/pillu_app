@@ -1,12 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pillu_app/auth/login/login_bloc.dart';
-import 'package:pillu_app/auth/login/login_event.dart';
-import 'package:pillu_app/auth/login/login_state.dart';
 
-import '../../register.dart';
+
+import 'package:pillu_app/core/library/pillu_lib.dart';
+
+
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

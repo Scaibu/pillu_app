@@ -3,7 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/foundation.dart'
     show TargetPlatform, defaultTargetPlatform, kIsWeb;
-import 'package:pillu_app/flutter_chat_types-main/lib/flutter_chat_types.dart' as types;
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:intl/intl.dart';
 
 import 'models/date_header.dart';
