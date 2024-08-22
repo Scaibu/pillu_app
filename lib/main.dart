@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pillu_app/auth/login/login_bloc.dart';
 import 'package:pillu_app/firebase_options.dart';
 import 'package:pillu_app/rooms.dart';
 
@@ -16,13 +18,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Firebase Chat',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => LoginBloc()),
+      ],
+      child: MaterialApp(
+        title: 'Firebase Chat',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: const RoomsPage(),
       ),
-      home: const RoomsPage(),
     );
   }
 }
