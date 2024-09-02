@@ -1,7 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pillu_app/auth/login/login_bloc.dart';
+import 'package:pillu_app/auth/login/bloc/login_bloc.dart';
+import 'package:pillu_app/auth/register/bloc/register_bloc.dart';
 import 'package:pillu_app/firebase_options.dart';
 import 'package:pillu_app/rooms.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => LoginBloc()),
+        BlocProvider(create: (context) => RegisterBloc()),
       ],
       child: MaterialApp(
         title: 'Firebase Chat',
