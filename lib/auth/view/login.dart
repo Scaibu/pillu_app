@@ -1,21 +1,24 @@
+import 'package:pillu_app/auth/bloc/auth_bloc.dart';
+import 'package:pillu_app/auth/bloc/auth_event.dart';
+import 'package:pillu_app/auth/bloc/auth_state.dart';
+import 'package:pillu_app/auth/view/register.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-  void _login(BuildContext context, LoginBloc loginBloc) async {
-    FocusScope.of(context).unfocus();
 
-    try {
-      loginBloc.login(authApi);
-      if (context.mounted) Navigator.of(context).pop();
-    } catch (e) {
-      if (context.mounted) {
-        loginBloc.add(MakeLoginEvent(false));
-        alertDialog(context, e);
-      }
-    }
+
+  void _login(BuildContext context, AuthBloc loginBloc) {
+    handleAuthProcess(
+      context: context,
+      bloc: loginBloc,
+      authOperation: () => loginBloc.login(authApi),
+      onSuccess: () => Navigator.of(context).pop(),
+      onFailure: () => loginBloc.add(UpdateAuthStateEvent(loggingIn: false)),
+    );
   }
+
 
   void onPressed(bool loggingIn, BuildContext context) {
     if (!loggingIn) Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
@@ -23,12 +26,12 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginBloc = BlocProvider.of<LoginBloc>(context);
+    final loginBloc = BlocProvider.of<AuthBloc>(context);
 
     final bool loggingIn = context.select(
-      (LoginBloc value) {
+      (AuthBloc value) {
         final currState = value.state;
-        return (currState is LoginDataState) ? currState.loggingIn : false;
+        return (currState is AuthDataState) ? currState.loggingIn : false;
       },
     );
 
@@ -46,18 +49,18 @@ class LoginPage extends StatelessWidget {
                 autocorrect: false,
                 autofillHints: loggingIn ? null : [AutofillHints.email],
                 autofocus: true,
-                controller: loginBloc.usernameController,
+                controller: loginBloc.loginUsernameController,
                 keyboardType: TextInputType.emailAddress,
                 readOnly: loggingIn,
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 onEditingComplete: () {
-                  loginBloc.focusNode.requestFocus();
+                  loginBloc.loginFocusNode.requestFocus();
                 },
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                  suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: loginBloc.usernameController.clear),
+                  suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: loginBloc.loginUsernameController.clear),
                 ),
               ),
               Container(
@@ -65,8 +68,8 @@ class LoginPage extends StatelessWidget {
                 child: TextField(
                   autocorrect: false,
                   autofillHints: loggingIn ? null : [AutofillHints.password],
-                  controller: loginBloc.passwordController,
-                  focusNode: loginBloc.focusNode,
+                  controller: loginBloc.loginPasswordController,
+                  focusNode: loginBloc.loginFocusNode,
                   keyboardType: TextInputType.emailAddress,
                   obscureText: true,
                   textCapitalization: TextCapitalization.none,
@@ -77,7 +80,7 @@ class LoginPage extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: 'Password',
                     border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: loginBloc.passwordController.clear),
+                    suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: loginBloc.loginPasswordController.clear),
                   ),
                 ),
               ),

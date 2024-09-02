@@ -1,3 +1,4 @@
+import 'package:pillu_app/auth/bloc/auth_bloc.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'core/library/pillu_lib.dart';
 
@@ -41,4 +42,24 @@ Future<void> alertDialog(BuildContext context, e) async {
       );
     },
   );
+}
+
+void handleAuthProcess({
+  required BuildContext context,
+  required AuthBloc bloc,
+  required Future<void> Function() authOperation,
+  required void Function() onSuccess,
+  required void Function() onFailure,
+}) async {
+  FocusScope.of(context).unfocus();
+
+  try {
+    await authOperation();
+    if (context.mounted) onSuccess();
+  } catch (e) {
+    if (context.mounted) {
+      onFailure();
+      alertDialog(context, e);
+    }
+  }
 }

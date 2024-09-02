@@ -1,3 +1,5 @@
+import 'package:pillu_app/auth/bloc/auth_bloc.dart';
+import 'package:pillu_app/auth/bloc/auth_event.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
@@ -29,8 +31,8 @@ class UsersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<UserBloc>(context);
-    bloc.add(InitUserEvent());
+    final bloc = BlocProvider.of<AuthBloc>(context);
+    bloc.add(InitAuthEvent());
 
     return Scaffold(
       appBar: AppBar(systemOverlayStyle: SystemUiOverlayStyle.light, title: const Text('Users')),

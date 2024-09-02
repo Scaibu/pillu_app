@@ -1,34 +1,34 @@
+import 'package:pillu_app/auth/bloc/auth_bloc.dart';
+import 'package:pillu_app/auth/bloc/auth_event.dart';
+import 'package:pillu_app/auth/bloc/auth_state.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
 
-  static void _register(BuildContext context, RegisterBloc bloc) async {
-    FocusScope.of(context).unfocus();
-
-    try {
-      await bloc.createAndRegisterUser(authApi);
-      if (!context.mounted) return;
-
-      while (Navigator.canPop(context)) {
-        Navigator.of(context).pop();
-      }
-    } catch (e) {
-      if (!context.mounted) return;
-      bloc.add(SetRegisterEvent(registering: false));
-      await alertDialog(context, e);
-    }
+  void _register(BuildContext context, AuthBloc bloc) {
+    handleAuthProcess(
+      context: context,
+      bloc: bloc,
+      authOperation: () => bloc.createAndRegisterUser(authApi),
+      onSuccess: () {
+        while (Navigator.canPop(context)) {
+          Navigator.of(context).pop();
+        }
+      },
+      onFailure: () => bloc.add(UpdateAuthStateEvent(registering: false)),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<RegisterBloc>(context);
+    final bloc = BlocProvider.of<AuthBloc>(context);
 
-    bloc.add(InitRegisterEvent());
+    bloc.add(InitAuthEvent());
 
-    final bool registering = context.select((RegisterBloc value) {
+    final bool registering = context.select((AuthBloc value) {
       final currState = value.state;
-      return (currState is RegisterDataState) ? currState.registering : false;
+      return (currState is AuthDataState) ? currState.registering : false;
     });
 
     return Scaffold(
@@ -42,18 +42,18 @@ class RegisterPage extends StatelessWidget {
                 autocorrect: false,
                 autofillHints: registering ? null : [AutofillHints.email],
                 autofocus: true,
-                controller: bloc.usernameController,
+                controller: bloc.registerUsernameController,
                 keyboardType: TextInputType.emailAddress,
                 readOnly: registering,
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 onEditingComplete: () {
-                  bloc.focusNode.requestFocus();
+                  bloc.registerFocusNode.requestFocus();
                 },
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                  suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: bloc.usernameController.clear),
+                  suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: bloc.registerUsernameController.clear),
                 ),
               ),
               Container(
@@ -62,8 +62,8 @@ class RegisterPage extends StatelessWidget {
                   obscureText: true,
                   autocorrect: false,
                   autofillHints: registering ? null : [AutofillHints.password],
-                  controller: bloc.passwordController,
-                  focusNode: bloc.focusNode,
+                  controller: bloc.registerPasswordController,
+                  focusNode: bloc.registerFocusNode,
                   keyboardType: TextInputType.emailAddress,
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.done,
@@ -73,7 +73,7 @@ class RegisterPage extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: 'Password',
                     border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: bloc.passwordController.clear),
+                    suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: bloc.registerPasswordController.clear),
                   ),
                 ),
               ),

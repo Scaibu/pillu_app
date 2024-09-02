@@ -1,4 +1,4 @@
-import 'package:pillu_app/auth/user/bloc/user_bloc.dart';
+import 'package:pillu_app/auth/bloc/auth_bloc.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 void main() async {
@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => LoginBloc()),
-        BlocProvider(create: (context) => RegisterBloc()),
-        BlocProvider(create: (context) => UserBloc()),
+        BlocProvider(create: (context) => AuthBloc()),
       ],
       child: MaterialApp(
         title: 'Firebase Chat',

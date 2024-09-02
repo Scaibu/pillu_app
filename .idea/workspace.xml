@@ -4,20 +4,23 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- minor changes">
-      <change afterPath="$PROJECT_DIR$/lib/auth/auth_api.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login/login_state.dart" afterDir="false" />
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- code refactor">
+      <change afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_state.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/login/bloc/login_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/login/bloc/login_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/login/view/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/view/login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/register/bloc/register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/register/bloc/register_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/register/register/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/register/register/register.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/chat.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/login/bloc/login_bloc.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/login/bloc/login_event.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/login/bloc/login_state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/login/view/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/view/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/register/bloc/register_bloc.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/register/bloc/register_event.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/register/bloc/register_state.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/register/register/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/view/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/user/users.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/view/users.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/users.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/users.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/rooms.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/rooms.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,11 +108,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/auth/register/register" />
-      <recent name="$PROJECT_DIR$/lib/auth/register/bloc" />
-      <recent name="$PROJECT_DIR$/lib/auth/login" />
-      <recent name="$PROJECT_DIR$/lib/auth/login/bloc " />
-      <recent name="$PROJECT_DIR$/lib/core/library" />
+      <recent name="$PROJECT_DIR$/lib/auth/view" />
+      <recent name="$PROJECT_DIR$/lib/auth/login_v" />
+      <recent name="$PROJECT_DIR$/lib/auth/login/view" />
+      <recent name="$PROJECT_DIR$/lib/auth/user" />
+      <recent name="$PROJECT_DIR$/lib/auth/user/bloc" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -161,7 +164,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725278048141</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="- code refactor">
+      <option name="closed" value="true" />
+      <created>1725292877850</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725292877850</updated>
+    </task>
+    <task id="LOCAL-00007" summary="- code refactor">
+      <option name="closed" value="true" />
+      <created>1725293736982</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1725293736982</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -186,6 +205,7 @@
     <MESSAGE value="- removed extra packages" />
     <MESSAGE value="- login function is updated" />
     <MESSAGE value="- minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="- minor changes" />
+    <MESSAGE value="- code refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="- code refactor" />
   </component>
 </project>
