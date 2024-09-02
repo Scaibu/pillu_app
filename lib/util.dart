@@ -1,5 +1,5 @@
-import 'dart:ui';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+import 'core/library/pillu_lib.dart';
 
 const colors = [
   Color(0xffff6767),
@@ -19,5 +19,26 @@ Color getUserAvatarNameColor(types.User user) {
   return colors[index];
 }
 
-String getUserName(types.User user) =>
-    '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
+String getUserName(types.User user) => '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
+
+Future<void> alertDialog(BuildContext context, e) async {
+  await showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        actions: [
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () {
+              while (Navigator.canPop(context)) {
+                Navigator.of(context).pop();
+              }
+            },
+          ),
+        ],
+        content: Text(e.toString()),
+        title: const Text('Error'),
+      );
+    },
+  );
+}

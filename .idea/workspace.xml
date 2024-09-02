@@ -5,20 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- minor changes">
-      <change afterPath="$PROJECT_DIR$/lib/auth/register/bloc/register_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/auth/register/bloc/register_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/auth/register/bloc/register_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/auth/auth_api.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login/login_state.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/login/login_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/login/login_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/login/login_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/view/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/view/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/login/bloc/login_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/login/bloc/login_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/bloc/login_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/login/view/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/login/view/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/register/bloc/register_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/register/bloc/register_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/register/register/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/register/register/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/register/register/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/users.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/users.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724316445981</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="- minor changes">
+      <option name="closed" value="true" />
+      <created>1725278048141</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725278048141</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">

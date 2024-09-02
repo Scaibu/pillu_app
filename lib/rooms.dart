@@ -1,9 +1,5 @@
-
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
-
-
-
 
 class RoomsPage extends StatefulWidget {
   const RoomsPage({super.key});

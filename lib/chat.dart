@@ -14,10 +14,7 @@ import 'package:pillu_app/core/library/flutter_chat_ui.dart';
 import 'package:pillu_app/core/library/flutter_firebase_chat_core.dart';
 
 class ChatPage extends StatefulWidget {
-  const ChatPage({
-    super.key,
-    required this.room,
-  });
+  const ChatPage({super.key, required this.room});
 
   final types.Room room;
 
@@ -28,7 +25,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   bool _isAttachmentUploading = false;
 
-  void _handleAtachmentPressed() {
+  void _handleAttachmentPressed() {
     showModalBottomSheet<void>(
       context: context,
       builder: (BuildContext context) => SafeArea(
@@ -213,7 +210,7 @@ class _ChatPageState extends State<ChatPage> {
             builder: (context, snapshot) => Chat(
               isAttachmentUploading: _isAttachmentUploading,
               messages: snapshot.data ?? [],
-              onAttachmentPressed: _handleAtachmentPressed,
+              onAttachmentPressed: _handleAttachmentPressed,
               onMessageTap: _handleMessageTap,
               onPreviewDataFetched: _handlePreviewDataFetched,
               onSendPressed: _handleSendPressed,

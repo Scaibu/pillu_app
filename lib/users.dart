@@ -15,12 +15,7 @@ class UsersPage extends StatelessWidget {
         backgroundColor: hasImage ? Colors.transparent : color,
         backgroundImage: hasImage ? NetworkImage(user.imageUrl!) : null,
         radius: 20,
-        child: !hasImage
-            ? Text(
-                name.isEmpty ? '' : name[0].toUpperCase(),
-                style: const TextStyle(color: Colors.white),
-              )
-            : null,
+        child: !hasImage ? Text(name.isEmpty ? '' : name[0].toUpperCase(), style: const TextStyle(color: Colors.white)) : null,
       ),
     );
   }
@@ -28,62 +23,52 @@ class UsersPage extends StatelessWidget {
   void _handlePressed(types.User otherUser, BuildContext context) async {
     final navigator = Navigator.of(context);
     final room = await FirebaseChatCore.instance.createRoom(otherUser);
-
     navigator.pop();
-    await navigator.push(
-      MaterialPageRoute(
-        builder: (context) => ChatPage(
-          room: room,
-        ),
+    await navigator.push(MaterialPageRoute(builder: (context) => ChatPage(room: room)));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(systemOverlayStyle: SystemUiOverlayStyle.light, title: const Text('Users')),
+      body: StreamBuilder<List<types.User>>(
+        stream: FirebaseChatCore.instance.users(),
+        initialData: const [],
+        builder: (context, snapshot) {
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Container(
+              alignment: Alignment.center,
+              margin: const EdgeInsets.only(bottom: 200),
+              child: const Text('No users'),
+            );
+          }
+
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              final user = snapshot.data![index];
+              return listUserItemComponent(user, context);
+            },
+          );
+        },
       ),
     );
   }
 
-  @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          title: const Text('Users'),
+  GestureDetector listUserItemComponent(types.User user, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        _handlePressed(user, context);
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Row(
+          children: [
+            _buildAvatar(user),
+            Text(getUserName(user)),
+          ],
         ),
-        body: StreamBuilder<List<types.User>>(
-          stream: FirebaseChatCore.instance.users(),
-          initialData: const [],
-          builder: (context, snapshot) {
-            if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(
-                  bottom: 200,
-                ),
-                child: const Text('No users'),
-              );
-            }
-
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                final user = snapshot.data![index];
-
-                return GestureDetector(
-                  onTap: () {
-                    _handlePressed(user, context);
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
-                    ),
-                    child: Row(
-                      children: [
-                        _buildAvatar(user),
-                        Text(getUserName(user)),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            );
-          },
-        ),
-      );
+      ),
+    );
+  }
 }

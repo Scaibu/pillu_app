@@ -1,12 +1,8 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
-
-import 'login_event.dart';
-import 'login_state.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   FocusNode focusNode = FocusNode();
-  TextEditingController passwordController = TextEditingController(text: 'Qawsed1-');
+  TextEditingController passwordController = TextEditingController(text: 'Pillu@123');
   TextEditingController usernameController = TextEditingController(text: '');
 
   LoginBloc() : super(LoginDataState().init()) {
@@ -37,5 +33,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } else {
       emit(LoginDataState(loggingIn: loggingIn ?? false));
     }
+  }
+
+  Future<void> login(AuthApi api) async {
+    add(MakeLoginEvent(true));
+    await api.login(email: usernameController.text, password: passwordController.text);
   }
 }

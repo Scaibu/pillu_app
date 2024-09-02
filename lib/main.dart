@@ -1,16 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pillu_app/auth/login/bloc/login_bloc.dart';
-import 'package:pillu_app/auth/register/bloc/register_bloc.dart';
-import 'package:pillu_app/firebase_options.dart';
-import 'package:pillu_app/rooms.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 

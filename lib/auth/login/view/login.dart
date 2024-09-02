@@ -1,57 +1,24 @@
-
-
 import 'package:pillu_app/core/library/pillu_lib.dart';
-
-
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-  void _login(BuildContext context) async {
-    final loginBloc = context.read<LoginBloc>();
+  void _login(BuildContext context, LoginBloc loginBloc) async {
     FocusScope.of(context).unfocus();
 
-    loginBloc.add(MakeLoginEvent(true));
-
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: loginBloc.usernameController.text,
-        password: loginBloc.passwordController.text,
-      );
-
-      if (!context.mounted) return;
-      Navigator.of(context).pop();
+      loginBloc.login(authApi);
+      if (context.mounted) Navigator.of(context).pop();
     } catch (e) {
-      if (!context.mounted) return;
-
-      loginBloc.add(MakeLoginEvent(false));
-
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          actions: [
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-          content: Text(e.toString()),
-          title: const Text('Error'),
-        ),
-      );
+      if (context.mounted) {
+        loginBloc.add(MakeLoginEvent(false));
+        alertDialog(context, e);
+      }
     }
   }
 
-  Null Function()? onPressed(bool loggingIn, BuildContext context) {
-    return loggingIn
-        ? null
-        : () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const RegisterPage(),
-            ));
-          };
+  void onPressed(bool loggingIn, BuildContext context) {
+    if (!loggingIn) Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
   }
 
   @override
@@ -61,11 +28,7 @@ class LoginPage extends StatelessWidget {
     final bool loggingIn = context.select(
       (LoginBloc value) {
         final currState = value.state;
-        if (currState is LoginDataState) {
-          return currState.loggingIn ?? false;
-        } else {
-          return false;
-        }
+        return (currState is LoginDataState) ? currState.loggingIn : false;
       },
     );
 
@@ -92,12 +55,9 @@ class LoginPage extends StatelessWidget {
                   loginBloc.focusNode.requestFocus();
                 },
                 decoration: InputDecoration(
-                  border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
                   labelText: 'Email',
-                  suffixIcon: IconButton(
-                    icon: const Icon(Icons.cancel),
-                    onPressed: () => loginBloc.usernameController.clear(),
-                  ),
+                  border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                  suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: loginBloc.usernameController.clear),
                 ),
               ),
               Container(
@@ -106,39 +66,32 @@ class LoginPage extends StatelessWidget {
                   autocorrect: false,
                   autofillHints: loggingIn ? null : [AutofillHints.password],
                   controller: loginBloc.passwordController,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                    labelText: 'Password',
-                    suffixIcon: IconButton(
-                      icon: const Icon(Icons.cancel),
-                      onPressed: () {
-                        loginBloc.passwordController.clear();
-                      },
-                    ),
-                  ),
                   focusNode: loginBloc.focusNode,
                   keyboardType: TextInputType.emailAddress,
                   obscureText: true,
-                  onEditingComplete: () {
-                    _login(context);
-                  },
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.done,
+                  onEditingComplete: () {
+                    _login(context, loginBloc);
+                  },
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+                    suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: loginBloc.passwordController.clear),
+                  ),
                 ),
               ),
               TextButton(
-                onPressed: () {
-                  return loggingIn ? null : _login(context);
-                },
                 child: const Text('Login'),
+                onPressed: () {
+                  return loggingIn ? null : _login(context, loginBloc);
+                },
               ),
               TextButton(
-                onPressed: onPressed(loggingIn, context),
                 child: const Text('Register'),
+                onPressed: () {
+                  onPressed(loggingIn, context);
+                },
               ),
             ],
           ),
