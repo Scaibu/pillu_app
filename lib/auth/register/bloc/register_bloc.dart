@@ -40,15 +40,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     _emitTheState(emit, registering: event.registering);
   }
 
-  void _emitTheState(Emitter<RegisterState> emit, {bool? registering}) {
-    final currState = state;
-    if (currState is RegisterDataState) {
-      emit(currState.copyWith(registering: registering));
-    } else {
-      emit(RegisterDataState());
-    }
-  }
-
   Future<void> createAndRegisterUser(AuthApi api) async {
 
     final firstName = usernameController.text.split(' ').first;
@@ -61,5 +52,14 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     final uid = await api.createRegisterUser(email: usernameController.text, password: passwordController.text);
     types.User user = types.User(imageUrl: imageUrl, firstName: firstName, lastName: lastName, id: uid);
     await api.createUser(user: user);
+  }
+
+  void _emitTheState(Emitter<RegisterState> emit, {bool? registering}) {
+    final currState = state;
+    if (currState is RegisterDataState) {
+      emit(currState.copyWith(registering: registering));
+    } else {
+      emit(RegisterDataState());
+    }
   }
 }

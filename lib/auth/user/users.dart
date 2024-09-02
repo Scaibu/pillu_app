@@ -29,6 +29,9 @@ class UsersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = BlocProvider.of<UserBloc>(context);
+    bloc.add(InitUserEvent());
+
     return Scaffold(
       appBar: AppBar(systemOverlayStyle: SystemUiOverlayStyle.light, title: const Text('Users')),
       body: StreamBuilder<List<types.User>>(
@@ -55,7 +58,7 @@ class UsersPage extends StatelessWidget {
     );
   }
 
-  GestureDetector listUserItemComponent(types.User user, BuildContext context) {
+  Widget listUserItemComponent(types.User user, BuildContext context) {
     return GestureDetector(
       onTap: () {
         _handlePressed(user, context);
