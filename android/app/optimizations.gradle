@@ -1,0 +1,40 @@
+plugins {
+    id "com.android.application"
+    id 'com.google.gms.google-services'
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+apply from: 'variables.gradle'
+apply from: 'optimizations.gradle'
+
+android {
+    namespace = app.namespace
+    compileSdk = sdk.compile
+    ndkVersion = sdk.ndk
+    buildToolsVersion = app.buildTools
+
+    defaultConfig {
+        applicationId = app.id
+        minSdk = sdk.min
+        targetSdk = sdk.target
+        versionCode = 1
+        versionName = "1.0"
+
+        multiDexEnabled = performance.enableMultiDex
+
+        ndk {
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+flutter {
+    source = build.sourcePath
+}
+
+configureOptimizations(android)

@@ -3,7 +3,7 @@
     "project_number": "693866944655",
     "firebase_url": "https://pillu-darling-default-rtdb.firebaseio.com",
     "project_id": "pillu-darling",
-    "storage_bucket": "pillu-darling.appspot.com"
+    "storage_bucket": "pillu-darling.firebasestorage.app"
   },
   "client": [
     {

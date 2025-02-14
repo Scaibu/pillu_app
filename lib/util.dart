@@ -1,5 +1,6 @@
 import 'package:pillu_app/auth/bloc/auth_bloc.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+
 import 'core/library/pillu_lib.dart';
 
 const colors = [
@@ -20,7 +21,8 @@ Color getUserAvatarNameColor(types.User user) {
   return colors[index];
 }
 
-String getUserName(types.User user) => '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
+String getUserName(types.User user) =>
+    '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
 
 Future<void> alertDialog(BuildContext context, e) async {
   await showDialog(

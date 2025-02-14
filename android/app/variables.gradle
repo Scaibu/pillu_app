@@ -1,0 +1,58 @@
+ext {
+    // App Identity Configuration
+    app = [
+            namespace       : "com.pillu.pillu_app",
+            id             : "com.pillu.pillu_app",
+            buildTools     : "34.0.0",
+            dimension      : "environment"
+    ]
+
+    // SDK Configuration
+    sdk = [
+            min           : 23,
+            target        : flutter.targetSdkVersion,
+            compile       : flutter.compileSdkVersion,
+            ndk           : flutter.ndkVersion,
+            ndkVersion    : "27.0.12077973",
+            cmake         : "3.22.1"
+    ]
+
+    // Build Configuration
+    build = [
+            javaVersion    : JavaVersion.VERSION_1_8,
+            sourcePath     : "../..",
+            kotlinVersion  : "1.9.24",
+            maxHeapSize    : "8g",
+            threadCount    : Runtime.runtime.availableProcessors() * 2,
+            parallel       : true,
+            caching       : true
+    ]
+
+    // Performance Configuration
+    performance = [
+            enableR8              : true,
+            enableD8             : true,
+            enableParallelDex    : true,
+            enableJumboMode      : true,
+            enableIncrementalDex : true,
+            enableMultiDex       : true
+    ]
+
+    // Resource Configuration
+    resources = [
+            excludeFromPacking : [
+                    "LICENSE*",
+                    "META-INF/LICENSE*",
+                    "META-INF/NOTICE*",
+                    "META-INF/*.kotlin_module",
+                    "META-INF/AL2.0",
+                    "META-INF/LGPL2.1"
+            ],
+            compressExtensions : [
+                    "webp",
+                    "png",
+                    "jpg",
+                    "jpeg"
+            ]
+    ]
+}

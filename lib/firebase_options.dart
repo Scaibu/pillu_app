@@ -53,7 +53,7 @@ class DefaultFirebaseOptions {
     projectId: 'pillu-darling',
     authDomain: 'pillu-darling.firebaseapp.com',
     databaseURL: 'https://pillu-darling-default-rtdb.firebaseio.com',
-    storageBucket: 'pillu-darling.appspot.com',
+    storageBucket: 'pillu-darling.firebasestorage.app',
     measurementId: 'G-R0KEZHCH3W',
   );
 
@@ -63,7 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '693866944655',
     projectId: 'pillu-darling',
     databaseURL: 'https://pillu-darling-default-rtdb.firebaseio.com',
-    storageBucket: 'pillu-darling.appspot.com',
+    storageBucket: 'pillu-darling.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -72,9 +72,10 @@ class DefaultFirebaseOptions {
     messagingSenderId: '693866944655',
     projectId: 'pillu-darling',
     databaseURL: 'https://pillu-darling-default-rtdb.firebaseio.com',
-    storageBucket: 'pillu-darling.appspot.com',
+    storageBucket: 'pillu-darling.firebasestorage.app',
     androidClientId: '693866944655-6c4dp9s9moc545a8g3958k8vtj351tqr.apps.googleusercontent.com',
     iosClientId: '693866944655-ivn3qd5kq38qj96hmggutqhb3k3cs6u3.apps.googleusercontent.com',
     iosBundleId: 'com.pillu.pilluApp',
   );
+
 }
