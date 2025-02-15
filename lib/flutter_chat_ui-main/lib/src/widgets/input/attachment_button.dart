@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../state/inherited_chat_theme.dart';
-import '../state/inherited_l10n.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart';
 
 /// A class that represents attachment button widget.
 class AttachmentButton extends StatelessWidget {
@@ -23,7 +22,7 @@ class AttachmentButton extends StatelessWidget {
   final EdgeInsets padding;
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(final BuildContext context) => Container(
         margin: InheritedChatTheme.of(context).theme.attachmentButtonMargin ??
             const EdgeInsetsDirectional.fromSTEB(
               8,
@@ -52,7 +51,6 @@ class AttachmentButton extends StatelessWidget {
                   Image.asset(
                     'lib/flutter_chat_ui-main/lib/assets/icon-attachment.png',
                     color: InheritedChatTheme.of(context).theme.inputTextColor,
-                    package: 'flutter_chat_ui',
                   ),
           onPressed: isLoading ? null : onPressed,
           padding: padding,

@@ -37,6 +37,12 @@ dependencies:
   path_provider: ^2.1.3
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
+  google_sign_in: ^6.2.2
+  google_fonts: ^4.0.4
+  cached_network_image: ^3.3.1
+  weather_animation: ^1.1.2
+  provider: ^6.1.2
+  supabase_flutter: ^2.8.3
 
 dev_dependencies:
   dart_code_metrics: ^5.7.6
@@ -49,24 +55,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - lib/flutter_chat_ui-main/lib/assets/icon-arrow.png
+    - lib/flutter_chat_ui-main/lib/assets/
+    - lib/flutter_chat_ui-main/lib/assets/2.0x/
+    - lib/flutter_chat_ui-main/lib/assets/3.0x/
     - lib/flutter_chat_ui-main/lib/assets/icon-attachment.png
-    - lib/flutter_chat_ui-main/lib/assets/icon-delivered.png
-    - lib/flutter_chat_ui-main/lib/assets/icon-document.png
-    - lib/flutter_chat_ui-main/lib/assets/icon-error.png
-    - lib/flutter_chat_ui-main/lib/assets/icon-seen.png
-    - lib/flutter_chat_ui-main/lib/assets/icon-send.png
-    - lib/flutter_chat_ui-main/lib/assets/2.0x/icon-arrow.png
-    - lib/flutter_chat_ui-main/lib/assets/2.0x/icon-attachment.png
-    - lib/flutter_chat_ui-main/lib/assets/2.0x/icon-delivered.png
-    - lib/flutter_chat_ui-main/lib/assets/2.0x/icon-document.png
-    - lib/flutter_chat_ui-main/lib/assets/2.0x/icon-error.png
-    - lib/flutter_chat_ui-main/lib/assets/2.0x/icon-seen.png
-    - lib/flutter_chat_ui-main/lib/assets/2.0x/icon-send.png
-    - lib/flutter_chat_ui-main/lib/assets/3.0x/icon-arrow.png
-    - lib/flutter_chat_ui-main/lib/assets/3.0x/icon-attachment.png
-    - lib/flutter_chat_ui-main/lib/assets/3.0x/icon-delivered.png
-    - lib/flutter_chat_ui-main/lib/assets/3.0x/icon-document.png
-    - lib/flutter_chat_ui-main/lib/assets/3.0x/icon-error.png
-    - lib/flutter_chat_ui-main/lib/assets/3.0x/icon-seen.png
-    - lib/flutter_chat_ui-main/lib/assets/3.0x/icon-send.png

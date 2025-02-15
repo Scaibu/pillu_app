@@ -80,7 +80,7 @@ class Chat extends StatefulWidget {
     this.onMessageLongPress,
     this.onMessageStatusLongPress,
     this.onMessageStatusTap,
-    this.onMessageTap,
+    required this.onMessageTap,
     this.onMessageVisibilityChanged,
     this.onPreviewDataFetched,
     required this.onSendPressed,
@@ -265,7 +265,7 @@ class Chat extends StatefulWidget {
   final void Function(BuildContext context, types.Message)? onMessageStatusTap;
 
   /// See [Message.onMessageTap].
-  final void Function(BuildContext context, types.Message)? onMessageTap;
+  final void Function(BuildContext context, types.Message) onMessageTap;
 
   /// See [Message.onMessageVisibilityChanged].
   final void Function(types.Message, bool visible)? onMessageVisibilityChanged;

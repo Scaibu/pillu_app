@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:faker/faker.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pillu_app/auth/auth_repository.dart';
 import 'package:pillu_app/auth/bloc/auth_event.dart';
 import 'package:pillu_app/auth/bloc/auth_state.dart';
@@ -16,7 +17,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   final AuthRepository authRepository;
-  StreamSubscription<User?>? _authSubscription;
 
   FocusNode loginFocusNode = FocusNode();
   final TextEditingController loginPasswordController =
@@ -33,26 +33,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final AuthAuthenticated event,
     final Emitter<AuthState> emit,
   ) async {
-    await _authSubscription?.cancel();
-
-    authRepository.authStateChanges.listen((final User? user) {
-      if (user != null) {
-        emit(AuthDataState(user: user));
-      } else {
-        emit(AuthDataState());
-      }
-    });
-    _authSubscription = authRepository.authStateChanges.listen(
-      (final User? user) {
+    await emit.forEach<User?>(
+      authRepository.authStateChanges,
+      onData: (final User? user) {
         if (user != null) {
-          emit(AuthDataState(user: user, unAuthenticated: false));
+          return AuthDataState(user: user, unAuthenticated: false);
         } else {
-          emit(AuthDataState());
+          return AuthDataState();
         }
       },
-      onError: (final _) {
-        emit(AuthDataState(hasError: true));
-      },
+      onError: (final _, final __) => AuthDataState(hasError: true),
     );
   }
 
@@ -64,7 +54,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     registerPasswordController.dispose();
     registerUsernameController.dispose();
     registerFocusNode.dispose();
-    await _authSubscription?.cancel();
+
     return super.close();
   }
 
@@ -98,31 +88,47 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> login(final AuthApi api) async {
     add(UpdateAuthStateEvent(loggingIn: true));
-    await api.login(
-      email: loginUsernameController.text,
-      password: loginPasswordController.text,
+    await createAndRegisterUser(authApi);
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
     );
+
+    // Once signed in, return the UserCredential
+    return FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Future<void> createAndRegisterUser(final AuthApi api) async {
-    final String firstName = registerUsernameController.text.split(' ').first;
-    final String lastName = registerUsernameController.text.split(' ').last;
-    final String imageUrl =
-        'https://i.pravatar.cc/300?u=${faker.internet.domainName()}';
+    final UserCredential cred = await signInWithGoogle();
+    if (cred.user != null) {
+      final String firstName = cred.user?.displayName?.split(' ').first ?? '-';
+      final String lastName = cred.user?.displayName?.split(' ').last ?? '-';
+      final String imageUrl =
+          'https://i.pravatar.cc/300?u=${faker.internet.domainName()}';
 
-    add(UpdateAuthStateEvent(registering: true));
+      add(UpdateAuthStateEvent(registering: true));
 
-    final String uid = await api.createRegisterUser(
-      email: registerUsernameController.text,
-      password: registerPasswordController.text,
-    );
-    final types.User user = types.User(
-      imageUrl: imageUrl,
-      firstName: firstName,
-      lastName: lastName,
-      id: uid,
-    );
-    await api.createUser(user: user);
+      if (cred.user?.email != null) {
+        final types.User user = types.User(
+          imageUrl: imageUrl,
+          firstName: firstName,
+          lastName: lastName,
+          id: cred.user?.uid ?? '',
+        );
+        await api.createUser(user: user);
+      }
+    }
   }
 
   Future<void> _logOut(

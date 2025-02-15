@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
-
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/flutter_link_previewer.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/chat_theme.dart';
 
 import '../../models/emoji_enlargement_behavior.dart';
 import '../../models/matchers.dart';
@@ -58,18 +58,18 @@ class TextMessage extends StatelessWidget {
   final String? userAgent;
 
   Widget _linkPreview(
-    types.User user,
-    double width,
-    BuildContext context,
+    final types.User user,
+    final double width,
+    final BuildContext context,
   ) {
-    final linkDescriptionTextStyle = user.id == message.author.id
+    final TextStyle linkDescriptionTextStyle = user.id == message.author.id
         ? InheritedChatTheme.of(context)
             .theme
             .sentMessageLinkDescriptionTextStyle
         : InheritedChatTheme.of(context)
             .theme
             .receivedMessageLinkDescriptionTextStyle;
-    final linkTitleTextStyle = user.id == message.author.id
+    final TextStyle linkTitleTextStyle = user.id == message.author.id
         ? InheritedChatTheme.of(context).theme.sentMessageLinkTitleTextStyle
         : InheritedChatTheme.of(context)
             .theme
@@ -96,37 +96,37 @@ class TextMessage extends StatelessWidget {
     );
   }
 
-  void _onPreviewDataFetched(types.PreviewData previewData) {
+  void _onPreviewDataFetched(final types.PreviewData previewData) {
     if (message.previewData == null) {
       onPreviewDataFetched?.call(message, previewData);
     }
   }
 
   Widget _textWidgetBuilder(
-    types.User user,
-    BuildContext context,
-    bool enlargeEmojis,
+    final types.User user,
+    final BuildContext context,
+    final bool enlargeEmojis,
   ) {
-    final theme = InheritedChatTheme.of(context).theme;
-    final bodyLinkTextStyle = user.id == message.author.id
+    final ChatTheme theme = InheritedChatTheme.of(context).theme;
+    final TextStyle? bodyLinkTextStyle = user.id == message.author.id
         ? InheritedChatTheme.of(context).theme.sentMessageBodyLinkTextStyle
         : InheritedChatTheme.of(context).theme.receivedMessageBodyLinkTextStyle;
-    final bodyTextStyle = user.id == message.author.id
+    final TextStyle bodyTextStyle = user.id == message.author.id
         ? theme.sentMessageBodyTextStyle
         : theme.receivedMessageBodyTextStyle;
-    final boldTextStyle = user.id == message.author.id
+    final TextStyle? boldTextStyle = user.id == message.author.id
         ? theme.sentMessageBodyBoldTextStyle
         : theme.receivedMessageBodyBoldTextStyle;
-    final codeTextStyle = user.id == message.author.id
+    final TextStyle? codeTextStyle = user.id == message.author.id
         ? theme.sentMessageBodyCodeTextStyle
         : theme.receivedMessageBodyCodeTextStyle;
-    final emojiTextStyle = user.id == message.author.id
+    final TextStyle emojiTextStyle = user.id == message.author.id
         ? theme.sentEmojiMessageTextStyle
         : theme.receivedEmojiMessageTextStyle;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         if (showName)
           nameBuilder?.call(message.author) ?? UserName(author: message.author),
         if (enlargeEmojis)
@@ -148,17 +148,17 @@ class TextMessage extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final enlargeEmojis =
+  Widget build(final BuildContext context) {
+    final bool enlargeEmojis =
         emojiEnlargementBehavior != EmojiEnlargementBehavior.never &&
             isConsistsOfEmojis(emojiEnlargementBehavior, message);
-    final theme = InheritedChatTheme.of(context).theme;
-    final user = InheritedUser.of(context).user;
-    final width = MediaQuery.of(context).size.width;
+    final ChatTheme theme = InheritedChatTheme.of(context).theme;
+    final types.User user = InheritedUser.of(context).user;
+    final double width = MediaQuery.of(context).size.width;
 
     if (usePreviewData && onPreviewDataFetched != null) {
-      final urlRegexp = RegExp(regexLink, caseSensitive: false);
-      final matches = urlRegexp.allMatches(message.text);
+      final RegExp urlRegexp = RegExp(regexLink, caseSensitive: false);
+      final Iterable<RegExpMatch> matches = urlRegexp.allMatches(message.text);
 
       if (matches.isNotEmpty) {
         return _linkPreview(user, width, context);
@@ -214,8 +214,8 @@ class TextMessageText extends StatelessWidget {
   final String text;
 
   @override
-  Widget build(BuildContext context) => ParsedText(
-        parse: [
+  Widget build(final BuildContext context) => ParsedText(
+        parse: <MatchText>[
           ...options.matchers,
           mailToMatcher(
             style: bodyLinkTextStyle ??
@@ -262,7 +262,7 @@ class TextMessageOptions {
     this.onLinkPressed,
     this.openOnPreviewImageTap = false,
     this.openOnPreviewTitleTap = false,
-    this.matchers = const [],
+    this.matchers = const <MatchText>[],
   });
 
   /// Whether user can tap and hold to select a text content.

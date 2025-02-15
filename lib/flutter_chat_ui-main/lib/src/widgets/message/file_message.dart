@@ -53,13 +53,13 @@ class FileMessage extends StatelessWidget {
                         strokeWidth: 2,
                       ),
                     ),
-                  InheritedChatTheme.of(context).theme.documentIcon != null
-                      ? InheritedChatTheme.of(context).theme.documentIcon!
-                      : Image.asset(
-                          'assets/icon-document.png',
-                          color: color,
-                          package: 'flutter_chat_ui',
-                        ),
+                  if (InheritedChatTheme.of(context).theme.documentIcon != null)
+                    InheritedChatTheme.of(context).theme.documentIcon!
+                  else
+                    Image.asset(
+                      'lib/flutter_chat_ui-main/lib/assets/icon-document.png',
+                      color: color,
+                    ),
                 ],
               ),
             ),

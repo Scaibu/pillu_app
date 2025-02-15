@@ -1,16 +1,32 @@
-import 'package:pillu_app/auth/view/login.dart';
+import 'package:pillu_app/auth/bloc/auth_bloc.dart';
+import 'package:pillu_app/auth/bloc/auth_event.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class LoginViewComponent extends StatelessWidget {
   const LoginViewComponent({super.key});
 
-  Future<void> _goToLoginPage(final BuildContext context) async {
-    await Navigator.of(context).push(
-      MaterialPageRoute<LoginPage>(
-        fullscreenDialog: true,
-        builder: (final BuildContext context) => const LoginPage(),
-      ),
+  static Future<void> _login(
+    final BuildContext context,
+  ) async {
+    await handleAuthProcess(
+      context: context,
+      bloc: BlocProvider.of<AuthBloc>(context),
+      authOperation: () async =>
+          BlocProvider.of<AuthBloc>(context).login(authApi),
+      onSuccess: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Done'),
+          ),
+        );
+      },
+      onFailure: () => BlocProvider.of<AuthBloc>(context)
+          .add(UpdateAuthStateEvent(loggingIn: false)),
     );
+  }
+
+  Future<void> _goToLoginPage(final BuildContext context) async {
+    await _login(context);
   }
 
   @override

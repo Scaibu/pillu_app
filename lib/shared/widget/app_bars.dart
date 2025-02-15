@@ -1,4 +1,5 @@
 import 'package:pillu_app/core/library/pillu_lib.dart';
+import 'package:pillu_app/shared/text_styles.dart';
 
 AppBar buildAppBar(
   final BuildContext context, {
@@ -9,10 +10,10 @@ AppBar buildAppBar(
       actions: <Widget>[
         IconButton(icon: const Icon(Icons.add), onPressed: onAddTap),
       ],
-      leading: IconButton(
-        icon: const Icon(Icons.logout),
-        onPressed: logOutTap,
-      ),
       systemOverlayStyle: SystemUiOverlayStyle.light,
-      title: const Text('Rooms'),
+      title: Text(
+        'Chat Connect',
+        style: buildJostTextStyle(fontSize: 14),
+      ),
+      centerTitle: true,
     );

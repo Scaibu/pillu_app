@@ -1,5 +1,6 @@
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
+import 'package:pillu_app/shared/text_styles.dart';
 
 class ChatRoomList extends StatelessWidget {
   const ChatRoomList({super.key, final User? user}) : _user = user;
@@ -87,13 +88,14 @@ class ChatRoomList extends StatelessWidget {
 
   Widget _buildRoomItem(final types.Room room, final BuildContext context) =>
       GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () async => _goToChatPage(context, room),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
             children: <Widget>[
               _buildAvatar(room),
-              Text(room.name ?? ''),
+              Text(room.name ?? '', style: buildJostTextStyle()),
             ],
           ),
         ),

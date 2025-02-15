@@ -7,7 +7,7 @@ import 'widgets/unread_header.dart';
 // For internal usage only. Use values from theme itself.
 
 /// See [ChatTheme.userAvatarNameColors].
-const colors = [
+const List<Color> colors = <Color>[
   Color(0xffff6767),
   Color(0xff66e0da),
   Color(0xfff5a2d9),
@@ -21,34 +21,34 @@ const colors = [
 ];
 
 /// Dark.
-const dark = Color(0xff1f1c38);
+const Color dark = Color(0xff1f1c38);
 
 /// Error.
-const error = Color(0xffff6767);
+const Color error = Color(0xffff6767);
 
 /// N0.
-const neutral0 = Color(0xff1d1c21);
+const Color neutral0 = Color(0xff1d1c21);
 
 /// N1.
-const neutral1 = Color(0xff615e6e);
+const Color neutral1 = Color(0xff615e6e);
 
 /// N2.
-const neutral2 = Color(0xff9e9cab);
+const Color neutral2 = Color(0xff9e9cab);
 
 /// N7.
-const neutral7 = Color(0xffffffff);
+const Color neutral7 = Color(0xffffffff);
 
 /// N7 with opacity.
-const neutral7WithOpacity = Color(0x80ffffff);
+const Color neutral7WithOpacity = Color(0x80ffffff);
 
 /// Primary.
-const primary = Color(0xff6f61e8);
+const Color primary = Color(0xff6f61e8);
 
 /// Secondary.
-const secondary = Color(0xfff5f5f7);
+const Color secondary = Color(0xfff5f5f7);
 
 /// Secondary dark.
-const secondaryDark = Color(0xff2b2250);
+const Color secondaryDark = Color(0xff2b2250);
 
 /// Base chat theme containing all required properties to make a theme.
 /// Extend this class if you want to create a custom theme.
@@ -217,7 +217,8 @@ abstract class ChatTheme {
   /// of received messages.
   final TextStyle receivedMessageBodyTextStyle;
 
-  /// Caption text style used for displaying secondary info (e.g. file size) on different types of received messages.
+  /// Caption text style used for displaying secondary info (e.g. file size)
+  /// on different types of received messages.
   final TextStyle receivedMessageCaptionTextStyle;
 
   /// Color of the document icon on received messages. Has no effect when
@@ -264,7 +265,8 @@ abstract class ChatTheme {
   /// of sent messages.
   final TextStyle sentMessageBodyTextStyle;
 
-  /// Caption text style used for displaying secondary info (e.g. file size) on different types of sent messages.
+  /// Caption text style used for displaying secondary info (e.g. file size)
+  /// on different types of sent messages.
   final TextStyle sentMessageCaptionTextStyle;
 
   /// Color of the document icon on sent messages. Has no effect when
@@ -303,7 +305,8 @@ abstract class ChatTheme {
   /// image is provided.
   final TextStyle userAvatarTextStyle;
 
-  /// User names text style. Color will be overwritten with [userAvatarNameColors].
+  /// User names text style. Color will be overwritten with
+  /// [userAvatarNameColors].
   final TextStyle userNameTextStyle;
 
   /// Color used as background of message row on highligth.
@@ -447,8 +450,8 @@ class DefaultChatTheme extends ChatTheme {
     ),
     super.typingIndicatorTheme = const TypingIndicatorTheme(
       animatedCirclesColor: neutral1,
-      animatedCircleSize: 5.0,
-      bubbleBorder: BorderRadius.all(Radius.circular(27.0)),
+      animatedCircleSize: 5,
+      bubbleBorder: BorderRadius.all(Radius.circular(27)),
       bubbleColor: neutral7,
       countAvatarColor: primary,
       countTextColor: secondary,
@@ -621,8 +624,8 @@ class DarkChatTheme extends ChatTheme {
     ),
     super.typingIndicatorTheme = const TypingIndicatorTheme(
       animatedCirclesColor: neutral7,
-      animatedCircleSize: 5.0,
-      bubbleBorder: BorderRadius.all(Radius.circular(27.0)),
+      animatedCircleSize: 5,
+      bubbleBorder: BorderRadius.all(Radius.circular(27)),
       bubbleColor: dark,
       countAvatarColor: primary,
       countTextColor: secondary,
