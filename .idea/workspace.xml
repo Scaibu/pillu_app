@@ -13,18 +13,49 @@
       <change afterPath="$PROJECT_DIR$/lib/config/app_config.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/config/bloc_config.dart" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/lib/core/theme/app_theme.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widget/app_body.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widget/app_drawer_data.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widget/connect_user_component.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/app_drawer_data.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/connect_user_component.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/chat/rooms.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/rooms.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/chat/widget/chat_room_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/chat_room_list.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/chat_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/chat_theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/preview_image.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/preview_image.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/send_button_visibility_mode.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/send_button_visibility_mode.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/typing_indicator_mode.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/typing_indicator_mode.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/unread_header_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/unread_header_data.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/util.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/chat.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/chat.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/chat_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/chat_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/image_gallery.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/image_gallery.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/input.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/input_text_field_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/input_text_field_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/image_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/image_message.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/system_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/system_message.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/text_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/text_message.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/user_avatar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/user_avatar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/user_name.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/user_name.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/state/inherited_user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/state/inherited_user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/typing_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/typing_indicator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/unread_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/unread_header.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/file_message.test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/file_message.test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/image_message.test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/image_message.test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/input.test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/input.test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/text_message.test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/text_message.test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/widgets/link_preview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/widgets/link_preview.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/bottomSheet/bottom_sheets.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/bottomSheet/bottom_sheets.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared/widget/app_bars.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widget/app_bars.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/widget/app_bars.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_bars.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/widget/sun_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/sun_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -211,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739622726042</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="- chat ui and code updated">
+      <option name="closed" value="true" />
+      <created>1739640612332</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1739640612332</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
