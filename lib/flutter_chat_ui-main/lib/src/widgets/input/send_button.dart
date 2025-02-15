@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart';
 
-import '../state/inherited_chat_theme.dart';
-import '../state/inherited_l10n.dart';
-
-/// A class that represents send button widget.
+/// A class that represents send button widgets.
 class SendButton extends StatelessWidget {
-  /// Creates send button widget.
+  /// Creates send button widgets.
   const SendButton({
-    super.key,
     required this.onPressed,
+    super.key,
     this.padding = EdgeInsets.zero,
   });
 
@@ -19,7 +18,7 @@ class SendButton extends StatelessWidget {
   final EdgeInsets padding;
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(final BuildContext context) => Container(
         margin: InheritedChatTheme.of(context).theme.sendButtonMargin ??
             const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
         child: Semantics(

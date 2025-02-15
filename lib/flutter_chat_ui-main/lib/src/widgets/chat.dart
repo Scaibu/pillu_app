@@ -31,10 +31,10 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 /// to allow animating to them.
 final Map<String, int> chatMessageAutoScrollIndexById = <String, int>{};
 
-/// Entry widget, represents the complete chat. If you wrap it in [SafeArea] and
+/// Entry widgets, represents the complete chat. If you wrap it in [SafeArea] and
 /// it should be full screen, set [SafeArea]'s `bottom` to `false`.
 class Chat extends StatefulWidget {
-  /// Creates a chat widget.
+  /// Creates a chat widgets.
   const Chat({
     super.key,
     this.audioMessageBuilder,
@@ -122,8 +122,8 @@ class Chat extends StatefulWidget {
   /// See [Message.bubbleRtlAlignment].
   final BubbleRtlAlignment? bubbleRtlAlignment;
 
-  /// Allows you to replace the default Input widget e.g. if you want to
-  /// create a channel view. If you're looking for the bottom widget added
+  /// Allows you to replace the default Input widgets e.g. if you want to
+  /// create a channel view. If you're looking for the bottom widgets added
   /// to the chat list, see [listBottomWidget] instead.
   final Widget? customBottomWidget;
 
@@ -145,7 +145,7 @@ class Chat extends StatefulWidget {
   /// [customDateHeaderText] for more customization.
   final DateFormat? dateFormat;
 
-  /// Custom date header builder gives ability to customize date header widget.
+  /// Custom date header builder gives ability to customize date header widgets.
   final Widget Function(DateHeader)? dateHeaderBuilder;
 
   /// Time (in ms) between two messages when we will render a date header.
@@ -230,7 +230,7 @@ class Chat extends StatefulWidget {
   /// use [customBottomWidget] instead.
   final Widget? listBottomWidget;
 
-  /// List of [types.Message] to render in the chat widget.
+  /// List of [types.Message] to render in the chat widgets.
   final List<types.Message> messages;
 
   /// See [Message.nameBuilder].
@@ -268,7 +268,8 @@ class Chat extends StatefulWidget {
   final void Function(BuildContext context, types.Message) onMessageTap;
 
   /// See [Message.onMessageVisibilityChanged].
-  final void Function(types.Message, bool visible)? onMessageVisibilityChanged;
+  final void Function(types.Message, {bool visible})?
+      onMessageVisibilityChanged;
 
   /// See [Message.onPreviewDataFetched].
   final void Function(types.TextMessage, types.PreviewData)?
@@ -354,7 +355,7 @@ class Chat extends StatefulWidget {
   State<Chat> createState() => ChatState();
 }
 
-/// [Chat] widget state.
+/// [Chat] widgets state.
 class ChatState extends State<Chat> {
   /// Used to get the correct auto scroll index from .
   static const String _unreadHeaderId = 'unread_header_id';

@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/conditional/conditional.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/util.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_user.dart';
 
-import '../../conditional/conditional.dart';
-import '../../util.dart';
-import '../state/inherited_chat_theme.dart';
-import '../state/inherited_user.dart';
-
-/// A class that represents image message widget. Supports different
+/// A class that represents image message widgets. Supports different
 /// aspect ratios, renders blurred image as a background which is visible
 /// if the image is narrow, renders image in form of a file if aspect
 /// ratio is very small or very big.
 class ImageMessage extends StatefulWidget {
-  /// Creates an image message widget based on [types.ImageMessage].
+  /// Creates an image message widgets based on [types.ImageMessage].
   const ImageMessage({
+    required this.message,
+    required this.messageWidth,
     super.key,
     this.imageHeaders,
     this.imageProviderBuilder,
-    required this.message,
-    required this.messageWidth,
   });
 
-  /// See [Chat.imageHeaders].
   final Map<String, String>? imageHeaders;
 
-  /// See [Chat.imageProviderBuilder].
   final ImageProvider Function({
     required String uri,
     required Map<String, String>? imageHeaders,
@@ -40,7 +37,7 @@ class ImageMessage extends StatefulWidget {
   State<ImageMessage> createState() => _ImageMessageState();
 }
 
-/// [ImageMessage] widget state.
+/// [ImageMessage] widgets state.
 class _ImageMessageState extends State<ImageMessage> {
   ImageProvider? _image;
   Size _size = Size.zero;
@@ -63,17 +60,17 @@ class _ImageMessageState extends State<ImageMessage> {
   }
 
   void _getImage() {
-    final oldImageStream = _stream;
+    final ImageStream? oldImageStream = _stream;
     _stream = _image?.resolve(createLocalImageConfiguration(context));
     if (_stream?.key == oldImageStream?.key) {
       return;
     }
-    final listener = ImageStreamListener(_updateImage);
+    final ImageStreamListener listener = ImageStreamListener(_updateImage);
     oldImageStream?.removeListener(listener);
     _stream?.addListener(listener);
   }
 
-  void _updateImage(ImageInfo info, bool _) {
+  void _updateImage(final ImageInfo info, final bool _) {
     setState(() {
       _size = Size(
         info.image.width.toDouble(),
@@ -97,8 +94,8 @@ class _ImageMessageState extends State<ImageMessage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final user = InheritedUser.of(context).user;
+  Widget build(final BuildContext context) {
+    final types.User user = InheritedUser.of(context).user;
 
     if (_size.aspectRatio == 0) {
       return Container(
@@ -107,13 +104,13 @@ class _ImageMessageState extends State<ImageMessage> {
         width: _size.width,
       );
     } else if (_size.aspectRatio < 0.1 || _size.aspectRatio > 10) {
-      return Container(
+      return ColoredBox(
         color: user.id == widget.message.author.id
             ? InheritedChatTheme.of(context).theme.primaryColor
             : InheritedChatTheme.of(context).theme.secondaryColor,
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
+          children: <Widget>[
             Container(
               height: 64,
               margin: EdgeInsetsDirectional.fromSTEB(
@@ -141,7 +138,7 @@ class _ImageMessageState extends State<ImageMessage> {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(
                       widget.message.name,
                       style: user.id == widget.message.author.id

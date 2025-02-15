@@ -123,7 +123,7 @@ abstract class ChatTheme {
   /// Margin of attachment button.
   final EdgeInsets? attachmentButtonMargin;
 
-  /// Used as a background color of a chat widget.
+  /// Used as a background color of a chat widgets.
   final Color backgroundColor;
 
   // Margin around the message bubble.

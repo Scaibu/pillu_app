@@ -15,10 +15,8 @@ class ImageGallery extends StatelessWidget {
     required this.pageController,
   });
 
-  /// See [Chat.imageHeaders].
   final Map<String, String>? imageHeaders;
 
-  /// See [Chat.imageProviderBuilder].
   final ImageProvider Function({
     required String uri,
     required Map<String, String>? imageHeaders,
@@ -37,7 +35,7 @@ class ImageGallery extends StatelessWidget {
   /// Page controller for the image pages.
   final PageController pageController;
 
-  Widget _imageGalleryLoadingBuilder(ImageChunkEvent? event) => Center(
+  Widget _imageGalleryLoadingBuilder(final ImageChunkEvent? event) => Center(
         child: SizedBox(
           width: 20,
           height: 20,
@@ -50,8 +48,8 @@ class ImageGallery extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) => PopScope(
-        onPopInvoked: (didPop) {
+  Widget build(final BuildContext context) => PopScope(
+        onPopInvoked: (final bool didPop) {
           if (didPop) {
             onClosePressed();
           }
@@ -59,11 +57,11 @@ class ImageGallery extends StatelessWidget {
         child: Dismissible(
           key: const Key('photo_view_gallery'),
           direction: DismissDirection.down,
-          onDismissed: (direction) => onClosePressed(),
+          onDismissed: (final DismissDirection direction) => onClosePressed(),
           child: Stack(
-            children: [
+            children: <Widget>[
               PhotoViewGallery.builder(
-                builder: (BuildContext context, int index) =>
+                builder: (final BuildContext context, final int index) =>
                     PhotoViewGalleryPageOptions(
                   imageProvider: imageProviderBuilder != null
                       ? imageProviderBuilder!(
@@ -79,7 +77,8 @@ class ImageGallery extends StatelessWidget {
                   maxScale: options.maxScale,
                 ),
                 itemCount: images.length,
-                loadingBuilder: (context, event) =>
+                loadingBuilder: (final BuildContext context,
+                        final ImageChunkEvent? event) =>
                     _imageGalleryLoadingBuilder(event),
                 pageController: pageController,
                 scrollPhysics: const ClampingScrollPhysics(),

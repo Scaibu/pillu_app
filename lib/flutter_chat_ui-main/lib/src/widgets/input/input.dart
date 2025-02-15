@@ -11,15 +11,15 @@ import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/input/send_button
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart';
 
-/// A class that represents bottom bar widget with a text field, attachment and
+/// A class that represents bottom bar widgets with a text field, attachment and
 /// send buttons inside. By default hides send button when text field is empty.
 class Input extends StatefulWidget {
-  /// Creates [Input] widget.
+  /// Creates [Input] widgets.
   const Input({
+    required this.onSendPressed,
     super.key,
     this.isAttachmentUploading,
     this.onAttachmentPressed,
-    required this.onSendPressed,
     this.options = const InputOptions(),
   });
 
@@ -43,7 +43,7 @@ class Input extends StatefulWidget {
   State<Input> createState() => _InputState();
 }
 
-/// [Input] widget state.
+/// [Input] widgets state.
 class _InputState extends State<Input> {
   late final FocusNode _inputFocusNode = FocusNode(
     onKeyEvent: (final FocusNode node, final KeyEvent event) {
@@ -185,7 +185,7 @@ class _InputState extends State<Input> {
                                   color: InheritedChatTheme.of(context)
                                       .theme
                                       .inputTextColor
-                                      .withOpacity(0.5),
+                                      .withAlpha(50),
                                 ),
                             hintText:
                                 InheritedL10n.of(context).l10n.inputPlaceholder,
@@ -280,30 +280,19 @@ class InputOptions {
   final VoidCallback? onTextFieldTap;
 
   /// Controls the visibility behavior of the [SendButton] based on the
-  /// [TextField] state inside the [Input] widget.
+  /// [TextField] state inside the [Input] widgets.
   /// Defaults to [SendButtonVisibilityMode.editing].
   final SendButtonVisibilityMode sendButtonVisibilityMode;
 
-  /// Custom [TextEditingController]. If not provided, defaults to the
-  /// [InputTextFieldController], which extends [TextEditingController] and has
-  /// additional fatures like markdown support. If you want to keep additional
-  /// features but still need some methods from the default [TextEditingController],
-  /// you can create your own [InputTextFieldController] (imported from this lib)
-  /// and pass it here.
   final TextEditingController? textEditingController;
 
-  /// Controls the [TextInput] autocorrect behavior. Defaults to [true].
   final bool autocorrect;
 
-  /// Whether [TextInput] should have focus. Defaults to [false].
   final bool autofocus;
 
-  /// Controls the [TextInput] enableSuggestions behavior. Defaults to [true].
   final bool enableSuggestions;
 
-  /// Controls the [TextInput] enabled behavior. Defaults to [true].
   final bool enabled;
 
-  /// Controls the [Input] usesSafeArea behavior. Defaults to [true].
   final bool usesSafeArea;
 }

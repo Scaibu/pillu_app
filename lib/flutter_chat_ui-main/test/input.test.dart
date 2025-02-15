@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/flutter_chat_ui.dart';
 
 void main() {
@@ -8,7 +8,7 @@ void main() {
     testWidgets(
       'The SendButton should always be visible when sendButtonVisibilityMode is set to SendButtonVisibilityMode.always',
       (WidgetTester tester) async {
-        // Build the Chat widget.
+        // Build the Chat widgets.
         await tester.pumpWidget(
           MaterialApp(
             home: Material(
@@ -28,7 +28,7 @@ void main() {
         // Trigger a frame.
         await tester.pump();
 
-        // The SendButton should exist in the widget tree.
+        // The SendButton should exist in the widgets tree.
         expect(find.byType(SendButton), findsOneWidget);
       },
     );
@@ -36,7 +36,7 @@ void main() {
     testWidgets(
       'The SendButton should always be invisible when sendButtonVisibilityMode is set to SendButtonVisibilityMode.hidden',
       (WidgetTester tester) async {
-        // Build the Chat widget.
+        // Build the Chat widgets.
         await tester.pumpWidget(
           MaterialApp(
             home: Material(
@@ -56,7 +56,7 @@ void main() {
         // Trigger a frame.
         await tester.pump();
 
-        // The SendButton should not exist in the widget tree.
+        // The SendButton should not exist in the widgets tree.
         expect(find.byType(SendButton), findsNothing);
       },
     );
@@ -64,7 +64,7 @@ void main() {
     testWidgets(
       'The SendButton should be invisible only when sendButtonVisibilityMode is not specified and the TextField is empty',
       (WidgetTester tester) async {
-        // Build the Chat widget.
+        // Build the Chat widgets.
         await tester.pumpWidget(
           MaterialApp(
             home: Material(
@@ -81,7 +81,7 @@ void main() {
         // Trigger a frame.
         await tester.pump();
 
-        // The SendButton should not exist in the widget tree.
+        // The SendButton should not exist in the widgets tree.
         expect(find.byType(SendButton), findsNothing);
       },
     );
@@ -89,7 +89,7 @@ void main() {
     testWidgets(
       'The SendButton should be visible only when sendButtonVisibilityMode is not specified and the TextField is not empty',
       (WidgetTester tester) async {
-        // Build the Chat widget.
+        // Build the Chat widgets.
         await tester.pumpWidget(
           MaterialApp(
             home: Material(
@@ -110,7 +110,7 @@ void main() {
         // Trigger a frame.
         await tester.pump();
 
-        // The SendButton should exist in the widget tree.
+        // The SendButton should exist in the widgets tree.
         expect(find.byType(SendButton), findsOneWidget);
       },
     );
@@ -121,7 +121,7 @@ void main() {
         // Define a bool indicating function was called.
         var isCalled = false;
 
-        // Build the Chat widget.
+        // Build the Chat widgets.
         await tester.pumpWidget(
           MaterialApp(
             home: Material(
@@ -162,7 +162,7 @@ void main() {
         // Define a bool indicating function was called.
         var isCalled = false;
 
-        // Build the Chat widget.
+        // Build the Chat widgets.
         await tester.pumpWidget(
           MaterialApp(
             home: Material(

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/flutter_chat_ui.dart';
 
 void main() {
   testWidgets('contains file message', (WidgetTester tester) async {
-    // Build the Chat widget.
+    // Build the Chat widgets.
     await tester.pumpWidget(
       MaterialApp(
         home: Material(

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/pattern_style.dart';
 
-import '../../models/pattern_style.dart';
-
-/// Controller for the [TextField] on [Input] widget
 /// To highlighting the matches for pattern.
 class InputTextFieldController extends TextEditingController {
   /// A map of style to apply to the text pattern.
-  final List<PatternStyle> _listPatternStyle = [
+  final List<PatternStyle> _listPatternStyle = <PatternStyle>[
     PatternStyle.bold,
     PatternStyle.italic,
     PatternStyle.lineThrough,
@@ -15,26 +13,32 @@ class InputTextFieldController extends TextEditingController {
 
   @override
   TextSpan buildTextSpan({
-    required BuildContext context,
-    TextStyle? style,
-    required bool withComposing,
+    required final BuildContext context,
+    required final bool withComposing,
+    final TextStyle? style,
   }) {
-    final children = <TextSpan>[];
+    final List<TextSpan> children = <TextSpan>[];
 
     text.splitMapJoin(
-      RegExp(_listPatternStyle.map((it) => it.regExp.pattern).join('|')),
-      onMatch: (match) {
-        final text = match[0]!;
-        final style = _listPatternStyle
-            .firstWhere((element) => element.regExp.hasMatch(text))
+      RegExp(
+        _listPatternStyle
+            .map((final PatternStyle it) => it.regExp.pattern)
+            .join('|'),
+      ),
+      onMatch: (final Match match) {
+        final String text = match[0]!;
+        final TextStyle style = _listPatternStyle
+            .firstWhere(
+              (final PatternStyle element) => element.regExp.hasMatch(text),
+            )
             .textStyle;
 
-        final span = TextSpan(text: match.group(0), style: style);
+        final TextSpan span = TextSpan(text: match.group(0), style: style);
         children.add(span);
         return span.toPlainText();
       },
-      onNonMatch: (text) {
-        final span = TextSpan(text: text, style: style);
+      onNonMatch: (final String text) {
+        final TextSpan span = TextSpan(text: text, style: style);
         children.add(span);
         return span.toPlainText();
       },

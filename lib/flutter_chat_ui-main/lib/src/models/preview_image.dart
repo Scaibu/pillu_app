@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-/// A class that represents an image showed in a preview widget.
+/// A class that represents an image showed in a preview widgets.
 @immutable
 class PreviewImage extends Equatable {
   /// Creates a preview image.
@@ -18,5 +18,5 @@ class PreviewImage extends Equatable {
 
   /// Equatable props.
   @override
-  List<Object> get props => [id, uri];
+  List<Object> get props => <Object>[id, uri];
 }

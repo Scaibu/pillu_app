@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart';
 
-/// A class that represents attachment button widget.
+/// A class that represents attachment button widgets.
 class AttachmentButton extends StatelessWidget {
-  /// Creates attachment button widget.
+  /// Creates attachment button widgets.
   const AttachmentButton({
     super.key,
     this.isLoading = false,

@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/conditional/conditional.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/bubble_rtl_alignment.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/emoji_enlargement_behavior.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/util.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/message/image_message.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/message/text_message.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/message/user_avatar.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_user.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
-import '../../conditional/conditional.dart';
-import '../../models/bubble_rtl_alignment.dart';
-import '../../models/emoji_enlargement_behavior.dart';
-import '../../util.dart';
-import '../state/inherited_chat_theme.dart';
-import '../state/inherited_user.dart';
-import 'file_message.dart';
-import 'image_message.dart';
-import 'message_status.dart';
-import 'text_message.dart';
-import 'user_avatar.dart';
-
-/// Base widget for all message types in the chat. Renders bubbles around
+/// Base widgets for all message types in the chat. Renders bubbles around
 /// messages and status. Sets maximum width for a message for
 /// a nice look on larger screens.
 class Message extends StatelessWidget {
   /// Creates a particular message from any message type.
   const Message({
+    required this.emojiEnlargementBehavior,
+    required this.hideBackgroundOnEmojiMessages,
+    required this.message,
+    required this.messageWidth,
+    required this.roundBorder,
+    required this.showAvatar,
+    required this.showName,
+    required this.showStatus,
+    required this.isLeftStatus,
+    required this.showUserAvatars,
+    required this.textMessageOptions,
+    required this.usePreviewData,
     super.key,
     this.audioMessageBuilder,
     this.avatarBuilder,
@@ -27,14 +38,10 @@ class Message extends StatelessWidget {
     this.bubbleRtlAlignment,
     this.customMessageBuilder,
     this.customStatusBuilder,
-    required this.emojiEnlargementBehavior,
     this.fileMessageBuilder,
-    required this.hideBackgroundOnEmojiMessages,
     this.imageHeaders,
     this.imageMessageBuilder,
     this.imageProviderBuilder,
-    required this.message,
-    required this.messageWidth,
     this.nameBuilder,
     this.onAvatarTap,
     this.onMessageDoubleTap,
@@ -44,15 +51,7 @@ class Message extends StatelessWidget {
     this.onMessageTap,
     this.onMessageVisibilityChanged,
     this.onPreviewDataFetched,
-    required this.roundBorder,
-    required this.showAvatar,
-    required this.showName,
-    required this.showStatus,
-    required this.isLeftStatus,
-    required this.showUserAvatars,
     this.textMessageBuilder,
-    required this.textMessageOptions,
-    required this.usePreviewData,
     this.userAgent,
     this.videoMessageBuilder,
   });
@@ -100,14 +99,12 @@ class Message extends StatelessWidget {
   /// Hide background for messages containing only emojis.
   final bool hideBackgroundOnEmojiMessages;
 
-  /// See [Chat.imageHeaders].
   final Map<String, String>? imageHeaders;
 
   /// Build an image message inside predefined bubble.
   final Widget Function(types.ImageMessage, {required int messageWidth})?
       imageMessageBuilder;
 
-  /// See [Chat.imageProviderBuilder].
   final ImageProvider Function({
     required String uri,
     required Map<String, String>? imageHeaders,
@@ -143,7 +140,8 @@ class Message extends StatelessWidget {
   final void Function(BuildContext context, types.Message)? onMessageTap;
 
   /// Called when the message's visibility changes.
-  final void Function(types.Message, bool visible)? onMessageVisibilityChanged;
+  final void Function(types.Message, {bool visible})?
+      onMessageVisibilityChanged;
 
   /// See [TextMessage.onPreviewDataFetched].
   final void Function(types.TextMessage, types.PreviewData)?
@@ -283,8 +281,13 @@ class Message extends StatelessWidget {
         return videoMessageBuilder != null
             ? videoMessageBuilder!(videoMessage, messageWidth: messageWidth)
             : const SizedBox();
-      default:
-        return const SizedBox();
+
+      case types.MessageType.system:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case types.MessageType.unsupported:
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 
@@ -394,7 +397,7 @@ class Message extends StatelessWidget {
                               (final VisibilityInfo visibilityInfo) =>
                                   onMessageVisibilityChanged!(
                             message,
-                            visibilityInfo.visibleFraction > 0.1,
+                            visible: visibilityInfo.visibleFraction > 0.1,
                           ),
                           child: _bubbleBuilder(
                             context,

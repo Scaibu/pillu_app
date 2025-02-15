@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/util.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_user.dart';
 
-import '../../util.dart';
-import '../state/inherited_chat_theme.dart';
-import '../state/inherited_l10n.dart';
-import '../state/inherited_user.dart';
-
-/// A class that represents file message widget.
+/// A class that represents file message widgets.
 class FileMessage extends StatelessWidget {
-  /// Creates a file message widget based on a [types.FileMessage].
+  /// Creates a file message widgets based on a [types.FileMessage].
   const FileMessage({
-    super.key,
     required this.message,
+    super.key,
   });
 
   /// [types.FileMessage].
   final types.FileMessage message;
 
   @override
-  Widget build(BuildContext context) {
-    final user = InheritedUser.of(context).user;
-    final color = user.id == message.author.id
+  Widget build(final BuildContext context) {
+    final types.User user = InheritedUser.of(context).user;
+    final Color color = user.id == message.author.id
         ? InheritedChatTheme.of(context).theme.sentMessageDocumentIconColor
         : InheritedChatTheme.of(context).theme.receivedMessageDocumentIconColor;
 
@@ -35,17 +34,17 @@ class FileMessage extends StatelessWidget {
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          children: [
+          children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                color: color.withOpacity(0.2),
+                color: color.withAlpha(20),
                 borderRadius: BorderRadius.circular(21),
               ),
               height: 42,
               width: 42,
               child: Stack(
                 alignment: Alignment.center,
-                children: [
+                children: <Widget>[
                   if (message.isLoading ?? false)
                     Positioned.fill(
                       child: CircularProgressIndicator(
@@ -70,7 +69,7 @@ class FileMessage extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(
                       message.name,
                       style: user.id == message.author.id

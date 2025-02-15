@@ -1,6 +1,8 @@
 import 'package:pillu_app/auth/bloc/auth_bloc.dart';
 import 'package:pillu_app/auth/bloc/auth_event.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
+import 'package:pillu_app/shared/bottomSheet/bottom_sheets.dart';
+import 'package:pillu_app/shared/text_styles.dart';
 
 class LoginViewComponent extends StatelessWidget {
   const LoginViewComponent({super.key});
@@ -14,11 +16,7 @@ class LoginViewComponent extends StatelessWidget {
       authOperation: () async =>
           BlocProvider.of<AuthBloc>(context).login(authApi),
       onSuccess: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Done'),
-          ),
-        );
+        showToast(context, message: 'Done');
       },
       onFailure: () => BlocProvider.of<AuthBloc>(context)
           .add(UpdateAuthStateEvent(loggingIn: false)),
@@ -36,12 +34,16 @@ class LoginViewComponent extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Not authenticated'),
+            Text('Not Connected Yet', style: buildJostTextStyle()),
             TextButton(
               onPressed: () async {
                 await _goToLoginPage(context);
               },
-              child: const Text('Login'),
+              child: Text(
+                'Continue',
+                style:
+                    buildJostTextStyle(color: Theme.of(context).primaryColor),
+              ),
             ),
           ],
         ),

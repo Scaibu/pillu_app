@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart';
 import 'package:scroll_to_index/scroll_to_index.dart'
     show scrollAnimationDuration;
-
-import 'state/inherited_chat_theme.dart';
-import 'state/inherited_l10n.dart';
 
 class UnreadHeader extends StatelessWidget {
   const UnreadHeader({super.key, this.marginTop});
@@ -12,7 +11,7 @@ class UnreadHeader extends StatelessWidget {
   final double? marginTop;
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(final BuildContext context) => Container(
         alignment: Alignment.center,
         color: InheritedChatTheme.of(context).theme.unreadHeaderTheme.color,
         margin: EdgeInsets.only(bottom: 24, top: marginTop ?? 0),
@@ -37,7 +36,7 @@ class ScrollToUnreadOptions {
 
   /// Will show an unread messages header after this message if there are more
   /// messages to come and will scroll to this header on
-  /// [ChatState.scrollToUnreadHeader].
+
   final String? lastReadMessageId;
 
   /// Duration to wait after open until the scrolling starts.

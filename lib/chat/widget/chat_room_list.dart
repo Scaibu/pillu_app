@@ -73,7 +73,7 @@ class ChatRoomList extends StatelessWidget {
   Widget _buildEmptyState() => Container(
         alignment: Alignment.center,
         margin: const EdgeInsets.only(bottom: 200),
-        child: const Text('No rooms'),
+        child: Text('No rooms', style: buildJostTextStyle()),
       );
 
   Widget _buildRoomList(

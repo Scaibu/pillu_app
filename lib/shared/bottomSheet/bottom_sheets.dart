@@ -67,3 +67,17 @@ Future<void> attachmentSheet(
         ),
       ),
     );
+
+void showToast(
+  final BuildContext context, {
+  required final String message,
+}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        message,
+        style: buildJostTextStyle(color: Theme.of(context).cardColor),
+      ),
+    ),
+  );
+}

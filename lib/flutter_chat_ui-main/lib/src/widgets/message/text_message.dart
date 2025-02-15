@@ -3,35 +3,32 @@ import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/flutter_link_previewer.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/emoji_enlargement_behavior.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/matchers.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/pattern_style.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/util.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/message/user_name.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_user.dart';
 
-import '../../models/emoji_enlargement_behavior.dart';
-import '../../models/matchers.dart';
-import '../../models/pattern_style.dart';
-import '../../util.dart';
-import '../state/inherited_chat_theme.dart';
-import '../state/inherited_user.dart';
-import 'user_name.dart';
-
-/// A class that represents text message widget with optional link preview.
+/// A class that represents text message widgets with optional link preview.
 class TextMessage extends StatelessWidget {
-  /// Creates a text message widget from a [types.TextMessage] class.
+  /// Creates a text message widgets from a [types.TextMessage] class.
   const TextMessage({
-    super.key,
     required this.emojiEnlargementBehavior,
     required this.hideBackgroundOnEmojiMessages,
     required this.message,
+    required this.showName,
+    required this.usePreviewData,
+    super.key,
     this.nameBuilder,
     this.onPreviewDataFetched,
     this.options = const TextMessageOptions(),
-    required this.showName,
-    required this.usePreviewData,
     this.userAgent,
   });
 
-  /// See [Message.emojiEnlargementBehavior].
   final EmojiEnlargementBehavior emojiEnlargementBehavior;
 
-  /// See [Message.hideBackgroundOnEmojiMessages].
   final bool hideBackgroundOnEmojiMessages;
 
   /// [types.TextMessage].
@@ -178,21 +175,22 @@ class TextMessage extends StatelessWidget {
 /// Widget to reuse the markdown capabilities, e.g., for previews.
 class TextMessageText extends StatelessWidget {
   const TextMessageText({
+    required this.bodyTextStyle,
+    required this.text,
     super.key,
     this.bodyLinkTextStyle,
-    required this.bodyTextStyle,
     this.boldTextStyle,
     this.codeTextStyle,
     this.maxLines,
     this.options = const TextMessageOptions(),
     this.overflow = TextOverflow.clip,
-    required this.text,
   });
 
   /// Style to apply to anything that matches a link.
   final TextStyle? bodyLinkTextStyle;
 
-  /// Regular style to use for any unmatched text. Also used as basis for the fallback options.
+  /// Regular style to use for any unmatched text. Also used as basis for the
+  /// fallback options.
   final TextStyle bodyTextStyle;
 
   /// Style to apply to anything that matches bold markdown.

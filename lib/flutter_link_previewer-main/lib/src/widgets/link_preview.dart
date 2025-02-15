@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pillu_app/core/library/flutter_chat_types.dart'  show PreviewData;
 import 'package:flutter_linkify/flutter_linkify.dart' hide UrlLinkifier;
+import 'package:pillu_app/core/library/flutter_chat_types.dart'
+    show PreviewData;
 import 'package:url_launcher/url_launcher.dart';
 
 import '../url_linkifier.dart' show UrlLinkifier;
 import '../utils.dart' show getPreviewData;
 
-/// A widget that renders text with highlighted links.
+/// A widgets that renders text with highlighted links.
 /// Eventually unwraps to the full preview of the first found link
 /// if the parsing was successful.
 @immutable
@@ -84,7 +85,7 @@ class LinkPreview extends StatefulWidget {
   /// Open the link when the link preview title/description is tapped. Defaults to false.
   final bool openOnPreviewTitleTap;
 
-  /// Padding around initial text widget.
+  /// Padding around initial text widgets.
   final EdgeInsets? padding;
 
   /// Function that allows you to build a custom link preview.
@@ -109,7 +110,7 @@ class LinkPreview extends StatefulWidget {
   /// User agent to send as GET header when requesting link preview url.
   final String? userAgent;
 
-  /// Width of the [LinkPreview] widget.
+  /// Width of the [LinkPreview] widgets.
   final double width;
 
   @override

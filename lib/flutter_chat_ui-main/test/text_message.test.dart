@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/flutter_chat_ui.dart';
 import 'package:pillu_app/core/library/flutter_link_previewer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 void main() {
   testWidgets('contains text message', (WidgetTester tester) async {
-    // Build the Chat widget.
+    // Build the Chat widgets.
     await tester.pumpWidget(
       MaterialApp(
         home: Material(
@@ -34,7 +34,7 @@ void main() {
   });
 
   testWidgets('contains link preview', (WidgetTester tester) async {
-    // Build the Chat widget.
+    // Build the Chat widgets.
     await tester.pumpWidget(
       MaterialApp(
         home: Material(
@@ -72,7 +72,7 @@ void main() {
     // Check out documentation https://pub.dev/packages/visibility_detector#widget-tests.
     VisibilityDetectorController.instance.updateInterval = Duration.zero;
     final messagesVisible = <String>{};
-    // Build the Chat widget.
+    // Build the Chat widgets.
     await tester.pumpWidget(
       MaterialApp(
         home: Material(

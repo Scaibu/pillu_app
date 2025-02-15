@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../core/library/flutter_chat_ui.dart';
 import '../state/inherited_chat_theme.dart';
 
-/// A class that represents system message widget.
+/// A class that represents system message widgets.
 class SystemMessage extends StatelessWidget {
   const SystemMessage({
     required this.message,
@@ -18,7 +18,7 @@ class SystemMessage extends StatelessWidget {
   final TextMessageOptions options;
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(final BuildContext context) => Container(
         alignment: Alignment.center,
         margin: InheritedChatTheme.of(context).theme.systemMessageTheme.margin,
         child: TextMessageText(
@@ -58,7 +58,8 @@ class SystemMessageTheme {
   /// Style to apply to anything that matches a link.
   final TextStyle? linkTextStyle;
 
-  /// Regular style to use for any unmatched text. Also used as basis for the fallback options.
+  /// Regular style to use for any unmatched text. Also used
+  /// as basis for the fallback options.
   final TextStyle textStyle;
 
   /// Style to apply to anything that matches bold markdown.

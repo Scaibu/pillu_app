@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
-
-import '../../models/bubble_rtl_alignment.dart';
-import '../../util.dart';
-import '../state/inherited_chat_theme.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/models/bubble_rtl_alignment.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/util.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
 
 /// Renders user's avatar or initials next to a message.
 class UserAvatar extends StatelessWidget {
   /// Creates user avatar.
   const UserAvatar({
-    super.key,
     required this.author,
+    super.key,
     this.bubbleRtlAlignment,
     this.imageHeaders,
     this.onAvatarTap,
@@ -19,23 +18,21 @@ class UserAvatar extends StatelessWidget {
   /// Author to show image and name initials from.
   final types.User author;
 
-  /// See [Message.bubbleRtlAlignment].
   final BubbleRtlAlignment? bubbleRtlAlignment;
 
-  /// See [Chat.imageHeaders].
   final Map<String, String>? imageHeaders;
 
   /// Called when user taps on an avatar.
   final void Function(types.User)? onAvatarTap;
 
   @override
-  Widget build(BuildContext context) {
-    final color = getUserAvatarNameColor(
+  Widget build(final BuildContext context) {
+    final Color color = getUserAvatarNameColor(
       author,
       InheritedChatTheme.of(context).theme.userAvatarNameColors,
     );
-    final hasImage = author.imageUrl != null;
-    final initials = getUserInitials(author);
+    final bool hasImage = author.imageUrl != null;
+    final String initials = getUserInitials(author);
 
     return Container(
       margin: bubbleRtlAlignment == BubbleRtlAlignment.left
