@@ -2,9 +2,9 @@
 
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import '../message.dart';
-import '../user.dart' show User;
-import 'partial_image.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/messages/partial_image.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/user.dart' show User;
 
 part 'image_message.g.dart';
 
@@ -12,60 +12,60 @@ part 'image_message.g.dart';
 @JsonSerializable()
 @immutable
 abstract class ImageMessage extends Message {
+  const factory ImageMessage({
+    required final String id,
+    required final String name,
+    required final num size,
+    required final String uri,
+    required final User author,
+    final int? createdAt,
+    final double? height,
+    final Map<String, dynamic>? metadata,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final MessageType? type,
+    final int? updatedAt,
+    final double? width,
+  }) = _ImageMessage;
+
   /// Creates an image message.
   const ImageMessage._({
     required super.author,
+    required super.id,
+    required this.name,
+    required this.size,
+    required this.uri,
     super.createdAt,
     this.height,
-    required super.id,
     super.metadata,
-    required this.name,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
-    required this.size,
     super.status,
-    MessageType? type,
+    final MessageType? type,
     super.updatedAt,
-    required this.uri,
     this.width,
   }) : super(type: type ?? MessageType.image);
 
-  const factory ImageMessage({
-    required User author,
-    int? createdAt,
-    double? height,
-    required String id,
-    Map<String, dynamic>? metadata,
-    required String name,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    required num size,
-    Status? status,
-    MessageType? type,
-    int? updatedAt,
-    required String uri,
-    double? width,
-  }) = _ImageMessage;
-
   /// Creates an image message from a map (decoded JSON).
-  factory ImageMessage.fromJson(Map<String, dynamic> json) =>
+  factory ImageMessage.fromJson(final Map<String, dynamic> json) =>
       _$ImageMessageFromJson(json);
 
   /// Creates a full image message from a partial one.
   factory ImageMessage.fromPartial({
-    required User author,
-    int? createdAt,
-    required String id,
-    required PartialImage partialImage,
-    String? remoteId,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    int? updatedAt,
+    required final User author,
+    required final String id,
+    required final PartialImage partialImage,
+    final int? createdAt,
+    final String? remoteId,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final int? updatedAt,
   }) =>
       _ImageMessage(
         author: author,
@@ -103,41 +103,41 @@ abstract class ImageMessage extends Message {
 
   /// Equatable props.
   @override
-  List<Object?> get props => [
-    author,
-    createdAt,
-    height,
-    id,
-    metadata,
-    name,
-    remoteId,
-    repliedMessage,
-    roomId,
-    showStatus,
-    size,
-    status,
-    updatedAt,
-    uri,
-    width,
-  ];
+  List<Object?> get props => <Object?>[
+        author,
+        createdAt,
+        height,
+        id,
+        metadata,
+        name,
+        remoteId,
+        repliedMessage,
+        roomId,
+        showStatus,
+        size,
+        status,
+        updatedAt,
+        uri,
+        width,
+      ];
 
   @override
   Message copyWith({
-    User? author,
-    int? createdAt,
-    double? height,
-    String? id,
-    Map<String, dynamic>? metadata,
-    String? name,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    num? size,
-    Status? status,
-    int? updatedAt,
-    String? uri,
-    double? width,
+    final User? author,
+    final int? createdAt,
+    final double? height,
+    final String? id,
+    final Map<String, dynamic>? metadata,
+    final String? name,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final num? size,
+    final Status? status,
+    final int? updatedAt,
+    final String? uri,
+    final double? width,
   });
 
   /// Converts an image message to the map representation, encodable to JSON.
@@ -148,41 +148,41 @@ abstract class ImageMessage extends Message {
 /// A utility class to enable better copyWith.
 class _ImageMessage extends ImageMessage {
   const _ImageMessage({
+    required super.id,
+    required super.name,
+    required super.size,
+    required super.uri,
     required super.author,
     super.createdAt,
     super.height,
-    required super.id,
     super.metadata,
-    required super.name,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
-    required super.size,
     super.status,
     super.type,
     super.updatedAt,
-    required super.uri,
     super.width,
   }) : super._();
 
   @override
   Message copyWith({
-    User? author,
-    dynamic createdAt = _Unset,
-    dynamic height = _Unset,
-    String? id,
-    dynamic metadata = _Unset,
-    String? name,
-    dynamic remoteId = _Unset,
-    dynamic repliedMessage = _Unset,
-    dynamic roomId = _Unset,
-    dynamic showStatus = _Unset,
-    num? size,
-    dynamic status = _Unset,
-    dynamic updatedAt = _Unset,
-    String? uri,
-    dynamic width = _Unset,
+    final User? author,
+    final dynamic createdAt = _Unset,
+    final dynamic height = _Unset,
+    final String? id,
+    final dynamic metadata = _Unset,
+    final String? name,
+    final dynamic remoteId = _Unset,
+    final dynamic repliedMessage = _Unset,
+    final dynamic roomId = _Unset,
+    final dynamic showStatus = _Unset,
+    final num? size,
+    final dynamic status = _Unset,
+    final dynamic updatedAt = _Unset,
+    final String? uri,
+    final dynamic width = _Unset,
   }) =>
       _ImageMessage(
         author: author ?? this.author,
@@ -198,7 +198,8 @@ class _ImageMessage extends ImageMessage {
             ? this.repliedMessage
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
-        showStatus: showStatus == _Unset ? this.showStatus : showStatus as bool?,
+        showStatus:
+            showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

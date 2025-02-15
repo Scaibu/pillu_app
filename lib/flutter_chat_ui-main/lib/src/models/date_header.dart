@@ -18,5 +18,5 @@ class DateHeader extends Equatable {
 
   /// Equatable props.
   @override
-  List<Object> get props => [text];
+  List<Object> get props => <Object>[text];
 }

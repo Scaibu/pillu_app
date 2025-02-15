@@ -18,5 +18,5 @@ class MessageSpacer extends Equatable {
 
   /// Equatable props.
   @override
-  List<Object> get props => [height, id];
+  List<Object> get props => <Object>[height, id];
 }

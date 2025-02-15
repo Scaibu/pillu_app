@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_parsed_text/flutter_parsed_text.dart';
 import 'package:pillu_app/core/library/flutter_link_previewer.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,8 +9,8 @@ MatchText mailToMatcher({
   final TextStyle? style,
 }) =>
     MatchText(
-      onTap: (mail) async {
-        final url = Uri(scheme: 'mailto', path: mail);
+      onTap: (final String mail) async {
+        final Uri url = Uri(scheme: 'mailto', path: mail);
         if (await canLaunchUrl(url)) {
           await launchUrl(url);
         }
@@ -25,8 +24,8 @@ MatchText urlMatcher({
   final Function(String url)? onLinkPressed,
 }) =>
     MatchText(
-      onTap: (urlText) async {
-        final protocolIdentifierRegex = RegExp(
+      onTap: (String urlText) async {
+        final RegExp protocolIdentifierRegex = RegExp(
           r'^((http|ftp|https):\/\/)',
           caseSensitive: false,
         );
@@ -36,7 +35,7 @@ MatchText urlMatcher({
         if (onLinkPressed != null) {
           onLinkPressed(urlText);
         } else {
-          final url = Uri.tryParse(urlText);
+          final Uri? url = Uri.tryParse(urlText);
           if (url != null && await canLaunchUrl(url)) {
             await launchUrl(
               url,
@@ -56,7 +55,11 @@ MatchText _patternStyleMatcher({
     MatchText(
       pattern: patternStyle.pattern,
       style: style,
-      renderText: ({required String str, required String pattern}) => {
+      renderText: ({
+        required final String str,
+        required final String pattern,
+      }) =>
+          <String, String>{
         'display': str.replaceAll(
           patternStyle.from,
           patternStyle.replace,

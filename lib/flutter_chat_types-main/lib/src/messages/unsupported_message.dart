@@ -1,9 +1,8 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
-import '../message.dart';
-import '../user.dart' show User;
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/user.dart' show User;
 
 part 'unsupported_message.g.dart';
 
@@ -14,66 +13,66 @@ part 'unsupported_message.g.dart';
 @JsonSerializable()
 @immutable
 abstract class UnsupportedMessage extends Message {
+  const factory UnsupportedMessage({
+    required final User author,
+    required final String id,
+    final int? createdAt,
+    final Map<String, dynamic>? metadata,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final MessageType? type,
+    final int? updatedAt,
+  }) = _UnsupportedMessage;
+
   /// Creates an unsupported message.
   const UnsupportedMessage._({
     required super.author,
-    super.createdAt,
     required super.id,
+    super.createdAt,
     super.metadata,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
     super.status,
-    MessageType? type,
+    final MessageType? type,
     super.updatedAt,
   }) : super(type: type ?? MessageType.unsupported);
 
-  const factory UnsupportedMessage({
-    required User author,
-    int? createdAt,
-    required String id,
-    Map<String, dynamic>? metadata,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    MessageType? type,
-    int? updatedAt,
-  }) = _UnsupportedMessage;
-
   /// Creates an unsupported message from a map (decoded JSON).
-  factory UnsupportedMessage.fromJson(Map<String, dynamic> json) =>
+  factory UnsupportedMessage.fromJson(final Map<String, dynamic> json) =>
       _$UnsupportedMessageFromJson(json);
 
   /// Equatable props.
   @override
-  List<Object?> get props => [
-    author,
-    createdAt,
-    id,
-    metadata,
-    remoteId,
-    repliedMessage,
-    roomId,
-    showStatus,
-    status,
-    updatedAt,
-  ];
+  List<Object?> get props => <Object?>[
+        author,
+        createdAt,
+        id,
+        metadata,
+        remoteId,
+        repliedMessage,
+        roomId,
+        showStatus,
+        status,
+        updatedAt,
+      ];
 
   @override
   Message copyWith({
-    User? author,
-    int? createdAt,
-    String? id,
-    Map<String, dynamic>? metadata,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    int? updatedAt,
+    final User? author,
+    final int? createdAt,
+    final String? id,
+    final Map<String, dynamic>? metadata,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final int? updatedAt,
   });
 
   /// Converts an unsupported message to the map representation,
@@ -86,8 +85,8 @@ abstract class UnsupportedMessage extends Message {
 class _UnsupportedMessage extends UnsupportedMessage {
   const _UnsupportedMessage({
     required super.author,
-    super.createdAt,
     required super.id,
+    super.createdAt,
     super.metadata,
     super.remoteId,
     super.repliedMessage,
@@ -100,16 +99,16 @@ class _UnsupportedMessage extends UnsupportedMessage {
 
   @override
   Message copyWith({
-    User? author,
-    dynamic createdAt = _Unset,
-    String? id,
-    dynamic metadata = _Unset,
-    dynamic remoteId = _Unset,
-    dynamic repliedMessage = _Unset,
-    dynamic roomId = _Unset,
-    dynamic showStatus = _Unset,
-    dynamic status = _Unset,
-    dynamic updatedAt = _Unset,
+    final User? author,
+    final dynamic createdAt = _Unset,
+    final String? id,
+    final dynamic metadata = _Unset,
+    final dynamic remoteId = _Unset,
+    final dynamic repliedMessage = _Unset,
+    final dynamic roomId = _Unset,
+    final dynamic showStatus = _Unset,
+    final dynamic status = _Unset,
+    final dynamic updatedAt = _Unset,
   }) =>
       _UnsupportedMessage(
         author: author ?? this.author,
@@ -124,7 +123,7 @@ class _UnsupportedMessage extends UnsupportedMessage {
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
         showStatus:
-        showStatus == _Unset ? this.showStatus : showStatus as bool?,
+            showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
       );

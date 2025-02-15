@@ -1,21 +1,59 @@
+import 'dart:async';
+
 import 'package:faker/faker.dart';
+import 'package:pillu_app/auth/auth_repository.dart';
+import 'package:pillu_app/auth/bloc/auth_event.dart';
+import 'package:pillu_app/auth/bloc/auth_state.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
-import 'auth_event.dart';
-import 'auth_state.dart';
-
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  FocusNode loginFocusNode = FocusNode();
-  final loginPasswordController = TextEditingController(text: 'Pillu@123');
-  final registerPasswordController = TextEditingController();
-  final loginUsernameController = TextEditingController(text: '');
-  final registerUsernameController = TextEditingController();
-  final registerFocusNode = FocusNode();
-
-  AuthBloc() : super(AuthDataState()) {
+  AuthBloc(this.authRepository) : super(AuthDataState()) {
     on<InitAuthEvent>(_initAll);
     on<UpdateAuthStateEvent>(_updateAuthState);
+    on<AuthAuthenticated>(_onAuthStarted);
+    on<UserLogOutEvent>(_logOut);
+  }
+
+  final AuthRepository authRepository;
+  StreamSubscription<User?>? _authSubscription;
+
+  FocusNode loginFocusNode = FocusNode();
+  final TextEditingController loginPasswordController =
+      TextEditingController(text: 'Pillu@123');
+  final TextEditingController registerPasswordController =
+      TextEditingController();
+  final TextEditingController loginUsernameController =
+      TextEditingController(text: '');
+  final TextEditingController registerUsernameController =
+      TextEditingController();
+  final FocusNode registerFocusNode = FocusNode();
+
+  Future<void> _onAuthStarted(
+    final AuthAuthenticated event,
+    final Emitter<AuthState> emit,
+  ) async {
+    await _authSubscription?.cancel();
+
+    authRepository.authStateChanges.listen((final User? user) {
+      if (user != null) {
+        emit(AuthDataState(user: user));
+      } else {
+        emit(AuthDataState());
+      }
+    });
+    _authSubscription = authRepository.authStateChanges.listen(
+      (final User? user) {
+        if (user != null) {
+          emit(AuthDataState(user: user, unAuthenticated: false));
+        } else {
+          emit(AuthDataState());
+        }
+      },
+      onError: (final _) {
+        emit(AuthDataState(hasError: true));
+      },
+    );
   }
 
   @override
@@ -26,49 +64,77 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     registerPasswordController.dispose();
     registerUsernameController.dispose();
     registerFocusNode.dispose();
-    return await super.close();
+    await _authSubscription?.cancel();
+    return super.close();
   }
 
-  void _initAll(AuthEvent event, Emitter<AuthState> emit) async {
+  Future<void> _initAll(
+    final AuthEvent event,
+    final Emitter<AuthState> emit,
+  ) async {
     if (event is InitAuthEvent) {
-      final faker = Faker();
-      final _firstName = faker.person.firstName();
-      final _lastName = faker.person.lastName();
+      final Faker faker = Faker();
+      final String firstName = faker.person.firstName();
+      final String lastName = faker.person.lastName();
       registerUsernameController.text =
-          '${_firstName.toLowerCase()} ${_lastName.toLowerCase()}';
+          '${firstName.toLowerCase()} ${lastName.toLowerCase()}';
       registerPasswordController.text = 'Pillu@123';
     }
     emit(AuthDataState());
   }
 
-  void _updateAuthState(UpdateAuthStateEvent event, Emitter<AuthState> emit) {
-    final currState = state as AuthDataState;
-    emit(currState.copyWith(
-      loggingIn: event.loggingIn,
-      registering: event.registering,
-    ));
+  void _updateAuthState(
+    final UpdateAuthStateEvent event,
+    final Emitter<AuthState> emit,
+  ) {
+    final AuthDataState currState = state as AuthDataState;
+    emit(
+      currState.copyWith(
+        loggingIn: event.loggingIn,
+        registering: event.registering,
+      ),
+    );
   }
 
-  Future<void> login(AuthApi api) async {
+  Future<void> login(final AuthApi api) async {
     add(UpdateAuthStateEvent(loggingIn: true));
     await api.login(
-        email: loginUsernameController.text,
-        password: loginPasswordController.text);
+      email: loginUsernameController.text,
+      password: loginPasswordController.text,
+    );
   }
 
-  Future<void> createAndRegisterUser(AuthApi api) async {
-    final firstName = registerUsernameController.text.split(' ').first;
-    final lastName = registerUsernameController.text.split(' ').last;
-    final imageUrl =
+  Future<void> createAndRegisterUser(final AuthApi api) async {
+    final String firstName = registerUsernameController.text.split(' ').first;
+    final String lastName = registerUsernameController.text.split(' ').last;
+    final String imageUrl =
         'https://i.pravatar.cc/300?u=${faker.internet.domainName()}';
 
     add(UpdateAuthStateEvent(registering: true));
 
-    final uid = await api.createRegisterUser(
-        email: registerUsernameController.text,
-        password: registerPasswordController.text);
-    types.User user = types.User(
-        imageUrl: imageUrl, firstName: firstName, lastName: lastName, id: uid);
+    final String uid = await api.createRegisterUser(
+      email: registerUsernameController.text,
+      password: registerPasswordController.text,
+    );
+    final types.User user = types.User(
+      imageUrl: imageUrl,
+      firstName: firstName,
+      lastName: lastName,
+      id: uid,
+    );
     await api.createUser(user: user);
+  }
+
+  Future<void> _logOut(
+    final UserLogOutEvent event,
+    final Emitter<AuthState> emit,
+  ) async {
+    if (state is AuthDataState) {
+      final AuthDataState currDataState = state as AuthDataState;
+
+      if (currDataState.user == null) {
+        await FirebaseAuth.instance.signOut();
+      }
+    }
   }
 }

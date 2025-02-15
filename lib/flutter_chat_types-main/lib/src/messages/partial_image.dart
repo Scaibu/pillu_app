@@ -1,8 +1,8 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import '../message.dart';
-import 'image_message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/messages/image_message.dart';
 
 part 'partial_image.g.dart';
 
@@ -15,17 +15,17 @@ class PartialImage {
   /// You can use [ImageMessage.fromPartial] constructor to create a full
   /// message from a partial one.
   const PartialImage({
-    this.height,
-    this.metadata,
     required this.name,
-    this.repliedMessage,
     required this.size,
     required this.uri,
+    this.height,
+    this.metadata,
+    this.repliedMessage,
     this.width,
   });
 
   /// Creates a partial image message from a map (decoded JSON).
-  factory PartialImage.fromJson(Map<String, dynamic> json) =>
+  factory PartialImage.fromJson(final Map<String, dynamic> json) =>
       _$PartialImageFromJson(json);
 
   /// Image height in pixels.
@@ -49,6 +49,7 @@ class PartialImage {
   /// Image width in pixels.
   final double? width;
 
-  /// Converts a partial image message to the map representation, encodable to JSON.
+  /// Converts a partial image message to the map representation, encodable to
+  /// JSON.
   Map<String, dynamic> toJson() => _$PartialImageToJson(this);
 }

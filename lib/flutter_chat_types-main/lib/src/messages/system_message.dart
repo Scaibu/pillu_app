@@ -1,9 +1,8 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
-import '../message.dart';
-import '../user.dart' show User;
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/user.dart' show User;
 
 part 'system_message.g.dart';
 
@@ -12,39 +11,44 @@ part 'system_message.g.dart';
 @JsonSerializable()
 @immutable
 abstract class SystemMessage extends Message {
+  // Default value applied here
+
+  const factory SystemMessage({
+    required final String id,
+    required final String text,
+    final User? author,
+    final int? createdAt,
+    final Map<String, dynamic>? metadata,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final MessageType? type,
+    final int? updatedAt,
+  }) = _SystemMessage;
+
   /// Creates a custom message.
   const SystemMessage._({
-    User? author, // Change this to be nullable
-    super.createdAt,
     required super.id,
+    required this.text,
+    final User? author, // Change this to be nullable
+    super.createdAt,
     super.metadata,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
     super.status,
-    required this.text,
-    MessageType? type,
+    final MessageType? type,
     super.updatedAt,
-  }) : super(author: author ?? const User(id: 'system'), type: type ?? MessageType.system); // Default value applied here
-
-  const factory SystemMessage({
-    User? author,
-    int? createdAt,
-    required String id,
-    Map<String, dynamic>? metadata,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    required String text,
-    MessageType? type,
-    int? updatedAt,
-  }) = _SystemMessage;
+  }) : super(
+          author: author ?? const User(id: 'system'),
+          type: type ?? MessageType.system,
+        );
 
   /// Creates a custom message from a map (decoded JSON).
-  factory SystemMessage.fromJson(Map<String, dynamic> json) =>
+  factory SystemMessage.fromJson(final Map<String, dynamic> json) =>
       _$SystemMessageFromJson(json);
 
   /// System message content (could be text or translation key).
@@ -52,33 +56,33 @@ abstract class SystemMessage extends Message {
 
   /// Equatable props.
   @override
-  List<Object?> get props => [
-    author,
-    createdAt,
-    id,
-    metadata,
-    remoteId,
-    repliedMessage,
-    roomId,
-    showStatus,
-    status,
-    text,
-    updatedAt,
-  ];
+  List<Object?> get props => <Object?>[
+        author,
+        createdAt,
+        id,
+        metadata,
+        remoteId,
+        repliedMessage,
+        roomId,
+        showStatus,
+        status,
+        text,
+        updatedAt,
+      ];
 
   @override
   Message copyWith({
-    User? author,
-    int? createdAt,
-    String? id,
-    Map<String, dynamic>? metadata,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    String? text,
-    int? updatedAt,
+    final User? author,
+    final int? createdAt,
+    final String? id,
+    final Map<String, dynamic>? metadata,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final String? text,
+    final int? updatedAt,
   });
 
   /// Converts a custom message to the map representation,
@@ -90,33 +94,34 @@ abstract class SystemMessage extends Message {
 /// A utility class to enable better copyWith.
 class _SystemMessage extends SystemMessage {
   const _SystemMessage({
-    User? author, // Change this to be nullable
-    super.createdAt,
     required super.id,
+    required super.text,
+    super.author, // Change this to be nullable
+
+    super.createdAt,
     super.metadata,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
     super.status,
-    required super.text,
     super.type,
     super.updatedAt,
-  }) : super._(author: author);
+  }) : super._();
 
   @override
   Message copyWith({
-    User? author,
-    dynamic createdAt = _Unset,
-    String? id,
-    dynamic metadata = _Unset,
-    dynamic remoteId = _Unset,
-    dynamic repliedMessage = _Unset,
-    dynamic roomId = _Unset,
-    dynamic showStatus = _Unset,
-    dynamic status = _Unset,
-    String? text,
-    dynamic updatedAt = _Unset,
+    final User? author,
+    final dynamic createdAt = _Unset,
+    final String? id,
+    final dynamic metadata = _Unset,
+    final dynamic remoteId = _Unset,
+    final dynamic repliedMessage = _Unset,
+    final dynamic roomId = _Unset,
+    final dynamic showStatus = _Unset,
+    final dynamic status = _Unset,
+    final String? text,
+    final dynamic updatedAt = _Unset,
   }) =>
       _SystemMessage(
         author: author ?? this.author,
@@ -131,7 +136,7 @@ class _SystemMessage extends SystemMessage {
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
         showStatus:
-        showStatus == _Unset ? this.showStatus : showStatus as bool?,
+            showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

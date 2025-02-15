@@ -1,8 +1,8 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import '../message.dart';
-import 'video_message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/messages/video_message.dart';
 
 part 'partial_video.g.dart';
 
@@ -15,17 +15,17 @@ class PartialVideo {
   /// You can use [VideoMessage.fromPartial] constructor to create a full
   /// message from a partial one.
   const PartialVideo({
-    this.height,
-    this.metadata,
     required this.name,
-    this.repliedMessage,
     required this.size,
     required this.uri,
+    this.height,
+    this.metadata,
+    this.repliedMessage,
     this.width,
   });
 
   /// Creates a partial video message from a map (decoded JSON).
-  factory PartialVideo.fromJson(Map<String, dynamic> json) =>
+  factory PartialVideo.fromJson(final Map<String, dynamic> json) =>
       _$PartialVideoFromJson(json);
 
   /// Video height in pixels.
@@ -49,6 +49,7 @@ class PartialVideo {
   /// Video width in pixels.
   final double? width;
 
-  /// Converts a partial video message to the map representation, encodable to JSON.
+  /// Converts a partial video message to the map representation, encodable to
+  /// JSON.
   Map<String, dynamic> toJson() => _$PartialVideoToJson(this);
 }

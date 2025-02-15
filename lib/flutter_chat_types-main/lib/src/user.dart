@@ -12,11 +12,23 @@ enum Role { admin, agent, moderator, user }
 @JsonSerializable()
 @immutable
 abstract class User extends Equatable {
+  const factory User({
+    required final String id,
+    final int? createdAt,
+    final String? firstName,
+    final String? imageUrl,
+    final String? lastName,
+    final int? lastSeen,
+    final Map<String, dynamic>? metadata,
+    final Role? role,
+    final int? updatedAt,
+  }) = _User;
+
   /// Creates a user.
   const User._({
+    required this.id,
     this.createdAt,
     this.firstName,
-    required this.id,
     this.imageUrl,
     this.lastName,
     this.lastSeen,
@@ -25,20 +37,9 @@ abstract class User extends Equatable {
     this.updatedAt,
   });
 
-  const factory User({
-    int? createdAt,
-    String? firstName,
-    required String id,
-    String? imageUrl,
-    String? lastName,
-    int? lastSeen,
-    Map<String, dynamic>? metadata,
-    Role? role,
-    int? updatedAt,
-  }) = _User;
-
   /// Creates a user from a map (decoded JSON).
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory User.fromJson(final Map<String, dynamic> json) =>
+      _$UserFromJson(json);
 
   /// Created user timestamp, in ms.
   final int? createdAt;
@@ -69,28 +70,28 @@ abstract class User extends Equatable {
 
   /// Equatable props.
   @override
-  List<Object?> get props => [
-    createdAt,
-    firstName,
-    id,
-    imageUrl,
-    lastName,
-    lastSeen,
-    metadata,
-    role,
-    updatedAt,
-  ];
+  List<Object?> get props => <Object?>[
+        createdAt,
+        firstName,
+        id,
+        imageUrl,
+        lastName,
+        lastSeen,
+        metadata,
+        role,
+        updatedAt,
+      ];
 
   User copyWith({
-    int? createdAt,
-    String? firstName,
-    String? id,
-    String? imageUrl,
-    String? lastName,
-    int? lastSeen,
-    Map<String, dynamic>? metadata,
-    Role? role,
-    int? updatedAt,
+    final int? createdAt,
+    final String? firstName,
+    final String? id,
+    final String? imageUrl,
+    final String? lastName,
+    final int? lastSeen,
+    final Map<String, dynamic>? metadata,
+    final Role? role,
+    final int? updatedAt,
   });
 
   /// Converts user to the map representation, encodable to JSON.
@@ -100,9 +101,9 @@ abstract class User extends Equatable {
 /// A utility class to enable better copyWith.
 class _User extends User {
   const _User({
+    required super.id,
     super.createdAt,
     super.firstName,
-    required super.id,
     super.imageUrl,
     super.lastName,
     super.lastSeen,
@@ -113,15 +114,15 @@ class _User extends User {
 
   @override
   User copyWith({
-    dynamic createdAt = _Unset,
-    dynamic firstName = _Unset,
-    String? id,
-    dynamic imageUrl = _Unset,
-    dynamic lastName = _Unset,
-    dynamic lastSeen = _Unset,
-    dynamic metadata = _Unset,
-    dynamic role = _Unset,
-    dynamic updatedAt = _Unset,
+    final dynamic createdAt = _Unset,
+    final dynamic firstName = _Unset,
+    final String? id,
+    final dynamic imageUrl = _Unset,
+    final dynamic lastName = _Unset,
+    final dynamic lastSeen = _Unset,
+    final dynamic metadata = _Unset,
+    final dynamic role = _Unset,
+    final dynamic updatedAt = _Unset,
   }) =>
       _User(
         createdAt: createdAt == _Unset ? this.createdAt : createdAt as int?,

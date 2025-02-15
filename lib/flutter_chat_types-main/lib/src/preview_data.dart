@@ -11,6 +11,13 @@ part 'preview_data.g.dart';
 @JsonSerializable()
 @immutable
 abstract class PreviewData extends Equatable {
+  const factory PreviewData({
+    final String? description,
+    final PreviewDataImage? image,
+    final String? link,
+    final String? title,
+  }) = _PreviewData;
+
   /// Creates preview data.
   const PreviewData._({
     this.description,
@@ -19,15 +26,8 @@ abstract class PreviewData extends Equatable {
     this.title,
   });
 
-  const factory PreviewData({
-    String? description,
-    PreviewDataImage? image,
-    String? link,
-    String? title,
-  }) = _PreviewData;
-
   /// Creates preview data from a map (decoded JSON).
-  factory PreviewData.fromJson(Map<String, dynamic> json) =>
+  factory PreviewData.fromJson(final Map<String, dynamic> json) =>
       _$PreviewDataFromJson(json);
 
   /// Link description (usually og:description meta tag).
@@ -44,14 +44,14 @@ abstract class PreviewData extends Equatable {
 
   /// Equatable props.
   @override
-  List<Object?> get props => [description, image, link, title];
+  List<Object?> get props => <Object?>[description, image, link, title];
 
   /// Creates a copy of the preview data with updated data.
   PreviewData copyWith({
-    String? description,
-    PreviewDataImage? image,
-    String? link,
-    String? title,
+    final String? description,
+    final PreviewDataImage? image,
+    final String? link,
+    final String? title,
   });
 
   /// Converts preview data to the map representation, encodable to JSON.
@@ -69,14 +69,14 @@ class _PreviewData extends PreviewData {
 
   @override
   PreviewData copyWith({
-    dynamic description = _Unset,
-    dynamic image = _Unset,
-    dynamic link = _Unset,
-    dynamic title = _Unset,
+    final dynamic description = _Unset,
+    final dynamic image = _Unset,
+    final dynamic link = _Unset,
+    final dynamic title = _Unset,
   }) =>
       _PreviewData(
         description:
-        description == _Unset ? this.description : description as String?,
+            description == _Unset ? this.description : description as String?,
         image: image == _Unset ? this.image : image as PreviewDataImage?,
         link: link == _Unset ? this.link : link as String?,
         title: title == _Unset ? this.title : title as String?,
@@ -100,7 +100,7 @@ class PreviewDataImage extends Equatable {
   });
 
   /// Creates preview data image from a map (decoded JSON).
-  factory PreviewDataImage.fromJson(Map<String, dynamic> json) =>
+  factory PreviewDataImage.fromJson(final Map<String, dynamic> json) =>
       _$PreviewDataImageFromJson(json);
 
   /// Image height in pixels.
@@ -114,7 +114,7 @@ class PreviewDataImage extends Equatable {
 
   /// Equatable props.
   @override
-  List<Object> get props => [height, url, width];
+  List<Object> get props => <Object>[height, url, width];
 
   /// Converts preview data image to the map representation, encodable to JSON.
   Map<String, dynamic> toJson() => _$PreviewDataImageToJson(this);

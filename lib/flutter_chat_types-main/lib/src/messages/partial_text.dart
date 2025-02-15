@@ -1,9 +1,10 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import '../message.dart';
-import '../preview_data.dart' show PreviewData;
-import 'text_message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/messages/text_message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/preview_data.dart'
+    show PreviewData;
 
 part 'partial_text.g.dart';
 
@@ -16,14 +17,14 @@ class PartialText {
   /// You can use [TextMessage.fromPartial] constructor to create a full
   /// message from a partial one.
   const PartialText({
+    required this.text,
     this.metadata,
     this.previewData,
     this.repliedMessage,
-    required this.text,
   });
 
   /// Creates a partial text message from a map (decoded JSON).
-  factory PartialText.fromJson(Map<String, dynamic> json) =>
+  factory PartialText.fromJson(final Map<String, dynamic> json) =>
       _$PartialTextFromJson(json);
 
   /// Additional custom metadata or attributes related to the message.
@@ -38,6 +39,7 @@ class PartialText {
   /// User's message.
   final String text;
 
-  /// Converts a partial text message to the map representation, encodable to JSON.
+  /// Converts a partial text message to the map representation, encodable to
+  /// JSON.
   Map<String, dynamic> toJson() => _$PartialTextToJson(this);
 }

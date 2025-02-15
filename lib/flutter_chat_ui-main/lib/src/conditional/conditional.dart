@@ -8,10 +8,12 @@ import 'conditional_stub.dart'
 abstract class Conditional {
   /// Creates a new platform appropriate conditional.
   ///
-  /// Creates an `IOConditional` if `dart:io` is available and a `BrowserConditional` if
+  /// Creates an `IOConditional` if `dart:io` is available and a
+  /// `BrowserConditional` if
   /// `dart:html` is available, otherwise it will throw an unsupported error.
   factory Conditional() => createConditional();
 
   /// Returns an appropriate platform ImageProvider for specified URI.
-  ImageProvider getProvider(String uri, {Map<String, String>? headers});
+  ImageProvider getProvider(final String uri,
+      {final Map<String, String>? headers});
 }

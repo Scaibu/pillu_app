@@ -1,9 +1,8 @@
 import 'package:pillu_app/auth/bloc/auth_bloc.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
-import 'core/library/pillu_lib.dart';
-
-const colors = [
+const List<Color> colors = <Color>[
   Color(0xffff6767),
   Color(0xff66e0da),
   Color(0xfff5a2d9),
@@ -16,20 +15,19 @@ const colors = [
   Color(0xffc78ae5),
 ];
 
-Color getUserAvatarNameColor(types.User user) {
-  final index = user.id.hashCode % colors.length;
+Color getUserAvatarNameColor(final types.User user) {
+  final int index = user.id.hashCode % colors.length;
   return colors[index];
 }
 
-String getUserName(types.User user) =>
+String getUserName(final types.User user) =>
     '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
 
-Future<void> alertDialog(BuildContext context, e) async {
-  await showDialog(
-    context: context,
-    builder: (context) {
-      return AlertDialog(
-        actions: [
+Future<void> alertDialog(final BuildContext context, final String e) async =>
+    showDialog(
+      context: context,
+      builder: (final BuildContext context) => AlertDialog(
+        actions: <Widget>[
           TextButton(
             child: const Text('OK'),
             onPressed: () {
@@ -41,27 +39,27 @@ Future<void> alertDialog(BuildContext context, e) async {
         ],
         content: Text(e.toString()),
         title: const Text('Error'),
-      );
-    },
-  );
-}
+      ),
+    );
 
-void handleAuthProcess({
-  required BuildContext context,
-  required AuthBloc bloc,
-  required Future<void> Function() authOperation,
-  required void Function() onSuccess,
-  required void Function() onFailure,
+Future<void> handleAuthProcess({
+  required final BuildContext context,
+  required final AuthBloc bloc,
+  required final Future<void> Function() authOperation,
+  required final void Function() onSuccess,
+  required final void Function() onFailure,
 }) async {
   FocusScope.of(context).unfocus();
 
   try {
     await authOperation();
-    if (context.mounted) onSuccess();
+    if (context.mounted) {
+      onSuccess();
+    }
   } catch (e) {
     if (context.mounted) {
       onFailure();
-      alertDialog(context, e);
+      await alertDialog(context, e.toString());
     }
   }
 }

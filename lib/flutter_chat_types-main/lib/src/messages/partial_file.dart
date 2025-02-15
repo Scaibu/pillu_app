@@ -1,8 +1,8 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import '../message.dart';
-import 'file_message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/messages/file_message.dart';
 
 part 'partial_file.g.dart';
 
@@ -15,16 +15,16 @@ class PartialFile {
   /// You can use [FileMessage.fromPartial] constructor to create a full
   /// message from a partial one.
   const PartialFile({
-    this.metadata,
-    this.mimeType,
     required this.name,
-    this.repliedMessage,
     required this.size,
     required this.uri,
+    this.metadata,
+    this.mimeType,
+    this.repliedMessage,
   });
 
   /// Creates a partial file message from a map (decoded JSON).
-  factory PartialFile.fromJson(Map<String, dynamic> json) =>
+  factory PartialFile.fromJson(final Map<String, dynamic> json) =>
       _$PartialFileFromJson(json);
 
   /// Additional custom metadata or attributes related to the message.
@@ -45,6 +45,7 @@ class PartialFile {
   /// The file source (either a remote URL or a local resource).
   final String uri;
 
-  /// Converts a partial file message to the map representation, encodable to JSON.
+  /// Converts a partial file message to the map representation, encodable to
+  /// JSON.
   Map<String, dynamic> toJson() => _$PartialFileToJson(this);
 }

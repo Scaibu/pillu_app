@@ -7,31 +7,44 @@ import 'package:pillu_app/core/library/pillu_lib.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
-
-
-  void _login(BuildContext context, AuthBloc loginBloc) {
-    handleAuthProcess(
+  Future<void> _login(
+    final BuildContext context,
+    final AuthBloc loginBloc,
+  ) async {
+    await handleAuthProcess(
       context: context,
       bloc: loginBloc,
-      authOperation: () => loginBloc.login(authApi),
+      authOperation: () async => loginBloc.login(authApi),
       onSuccess: () => Navigator.of(context).pop(),
       onFailure: () => loginBloc.add(UpdateAuthStateEvent(loggingIn: false)),
     );
   }
 
-
-  void onPressed(bool loggingIn, BuildContext context) {
-    if (!loggingIn) Navigator.of(context).push(MaterialPageRoute(builder: (context) => const RegisterPage()));
+  Future<void> onPressed(
+    final BuildContext context, {
+    required final bool loggingIn,
+  }) async {
+    if (!loggingIn) {
+      await Navigator.of(context).push(
+        MaterialPageRoute<RegisterPage>(
+          builder: (final BuildContext context) => const RegisterPage(),
+        ),
+      );
+    }
   }
 
   @override
-  Widget build(BuildContext context) {
-    final loginBloc = BlocProvider.of<AuthBloc>(context);
+  Widget build(final BuildContext context) {
+    final AuthBloc loginBloc = BlocProvider.of<AuthBloc>(context);
 
     final bool loggingIn = context.select(
-      (AuthBloc value) {
-        final currState = value.state;
-        return (currState is AuthDataState) ? currState.loggingIn : false;
+      (final AuthBloc value) {
+        final AuthState currState = value.state;
+        if (currState is AuthDataState) {
+          return currState.loggingIn;
+        } else {
+          return false;
+        }
       },
     );
 
@@ -44,56 +57,68 @@ class LoginPage extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.only(top: 80, left: 24, right: 24),
           child: Column(
-            children: [
+            children: <Widget>[
               TextField(
                 autocorrect: false,
-                autofillHints: loggingIn ? null : [AutofillHints.email],
+                autofillHints: loggingIn ? null : <String>[AutofillHints.email],
                 autofocus: true,
                 controller: loginBloc.loginUsernameController,
                 keyboardType: TextInputType.emailAddress,
                 readOnly: loggingIn,
-                textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 onEditingComplete: () {
                   loginBloc.loginFocusNode.requestFocus();
                 },
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                  suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: loginBloc.loginUsernameController.clear),
+                  border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                  suffixIcon: IconButton(
+                    icon: const Icon(Icons.cancel),
+                    onPressed: loginBloc.loginUsernameController.clear,
+                  ),
                 ),
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 8),
                 child: TextField(
                   autocorrect: false,
-                  autofillHints: loggingIn ? null : [AutofillHints.password],
+                  autofillHints:
+                      loggingIn ? null : <String>[AutofillHints.password],
                   controller: loginBloc.loginPasswordController,
                   focusNode: loginBloc.loginFocusNode,
                   keyboardType: TextInputType.emailAddress,
                   obscureText: true,
-                  textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.done,
-                  onEditingComplete: () {
-                    _login(context, loginBloc);
+                  onEditingComplete: () async {
+                    await _login(context, loginBloc);
                   },
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
-                    suffixIcon: IconButton(icon: const Icon(Icons.cancel), onPressed: loginBloc.loginPasswordController.clear),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.cancel),
+                      onPressed: loginBloc.loginPasswordController.clear,
+                    ),
                   ),
                 ),
               ),
               TextButton(
                 child: const Text('Login'),
-                onPressed: () {
-                  return loggingIn ? null : _login(context, loginBloc);
-                },
+                onPressed: () async =>
+                    loggingIn ? null : _login(context, loginBloc),
               ),
               TextButton(
                 child: const Text('Register'),
-                onPressed: () {
-                  onPressed(loggingIn, context);
+                onPressed: () async {
+                  await onPressed(context, loggingIn: loggingIn);
                 },
               ),
             ],

@@ -1,10 +1,10 @@
 // File: partial_audio.dart
 // Specify the Dart language version to ensure compatibility with all parts.
-///
+
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import '../message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
 
 part 'partial_audio.g.dart';
 
@@ -12,23 +12,19 @@ part 'partial_audio.g.dart';
 @JsonSerializable()
 @immutable
 class PartialAudio {
-  /// Creates a partial audio message with all variables audio can have.
-  /// Use [AudioMessage] to create a full message.
-  /// You can use [AudioMessage.fromPartial] constructor to create a full
-  /// message from a partial one.
   const PartialAudio({
+    required this.name,
+    required this.size,
+    required this.uri,
     required this.duration,
     this.metadata,
     this.mimeType,
-    required this.name,
     this.repliedMessage,
-    required this.size,
-    required this.uri,
     this.waveForm,
   });
 
   /// Creates a partial audio message from a map (decoded JSON).
-  factory PartialAudio.fromJson(Map<String, dynamic> json) =>
+  factory PartialAudio.fromJson(final Map<String, dynamic> json) =>
       _$PartialAudioFromJson(json);
 
   /// The length of the audio.
@@ -55,6 +51,7 @@ class PartialAudio {
   /// Wave form represented as a list of decibel levels.
   final List<double>? waveForm;
 
-  /// Converts a partial audio message to the map representation, encodable to JSON.
+  /// Converts a partial audio message to the map representation, encodable to
+  /// JSON.
   Map<String, dynamic> toJson() => _$PartialAudioToJson(this);
 }

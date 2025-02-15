@@ -1,11 +1,11 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
-import '../message.dart';
-import '../preview_data.dart' show PreviewData;
-import '../user.dart' show User;
-import 'partial_text.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/messages/partial_text.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/preview_data.dart'
+    show PreviewData;
+import 'package:pillu_app/flutter_chat_types-main/lib/src/user.dart' show User;
 
 part 'text_message.g.dart';
 
@@ -13,11 +13,28 @@ part 'text_message.g.dart';
 @JsonSerializable()
 @immutable
 abstract class TextMessage extends Message {
+  const factory TextMessage({
+    required final String id,
+    required final String text,
+    required final User author,
+    final int? createdAt,
+    final Map<String, dynamic>? metadata,
+    final PreviewData? previewData,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final MessageType? type,
+    final int? updatedAt,
+  }) = _TextMessage;
+
   /// Creates a text message.
   const TextMessage._({
+    required super.id,
+    required this.text,
     required super.author,
     super.createdAt,
-    required super.id,
     super.metadata,
     this.previewData,
     super.remoteId,
@@ -25,42 +42,25 @@ abstract class TextMessage extends Message {
     super.roomId,
     super.showStatus,
     super.status,
-    required this.text,
-    MessageType? type,
+    final MessageType? type,
     super.updatedAt,
   }) : super(type: type ?? MessageType.text);
 
-  const factory TextMessage({
-    required User author,
-    int? createdAt,
-    required String id,
-    Map<String, dynamic>? metadata,
-    PreviewData? previewData,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    required String text,
-    MessageType? type,
-    int? updatedAt,
-  }) = _TextMessage;
-
   /// Creates a text message from a map (decoded JSON).
-  factory TextMessage.fromJson(Map<String, dynamic> json) =>
+  factory TextMessage.fromJson(final Map<String, dynamic> json) =>
       _$TextMessageFromJson(json);
 
   /// Creates a full text message from a partial one.
   factory TextMessage.fromPartial({
-    required User author,
-    int? createdAt,
-    required String id,
-    required PartialText partialText,
-    String? remoteId,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    int? updatedAt,
+    required final User author,
+    required final String id,
+    required final PartialText partialText,
+    final int? createdAt,
+    final String? remoteId,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final int? updatedAt,
   }) =>
       _TextMessage(
         author: author,
@@ -86,35 +86,35 @@ abstract class TextMessage extends Message {
 
   /// Equatable props.
   @override
-  List<Object?> get props => [
-    author,
-    createdAt,
-    id,
-    metadata,
-    previewData,
-    remoteId,
-    repliedMessage,
-    roomId,
-    showStatus,
-    status,
-    text,
-    updatedAt,
-  ];
+  List<Object?> get props => <Object?>[
+        author,
+        createdAt,
+        id,
+        metadata,
+        previewData,
+        remoteId,
+        repliedMessage,
+        roomId,
+        showStatus,
+        status,
+        text,
+        updatedAt,
+      ];
 
   @override
   Message copyWith({
-    User? author,
-    int? createdAt,
-    String? id,
-    Map<String, dynamic>? metadata,
-    PreviewData? previewData,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    String? text,
-    int? updatedAt,
+    final User? author,
+    final int? createdAt,
+    final String? id,
+    final Map<String, dynamic>? metadata,
+    final PreviewData? previewData,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final String? text,
+    final int? updatedAt,
   });
 
   /// Converts a text message to the map representation, encodable to JSON.
@@ -125,9 +125,10 @@ abstract class TextMessage extends Message {
 /// A utility class to enable better copyWith.
 class _TextMessage extends TextMessage {
   const _TextMessage({
+    required super.id,
+    required super.text,
     required super.author,
     super.createdAt,
-    required super.id,
     super.metadata,
     super.previewData,
     super.remoteId,
@@ -135,25 +136,24 @@ class _TextMessage extends TextMessage {
     super.roomId,
     super.showStatus,
     super.status,
-    required super.text,
     super.type,
     super.updatedAt,
   }) : super._();
 
   @override
   Message copyWith({
-    User? author,
-    dynamic createdAt = _Unset,
-    String? id,
-    dynamic metadata = _Unset,
-    dynamic previewData = _Unset,
-    dynamic remoteId = _Unset,
-    dynamic repliedMessage = _Unset,
-    dynamic roomId = _Unset,
-    dynamic showStatus = _Unset,
-    dynamic status = _Unset,
-    String? text,
-    dynamic updatedAt = _Unset,
+    final User? author,
+    final dynamic createdAt = _Unset,
+    final String? id,
+    final dynamic metadata = _Unset,
+    final dynamic previewData = _Unset,
+    final dynamic remoteId = _Unset,
+    final dynamic repliedMessage = _Unset,
+    final dynamic roomId = _Unset,
+    final dynamic showStatus = _Unset,
+    final dynamic status = _Unset,
+    final String? text,
+    final dynamic updatedAt = _Unset,
   }) =>
       _TextMessage(
         author: author ?? this.author,
@@ -171,7 +171,7 @@ class _TextMessage extends TextMessage {
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
         showStatus:
-        showStatus == _Unset ? this.showStatus : showStatus as bool?,
+            showStatus == _Unset ? this.showStatus : showStatus as bool?,
         status: status == _Unset ? this.status : status as Status?,
         text: text ?? this.text,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,

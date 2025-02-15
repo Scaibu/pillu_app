@@ -6,10 +6,10 @@ import 'package:pillu_app/core/library/pillu_lib.dart';
 class UsersPage extends StatelessWidget {
   const UsersPage({super.key});
 
-  Widget _buildAvatar(types.User user) {
-    final color = getUserAvatarNameColor(user);
-    final hasImage = user.imageUrl != null;
-    final name = getUserName(user);
+  Widget _buildAvatar(final types.User user) {
+    final Color color = getUserAvatarNameColor(user);
+    final bool hasImage = user.imageUrl != null;
+    final String name = getUserName(user);
 
     return Container(
       margin: const EdgeInsets.only(right: 16),
@@ -17,29 +17,47 @@ class UsersPage extends StatelessWidget {
         backgroundColor: hasImage ? Colors.transparent : color,
         backgroundImage: hasImage ? NetworkImage(user.imageUrl!) : null,
         radius: 20,
-        child: !hasImage ? Text(name.isEmpty ? '' : name[0].toUpperCase(), style: const TextStyle(color: Colors.white)) : null,
+        child: !hasImage
+            ? Text(
+                name.isEmpty ? '' : name[0].toUpperCase(),
+                style: const TextStyle(color: Colors.white),
+              )
+            : null,
       ),
     );
   }
 
-  void _handlePressed(types.User otherUser, BuildContext context) async {
-    final navigator = Navigator.of(context);
-    final room = await FirebaseChatCore.instance.createRoom(otherUser);
+  Future<void> _handlePressed(
+    final types.User otherUser,
+    final BuildContext context,
+  ) async {
+    final NavigatorState navigator = Navigator.of(context);
+    final types.Room room =
+        await FirebaseChatCore.instance.createRoom(otherUser);
     navigator.pop();
-    await navigator.push(MaterialPageRoute(builder: (context) => ChatPage(room: room)));
+    await navigator.push(
+      MaterialPageRoute<ChatPage>(
+        builder: (final BuildContext context) => ChatPage(room: room),
+      ),
+    );
   }
 
   @override
-  Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<AuthBloc>(context);
-    bloc.add(InitAuthEvent());
+  Widget build(final BuildContext context) {
+    BlocProvider.of<AuthBloc>(context).add(InitAuthEvent());
 
     return Scaffold(
-      appBar: AppBar(systemOverlayStyle: SystemUiOverlayStyle.light, title: const Text('Users')),
+      appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        title: const Text('Users'),
+      ),
       body: StreamBuilder<List<types.User>>(
         stream: FirebaseChatCore.instance.users(),
-        initialData: const [],
-        builder: (context, snapshot) {
+        initialData: const <types.User>[],
+        builder: (
+          final BuildContext context,
+          final AsyncSnapshot<List<types.User>> snapshot,
+        ) {
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Container(
               alignment: Alignment.center,
@@ -50,8 +68,8 @@ class UsersPage extends StatelessWidget {
 
           return ListView.builder(
             itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) {
-              final user = snapshot.data![index];
+            itemBuilder: (final BuildContext context, final int index) {
+              final types.User user = snapshot.data![index];
               return listUserItemComponent(user, context);
             },
           );
@@ -60,20 +78,22 @@ class UsersPage extends StatelessWidget {
     );
   }
 
-  Widget listUserItemComponent(types.User user, BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        _handlePressed(user, context);
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Row(
-          children: [
-            _buildAvatar(user),
-            Text(getUserName(user)),
-          ],
+  Widget listUserItemComponent(
+    final types.User user,
+    final BuildContext context,
+  ) =>
+      GestureDetector(
+        onTap: () async {
+          await _handlePressed(user, context);
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Row(
+            children: <Widget>[
+              _buildAvatar(user),
+              Text(getUserName(user)),
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

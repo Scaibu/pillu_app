@@ -1,8 +1,8 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-import '../message.dart';
-import 'custom_message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/messages/custom_message.dart';
 
 part 'partial_custom.g.dart';
 
@@ -20,7 +20,7 @@ class PartialCustom {
   });
 
   /// Creates a partial custom message from a map (decoded JSON).
-  factory PartialCustom.fromJson(Map<String, dynamic> json) =>
+  factory PartialCustom.fromJson(final Map<String, dynamic> json) =>
       _$PartialCustomFromJson(json);
 
   /// Additional custom metadata or attributes related to the message.
@@ -29,6 +29,7 @@ class PartialCustom {
   /// Message that is being replied to with the current message.
   final Message? repliedMessage;
 
-  /// Converts a partial custom message to the map representation, encodable to JSON.
+  /// Converts a partial custom message to the map representation, encodable to
+  /// JSON.
   Map<String, dynamic> toJson() => _$PartialCustomToJson(this);
 }

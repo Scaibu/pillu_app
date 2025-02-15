@@ -1,12 +1,12 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-
-import 'base_conditional.dart';
+import 'package:pillu_app/flutter_chat_ui-main/lib/src/conditional/base_conditional.dart';
 
 /// Create a [BrowserConditional].
 ///
-/// Used from conditional imports, matches the definition in `conditional_stub.dart`.
+/// Used from conditional imports, matches the definition in
+/// `conditional_stub.dart`.
 BaseConditional createConditional() => BrowserConditional();
 
 /// A conditional for browser.
@@ -14,7 +14,10 @@ class BrowserConditional extends BaseConditional {
   /// Returns [NetworkImage] if URI starts with http
   /// otherwise returns transparent image.
   @override
-  ImageProvider getProvider(String uri, {Map<String, String>? headers}) {
+  ImageProvider getProvider(
+    final String uri, {
+    final Map<String, String>? headers,
+  }) {
     if (uri.startsWith('http') || uri.startsWith('blob')) {
       return NetworkImage(uri, headers: headers);
     } else {
@@ -24,7 +27,7 @@ class BrowserConditional extends BaseConditional {
 }
 
 /// Transparent image data.
-final kTransparentImage = Uint8List.fromList(
+final Uint8List kTransparentImage = Uint8List.fromList(
   <int>[
     0x89,
     0x50,

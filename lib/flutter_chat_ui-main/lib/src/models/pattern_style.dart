@@ -11,9 +11,9 @@ class PatternStyle {
 
   String get pattern => regExp.pattern;
 
-  static PatternStyle get bold => PatternStyle(
+  static Future<PatternStyle> get bold async => PatternStyle(
         '*',
-        RegExp('\\*[^\\*]+\\*'),
+        RegExp(r'\*[^\*]+\*'),
         '',
         const TextStyle(fontWeight: FontWeight.bold),
       );
@@ -36,7 +36,7 @@ class PatternStyle {
         const TextStyle(fontStyle: FontStyle.italic),
       );
 
-  static PatternStyle get lineThrough => PatternStyle(
+  static Future<PatternStyle> get lineThrough async => PatternStyle(
         '~',
         RegExp('~[^~]+~'),
         '',

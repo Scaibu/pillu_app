@@ -1,10 +1,9 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
-
-import '../message.dart';
-import '../user.dart' show User;
-import 'partial_video.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/message.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/messages/partial_video.dart';
+import 'package:pillu_app/flutter_chat_types-main/lib/src/user.dart' show User;
 
 part 'video_message.g.dart';
 
@@ -12,60 +11,60 @@ part 'video_message.g.dart';
 @JsonSerializable()
 @immutable
 abstract class VideoMessage extends Message {
+  const factory VideoMessage({
+    required final String id,
+    required final String name,
+    required final num size,
+    required final String uri,
+    required final User author,
+    final int? createdAt,
+    final double? height,
+    final Map<String, dynamic>? metadata,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final MessageType? type,
+    final int? updatedAt,
+    final double? width,
+  }) = _VideoMessage;
+
   /// Creates a video message.
   const VideoMessage._({
+    required super.id,
+    required this.name,
+    required this.size,
+    required this.uri,
     required super.author,
     super.createdAt,
     this.height,
-    required super.id,
     super.metadata,
-    required this.name,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
-    required this.size,
     super.status,
-    MessageType? type,
+    final MessageType? type,
     super.updatedAt,
-    required this.uri,
     this.width,
   }) : super(type: type ?? MessageType.video);
 
-  const factory VideoMessage({
-    required User author,
-    int? createdAt,
-    double? height,
-    required String id,
-    Map<String, dynamic>? metadata,
-    required String name,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    required num size,
-    Status? status,
-    MessageType? type,
-    int? updatedAt,
-    required String uri,
-    double? width,
-  }) = _VideoMessage;
-
   /// Creates a video message from a map (decoded JSON).
-  factory VideoMessage.fromJson(Map<String, dynamic> json) =>
+  factory VideoMessage.fromJson(final Map<String, dynamic> json) =>
       _$VideoMessageFromJson(json);
 
   /// Creates a full video message from a partial one.
   factory VideoMessage.fromPartial({
-    required User author,
-    int? createdAt,
-    required String id,
-    required PartialVideo partialVideo,
-    String? remoteId,
-    String? roomId,
-    bool? showStatus,
-    Status? status,
-    int? updatedAt,
+    required final User author,
+    required final String id,
+    required final PartialVideo partialVideo,
+    final int? createdAt,
+    final String? remoteId,
+    final String? roomId,
+    final bool? showStatus,
+    final Status? status,
+    final int? updatedAt,
   }) =>
       _VideoMessage(
         author: author,
@@ -103,41 +102,41 @@ abstract class VideoMessage extends Message {
 
   /// Equatable props.
   @override
-  List<Object?> get props => [
-    author,
-    createdAt,
-    height,
-    id,
-    metadata,
-    name,
-    remoteId,
-    repliedMessage,
-    roomId,
-    showStatus,
-    size,
-    status,
-    updatedAt,
-    uri,
-    width,
-  ];
+  List<Object?> get props => <Object?>[
+        author,
+        createdAt,
+        height,
+        id,
+        metadata,
+        name,
+        remoteId,
+        repliedMessage,
+        roomId,
+        showStatus,
+        size,
+        status,
+        updatedAt,
+        uri,
+        width,
+      ];
 
   @override
   Message copyWith({
-    User? author,
-    int? createdAt,
-    double? height,
-    String? id,
-    Map<String, dynamic>? metadata,
-    String? name,
-    String? remoteId,
-    Message? repliedMessage,
-    String? roomId,
-    bool? showStatus,
-    num? size,
-    Status? status,
-    int? updatedAt,
-    String? uri,
-    double? width,
+    final User? author,
+    final int? createdAt,
+    final double? height,
+    final String? id,
+    final Map<String, dynamic>? metadata,
+    final String? name,
+    final String? remoteId,
+    final Message? repliedMessage,
+    final String? roomId,
+    final bool? showStatus,
+    final num? size,
+    final Status? status,
+    final int? updatedAt,
+    final String? uri,
+    final double? width,
   });
 
   /// Converts a video message to the map representation, encodable to JSON.
@@ -148,41 +147,41 @@ abstract class VideoMessage extends Message {
 /// A utility class to enable better copyWith.
 class _VideoMessage extends VideoMessage {
   const _VideoMessage({
+    required super.id,
+    required super.name,
+    required super.size,
+    required super.uri,
     required super.author,
     super.createdAt,
     super.height,
-    required super.id,
     super.metadata,
-    required super.name,
     super.remoteId,
     super.repliedMessage,
     super.roomId,
     super.showStatus,
-    required super.size,
     super.status,
     super.type,
     super.updatedAt,
-    required super.uri,
     super.width,
   }) : super._();
 
   @override
   Message copyWith({
-    User? author,
-    dynamic createdAt = _Unset,
-    dynamic height = _Unset,
-    String? id,
-    dynamic metadata = _Unset,
-    String? name,
-    dynamic remoteId = _Unset,
-    dynamic repliedMessage = _Unset,
-    dynamic roomId = _Unset,
-    dynamic showStatus = _Unset,
-    num? size,
-    dynamic status = _Unset,
-    dynamic updatedAt = _Unset,
-    String? uri,
-    dynamic width = _Unset,
+    final User? author,
+    final dynamic createdAt = _Unset,
+    final dynamic height = _Unset,
+    final String? id,
+    final dynamic metadata = _Unset,
+    final String? name,
+    final dynamic remoteId = _Unset,
+    final dynamic repliedMessage = _Unset,
+    final dynamic roomId = _Unset,
+    final dynamic showStatus = _Unset,
+    final num? size,
+    final dynamic status = _Unset,
+    final dynamic updatedAt = _Unset,
+    final String? uri,
+    final dynamic width = _Unset,
   }) =>
       _VideoMessage(
         author: author ?? this.author,
@@ -199,7 +198,7 @@ class _VideoMessage extends VideoMessage {
             : repliedMessage as Message?,
         roomId: roomId == _Unset ? this.roomId : roomId as String?,
         showStatus:
-        showStatus == _Unset ? this.showStatus : showStatus as bool?,
+            showStatus == _Unset ? this.showStatus : showStatus as bool?,
         size: size ?? this.size,
         status: status == _Unset ? this.status : status as Status?,
         updatedAt: updatedAt == _Unset ? this.updatedAt : updatedAt as int?,
