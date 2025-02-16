@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:pillu_app/chat/widget/drawer_header.dart';
-import 'package:pillu_app/chat/widget/drawer_list.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key});

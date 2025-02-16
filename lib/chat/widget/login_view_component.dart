@@ -1,8 +1,4 @@
-import 'package:pillu_app/auth/bloc/auth_bloc.dart';
-import 'package:pillu_app/auth/bloc/auth_event.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
-import 'package:pillu_app/shared/bottomSheet/bottom_sheets.dart';
-import 'package:pillu_app/shared/text_styles.dart';
 
 class LoginViewComponent extends StatelessWidget {
   const LoginViewComponent({super.key});

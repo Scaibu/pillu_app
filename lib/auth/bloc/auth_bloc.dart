@@ -2,13 +2,11 @@ import 'dart:async';
 
 import 'package:faker/faker.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pillu_app/auth/auth_repository.dart';
-import 'package:pillu_app/auth/bloc/auth_event.dart';
 import 'package:pillu_app/auth/bloc/auth_state.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthEvent, AuthLocalState> {
   AuthBloc(this.authRepository) : super(AuthDataState()) {
     on<InitAuthEvent>(_initAll);
     on<UpdateAuthStateEvent>(_updateAuthState);
@@ -31,7 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onAuthStarted(
     final AuthAuthenticated event,
-    final Emitter<AuthState> emit,
+    final Emitter<AuthLocalState> emit,
   ) async {
     await emit.forEach<User?>(
       authRepository.authStateChanges,
@@ -60,7 +58,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _initAll(
     final AuthEvent event,
-    final Emitter<AuthState> emit,
+    final Emitter<AuthLocalState> emit,
   ) async {
     if (event is InitAuthEvent) {
       final Faker faker = Faker();
@@ -75,7 +73,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void _updateAuthState(
     final UpdateAuthStateEvent event,
-    final Emitter<AuthState> emit,
+    final Emitter<AuthLocalState> emit,
   ) {
     final AuthDataState currState = state as AuthDataState;
     emit(
@@ -133,7 +131,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _logOut(
     final UserLogOutEvent event,
-    final Emitter<AuthState> emit,
+    final Emitter<AuthLocalState> emit,
   ) async {
     if (state is AuthDataState) {
       final AuthDataState currDataState = state as AuthDataState;

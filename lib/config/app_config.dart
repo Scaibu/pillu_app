@@ -1,6 +1,5 @@
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AppConfig {
   static String supabaseUrl = '';
@@ -9,7 +8,7 @@ class AppConfig {
   static bool debugShowChecked = false;
 
   final bool isConfigureFirebase = false;
-  final bool isConfigureSupabase = false;
+  bool isConfigureSupabase = false;
 
   static Color primary = Colors.white;
   static Color background = Colors.white;
@@ -21,6 +20,7 @@ class AppConfig {
   void _environmentVariables(final FirebaseRemoteConfig remoteConfig) {
     supabaseUrl = remoteConfig.getString('supabase_url');
     supabaseKey = remoteConfig.getString('supabase_key');
+    isConfigureSupabase = remoteConfig.getBool('is_configure_supabase');
     baseUrl = remoteConfig.getString('base_url');
     debugShowChecked = remoteConfig.getBool('debug_show_checked');
     primary = _getColor(remoteConfig.getString('primary_color'));

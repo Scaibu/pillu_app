@@ -24,6 +24,14 @@ if (flutterVersionName == null) {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/home/j/StudioProjects/pillu_app/test.jks')
+            storePassword 'Dreambig0'
+            keyAlias 'key0'
+            keyPassword 'Dreambig0'
+        }
+    }
     namespace "com.pillu.pillu_app"
     compileSdk flutter.compileSdkVersion
     ndkVersion "27.0.12077973"
@@ -70,7 +78,7 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
         debug {
             minifyEnabled false

@@ -1,4 +1,3 @@
-import 'package:pillu_app/config/app_config.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 final AppConfig config = AppConfig();

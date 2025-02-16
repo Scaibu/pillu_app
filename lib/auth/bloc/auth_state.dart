@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fire_auth show User;
 
-sealed class AuthState extends Equatable {
+sealed class AuthLocalState extends Equatable {
   @override
   List<Object?> get props => <Object?>[];
 }
 
-class AuthDataState extends AuthState {
+class AuthDataState extends AuthLocalState {
   AuthDataState({
     this.loggingIn = false,
     this.registering = false,

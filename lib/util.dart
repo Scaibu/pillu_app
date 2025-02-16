@@ -1,8 +1,7 @@
-import 'package:pillu_app/auth/bloc/auth_bloc.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
-const List<Color> colors = <Color>[
+const List<Color> localColors = <Color>[
   Color(0xffff6767),
   Color(0xff66e0da),
   Color(0xfff5a2d9),
@@ -16,8 +15,8 @@ const List<Color> colors = <Color>[
 ];
 
 Color getUserAvatarNameColor(final types.User user) {
-  final int index = user.id.hashCode % colors.length;
-  return colors[index];
+  final int index = user.id.hashCode % localColors.length;
+  return localColors[index];
 }
 
 String getUserName(final types.User user) =>

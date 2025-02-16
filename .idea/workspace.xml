@@ -10,53 +10,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- chat ui and code updated">
-      <change afterPath="$PROJECT_DIR$/lib/config/app_config.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/config/bloc_config.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/core/theme/app_theme.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/app_drawer_data.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/connect_user_component.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/chat.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/chat.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/chat/rooms.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/rooms.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/utils/message_handlers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/utils/message_handlers.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/app_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/app_drawer.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/chat/widget/chat_room_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/chat_room_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_header.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/chat_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/chat_theme.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/preview_image.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/preview_image.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/send_button_visibility_mode.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/send_button_visibility_mode.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/typing_indicator_mode.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/typing_indicator_mode.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/unread_header_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/models/unread_header_data.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/util.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/chat.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/chat.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/chat_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/chat_list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/image_gallery.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/image_gallery.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/input.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/input.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/input_text_field_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/input_text_field_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/image_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/image_message.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/system_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/system_message.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/text_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/text_message.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/user_avatar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/user_avatar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/user_name.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/user_name.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/state/inherited_user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/state/inherited_user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/typing_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/typing_indicator.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/unread_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/unread_header.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/file_message.test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/file_message.test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/image_message.test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/image_message.test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/input.test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/input.test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/text_message.test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/test/text_message.test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/widgets/link_preview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/widgets/link_preview.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/config/app_config.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/config/app_config.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/theme/app_theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/theme/app_theme.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared/bottomSheet/bottom_sheets.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/bottomSheet/bottom_sheets.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared/widget/app_bars.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_bars.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared/widget/sun_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/sun_widget.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/widgets/app_drawer_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_drawer_data.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,12 +77,12 @@
     &quot;assignee&quot;: &quot;Chief-Strategist-J&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Scaibu/pillu_app.git",
-    "accountId": "4ec7e444-1d07-4dd8-b40b-ac45ad433e5c"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Scaibu/pillu_app.git&quot;,
+    &quot;accountId&quot;: &quot;4ec7e444-1d07-4dd8-b40b-ac45ad433e5c&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -125,25 +102,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Flutter.main.dart.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "io.flutter.reload.alreadyRun": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/j/StudioProjects/pillu_app",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Flutter.main.dart.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/j/StudioProjects/pillu_app/android&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/lib/chat" />
@@ -250,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739640612332</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="- chat ui and code updated">
+      <option name="closed" value="true" />
+      <created>1739640631567</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1739640631567</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">

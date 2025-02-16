@@ -1,12 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:pillu_app/chat/utils/message_handlers.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
-import 'package:pillu_app/core/library/flutter_chat_ui.dart';
-import 'package:pillu_app/core/library/flutter_firebase_chat_core.dart';
-import 'package:pillu_app/core/theme/chat_theme.dart';
-import 'package:pillu_app/shared/bottomSheet/bottom_sheets.dart';
-import 'package:pillu_app/shared/text_styles.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({required this.room, super.key});

@@ -1,9 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pillu_app/auth/bloc/auth_bloc.dart';
-import 'package:pillu_app/auth/bloc/auth_event.dart';
-import 'package:pillu_app/auth/bloc/auth_state.dart';
-import 'package:pillu_app/chat/widget/drawer_item.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class DrawerList extends StatelessWidget {
   const DrawerList({super.key});
@@ -45,7 +40,7 @@ class DrawerList extends StatelessWidget {
           ),
           DrawerItem(icon: Icons.settings, title: 'Settings', onTap: () {}),
           const Divider(),
-          BlocBuilder<AuthBloc, AuthState>(
+          BlocBuilder<AuthBloc, AuthLocalState>(
             builder: (final BuildContext context, final Object? state) =>
                 DrawerItem(
               icon: Icons.logout,

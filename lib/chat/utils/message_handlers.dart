@@ -1,17 +1,9 @@
 import 'dart:io';
 import 'dart:ui' as ui show Image;
 
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
-import 'package:mime/mime.dart';
-import 'package:open_filex/open_filex.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
-import 'package:pillu_app/core/library/flutter_firebase_chat_core.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 Future<void> handleMessageTap(
   final BuildContext _,

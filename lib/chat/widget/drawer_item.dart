@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:pillu_app/shared/text_styles.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class DrawerItem extends StatelessWidget {
   const DrawerItem({

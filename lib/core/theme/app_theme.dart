@@ -3,7 +3,7 @@ import 'package:pillu_app/config/app_config.dart';
 
 class AppTheme {
   static ThemeData get lightTheme => ThemeData(
-        primarySwatch: AppConfig.primary as MaterialColor,
+        primaryColor: AppConfig.primary,
         brightness: Brightness.light,
         scaffoldBackgroundColor: AppConfig.background,
         cardColor: AppConfig.card,
