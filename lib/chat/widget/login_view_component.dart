@@ -34,7 +34,7 @@ class LoginViewComponent extends HookWidget {
     final TextEditingController? lastNameController,
     final BuildContext context,
   ) {
-    if (isGoogleLogicAllowed) {
+    if (!isGoogleLogicAllowed) {
       return BlocProvider.of<PilluAuthBloc>(context).login(
         authApi,
         pilluUser: pilluUser,
