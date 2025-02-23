@@ -9,14 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- chat ui and code updated">
-      <change afterPath="$PROJECT_DIR$/lib/auth/model/pillu_user_model.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/chat/utils/message_handlers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/utils/message_handlers.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" afterDir="false" />
-    </list>
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- pillu user is added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740307887306</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="- pillu user is added">
+      <option name="closed" value="true" />
+      <created>1740313427736</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1740313427736</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -268,6 +269,7 @@
     <MESSAGE value="- minor changes" />
     <MESSAGE value="- code refactor" />
     <MESSAGE value="- chat ui and code updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="- chat ui and code updated" />
+    <MESSAGE value="- pillu user is added" />
+    <option name="LAST_COMMIT_MESSAGE" value="- pillu user is added" />
   </component>
 </project>

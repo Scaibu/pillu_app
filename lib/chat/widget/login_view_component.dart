@@ -1,16 +1,18 @@
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class LoginViewComponent extends StatelessWidget {
-  const LoginViewComponent({super.key});
+  const LoginViewComponent({super.key, this.pilluUser});
 
-  static Future<void> _login(
+  final PilluUserModel? pilluUser;
+
+  Future<void> _login(
     final BuildContext context,
   ) async {
     await handleAuthProcess(
       context: context,
       bloc: BlocProvider.of<AuthBloc>(context),
-      authOperation: () async =>
-          BlocProvider.of<AuthBloc>(context).login(authApi),
+      authOperation: () async => BlocProvider.of<AuthBloc>(context)
+          .login(authApi, pilluUser: pilluUser),
       onSuccess: () {
         showToast(context, message: 'Done');
       },

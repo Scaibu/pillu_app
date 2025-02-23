@@ -55,9 +55,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     );
   }
 
-  Future<void> login(final AuthApi api) async {
+  Future<void> login(
+    final AuthApi api, {
+    final PilluUserModel? pilluUser,
+  }) async {
     add(UpdateAuthStateEvent(loggingIn: true));
-    await createAndRegisterUser(authApi);
+    await createAndRegisterUser(authApi, pilluUser: pilluUser);
   }
 
   Future<UserCredential> signInWithGoogle() async {
