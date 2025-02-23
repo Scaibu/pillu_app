@@ -15,6 +15,7 @@ class LoginViewComponent extends StatelessWidget {
           .login(authApi, pilluUser: pilluUser),
       onSuccess: () {
         showToast(context, message: 'Done');
+
       },
       onFailure: () => BlocProvider.of<AuthBloc>(context)
           .add(UpdateAuthStateEvent(loggingIn: false)),

@@ -10,9 +10,6 @@ class AppDrawerData extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => CustomBlocBuilder<AuthBloc>(
         create: (final BuildContext context) => AuthBloc(AuthRepository()),
-        init: (final AuthBloc bloc) {
-          bloc.add(AuthAuthenticated());
-        },
         builder: (final BuildContext context, final AuthBloc bloc) =>
             ThemeWrapper(
           child: BlocSelector<AuthBloc, AuthLocalState, User?>(

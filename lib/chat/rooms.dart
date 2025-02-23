@@ -9,7 +9,7 @@ class RoomsPage extends StatelessWidget {
           data: AppTheme.lightTheme,
           child: BlocProvider<AuthBloc>(
             create: (final BuildContext context) =>
-                AuthBloc(AuthRepository())..add(AuthAuthenticated()),
+                AuthBloc(AuthRepository()),
             child: Scaffold(
               appBar: buildAppBar(context),
               drawer: const AppDrawerData(),

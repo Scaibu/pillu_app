@@ -37,7 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     final Emitter<AuthLocalState> emit,
   ) async {
     if (event is InitAuthEvent) {
-      ///
+      emit(AuthDataState());
     }
     emit(AuthDataState());
   }
@@ -51,6 +51,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthLocalState> {
       currState.copyWith(
         loggingIn: event.loggingIn,
         registering: event.registering,
+        unAuthenticated: false,
       ),
     );
   }
