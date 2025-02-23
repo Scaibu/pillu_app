@@ -4,9 +4,14 @@ import 'package:pillu_app/config/bloc_config.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class AppBody extends StatelessWidget {
-  const AppBody({super.key, this.pilluUser});
+  const AppBody({
+    super.key,
+    this.pilluUser,
+    this.isGoogleLogicAllowed = false,
+  });
 
   final PilluUserModel? pilluUser;
+  final bool isGoogleLogicAllowed;
 
   @override
   Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
@@ -29,7 +34,10 @@ class AppBody extends StatelessWidget {
 
                 if (currDataState.user == null &&
                     currDataState.unAuthenticated) {
-                  return LoginViewComponent(pilluUser: pilluUser);
+                  return LoginViewComponent(
+                    pilluUser: pilluUser,
+                    isGoogleLogicAllowed: isGoogleLogicAllowed,
+                  );
                 } else {
                   return const ChatRoomList();
                 }
