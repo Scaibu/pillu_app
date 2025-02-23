@@ -5,13 +5,17 @@ import 'package:pillu_app/config/bloc_config.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class AppBody extends StatelessWidget {
-  const AppBody({super.key});
+  const AppBody({super.key, this.pilluUser});
+
+  final PilluUserModel? pilluUser;
 
   @override
   Widget build(final BuildContext context) => CustomBlocBuilder<AuthBloc>(
         create: (final BuildContext context) => AuthBloc(AuthRepository()),
         init: (final AuthBloc bloc) {
-          bloc.add(AuthAuthenticated());
+          if (pilluUser == null) {
+            bloc.add(AuthAuthenticated());
+          }
         },
         builder: (final BuildContext context, final AuthBloc bloc) =>
             ThemeWrapper(
@@ -25,7 +29,7 @@ class AppBody extends StatelessWidget {
 
                 if (currDataState.user == null &&
                     currDataState.unAuthenticated) {
-                  return const LoginViewComponent();
+                  return LoginViewComponent(pilluUser: pilluUser);
                 } else {
                   return const ChatRoomList();
                 }
