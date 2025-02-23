@@ -43,10 +43,11 @@ Future<void> handleMessageTap(
   }
 }
 
-Future<void> openFile(String localPath) async {
-  final file = File(localPath);
-  if (await file.exists()) {
-    OpenFile.open(localPath);
+Future<void> openFile(final String localPath) async {
+  final File file = File(localPath);
+  final bool isFileExist = await file.exists();
+  if (isFileExist) {
+    await OpenFile.open(localPath);
   } else {
     print('File not found');
   }

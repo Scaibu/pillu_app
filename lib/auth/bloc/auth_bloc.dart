@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:faker/faker.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pillu_app/auth/bloc/auth_state.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
@@ -15,17 +14,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthLocalState> {
   }
 
   final AuthRepository authRepository;
-
-  FocusNode loginFocusNode = FocusNode();
-  final TextEditingController loginPasswordController =
-      TextEditingController(text: 'Pillu@123');
-  final TextEditingController registerPasswordController =
-      TextEditingController();
-  final TextEditingController loginUsernameController =
-      TextEditingController(text: '');
-  final TextEditingController registerUsernameController =
-      TextEditingController();
-  final FocusNode registerFocusNode = FocusNode();
 
   Future<void> _onAuthStarted(
     final AuthAuthenticated event,
@@ -44,29 +32,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     );
   }
 
-  @override
-  Future<void> close() async {
-    loginFocusNode.dispose();
-    loginPasswordController.dispose();
-    loginUsernameController.dispose();
-    registerPasswordController.dispose();
-    registerUsernameController.dispose();
-    registerFocusNode.dispose();
-
-    return super.close();
-  }
-
   Future<void> _initAll(
     final AuthEvent event,
     final Emitter<AuthLocalState> emit,
   ) async {
     if (event is InitAuthEvent) {
-      final Faker faker = Faker();
-      final String firstName = faker.person.firstName();
-      final String lastName = faker.person.lastName();
-      registerUsernameController.text =
-          '${firstName.toLowerCase()} ${lastName.toLowerCase()}';
-      registerPasswordController.text = 'Pillu@123';
+      ///
     }
     emit(AuthDataState());
   }
@@ -107,26 +78,55 @@ class AuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     return FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  Future<void> createAndRegisterUser(final AuthApi api) async {
+  Future<void> createAndRegisterUser(
+    final AuthApi api, {
+    final PilluUserModel? pilluUser,
+  }) async {
+    if (pilluUser == null) {
+      await _registerWithGoogle(api);
+    } else {
+      await _registerWithPilluUser(api, pilluUser);
+    }
+  }
+
+  Future<void> _registerWithGoogle(final AuthApi api) async {
     final UserCredential cred = await signInWithGoogle();
     if (cred.user != null) {
-      final String firstName = cred.user?.displayName?.split(' ').first ?? '-';
-      final String lastName = cred.user?.displayName?.split(' ').last ?? '-';
-      final String imageUrl =
-          'https://i.pravatar.cc/300?u=${faker.internet.domainName()}';
-
-      add(UpdateAuthStateEvent(registering: true));
-
-      if (cred.user?.email != null) {
-        final types.User user = types.User(
-          imageUrl: imageUrl,
-          firstName: firstName,
-          lastName: lastName,
-          id: cred.user?.uid ?? '',
-        );
-        await api.createUser(user: user);
-      }
+      final types.User user = await _createUserFromGoogleCredential(cred);
+      await api.createUser(user: user);
     }
+  }
+
+  Future<types.User> _createUserFromGoogleCredential(
+    final UserCredential cred,
+  ) async {
+    final String firstName = cred.user?.displayName?.split(' ').first ?? '-';
+    final String lastName = cred.user?.displayName?.split(' ').last ?? '-';
+    final String imageUrl =
+        'https://i.pravatar.cc/300?u=${faker.internet.domainName()}';
+
+    add(UpdateAuthStateEvent(registering: true));
+
+    return types.User(
+      imageUrl: imageUrl,
+      firstName: firstName,
+      lastName: lastName,
+      id: cred.user?.uid ?? '',
+    );
+  }
+
+  Future<void> _registerWithPilluUser(
+    final AuthApi api,
+    final PilluUserModel pilluUser,
+  ) async {
+    add(UpdateAuthStateEvent(registering: true, loggingIn: true));
+    final types.User user = types.User(
+      imageUrl: pilluUser.imageUrl,
+      firstName: pilluUser.firstName,
+      lastName: pilluUser.lastName,
+      id: pilluUser.id,
+    );
+    await api.createUser(user: user);
   }
 
   Future<void> _logOut(

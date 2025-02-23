@@ -16,6 +16,7 @@ export 'package:pillu_app/auth/auth_repository.dart';
 export 'package:pillu_app/auth/bloc/auth_bloc.dart';
 export 'package:pillu_app/auth/bloc/auth_event.dart';
 export 'package:pillu_app/auth/bloc/auth_state.dart';
+export 'package:pillu_app/auth/model/pillu_user_model.dart';
 export 'package:pillu_app/auth/view/users.dart';
 export 'package:pillu_app/chat/chat.dart';
 export 'package:pillu_app/chat/rooms.dart';
