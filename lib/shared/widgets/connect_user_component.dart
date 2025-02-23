@@ -11,7 +11,7 @@ class ConnectUserComponent extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
-        create: (final BuildContext context) => PilluAuthBloc(AuthRepository()),
+        create: (final BuildContext context) => PilluAuthBloc(PilluAuthRepository()),
         init: (final PilluAuthBloc bloc) {
           bloc.add(AuthAuthenticated());
         },
@@ -32,7 +32,7 @@ class ConnectUserComponent extends StatelessWidget {
         MaterialPageRoute<UsersPage>(
           fullscreenDialog: true,
           builder: (final BuildContext context) => BlocProvider<PilluAuthBloc>(
-            create: (final BuildContext context) => PilluAuthBloc(AuthRepository()),
+            create: (final BuildContext context) => PilluAuthBloc(PilluAuthRepository()),
             child: const UsersPage(),
           ),
         ),

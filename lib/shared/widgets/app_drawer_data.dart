@@ -9,7 +9,7 @@ class AppDrawerData extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
-        create: (final BuildContext context) => PilluAuthBloc(AuthRepository()),
+        create: (final BuildContext context) => PilluAuthBloc(PilluAuthRepository()),
         builder: (final BuildContext context, final PilluAuthBloc bloc) =>
             ThemeWrapper(
           child: BlocSelector<PilluAuthBloc, AuthLocalState, User?>(

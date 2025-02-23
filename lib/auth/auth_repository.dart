@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthRepository {
-  AuthRepository({final FirebaseAuth? firebaseAuth})
+class PilluAuthRepository {
+  PilluAuthRepository({final FirebaseAuth? firebaseAuth})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
   final FirebaseAuth _firebaseAuth;
 

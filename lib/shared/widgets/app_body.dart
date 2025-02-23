@@ -11,7 +11,7 @@ class AppBody extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
-        create: (final BuildContext context) => PilluAuthBloc(AuthRepository()),
+        create: (final BuildContext context) => PilluAuthBloc(PilluAuthRepository()),
         init: (final PilluAuthBloc bloc) {
           if (pilluUser == null) {
             bloc.add(AuthAuthenticated());

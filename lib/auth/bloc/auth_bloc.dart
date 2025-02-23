@@ -13,7 +13,7 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     on<UserLogOutEvent>(_logOut);
   }
 
-  final AuthRepository authRepository;
+  final PilluAuthRepository authRepository;
 
   Future<void> _onAuthStarted(
     final AuthAuthenticated event,

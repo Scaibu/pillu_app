@@ -9,7 +9,7 @@ class RoomsPage extends StatelessWidget {
           data: AppTheme.lightTheme,
           child: BlocProvider<PilluAuthBloc>(
             create: (final BuildContext context) =>
-                PilluAuthBloc(AuthRepository()),
+                PilluAuthBloc(PilluAuthRepository()),
             child: Scaffold(
               appBar: buildAppBar(context),
               drawer: const AppDrawerData(),
