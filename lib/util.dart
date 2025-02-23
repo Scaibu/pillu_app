@@ -43,7 +43,7 @@ Future<void> alertDialog(final BuildContext context, final String e) async =>
 
 Future<void> handleAuthProcess({
   required final BuildContext context,
-  required final AuthBloc bloc,
+  required final PilluAuthBloc bloc,
   required final Future<void> Function() authOperation,
   required final void Function() onSuccess,
   required final void Function() onFailure,

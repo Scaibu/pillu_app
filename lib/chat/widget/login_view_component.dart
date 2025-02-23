@@ -10,14 +10,14 @@ class LoginViewComponent extends StatelessWidget {
   ) async {
     await handleAuthProcess(
       context: context,
-      bloc: BlocProvider.of<AuthBloc>(context),
-      authOperation: () async => BlocProvider.of<AuthBloc>(context)
+      bloc: BlocProvider.of<PilluAuthBloc>(context),
+      authOperation: () async => BlocProvider.of<PilluAuthBloc>(context)
           .login(authApi, pilluUser: pilluUser),
       onSuccess: () {
         showToast(context, message: 'Done');
 
       },
-      onFailure: () => BlocProvider.of<AuthBloc>(context)
+      onFailure: () => BlocProvider.of<PilluAuthBloc>(context)
           .add(UpdateAuthStateEvent(loggingIn: false)),
     );
   }

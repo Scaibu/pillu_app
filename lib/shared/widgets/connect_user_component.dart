@@ -10,12 +10,12 @@ class ConnectUserComponent extends StatelessWidget {
   const ConnectUserComponent({super.key});
 
   @override
-  Widget build(final BuildContext context) => CustomBlocBuilder<AuthBloc>(
-        create: (final BuildContext context) => AuthBloc(AuthRepository()),
-        init: (final AuthBloc bloc) {
+  Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
+        create: (final BuildContext context) => PilluAuthBloc(AuthRepository()),
+        init: (final PilluAuthBloc bloc) {
           bloc.add(AuthAuthenticated());
         },
-        builder: (final BuildContext context, final AuthBloc bloc) =>
+        builder: (final BuildContext context, final PilluAuthBloc bloc) =>
             IconButton(
           icon: const Icon(Icons.add),
           onPressed: () async {
@@ -25,14 +25,14 @@ class ConnectUserComponent extends StatelessWidget {
       );
 
   Future<void> _addUser(final BuildContext context) async {
-    final AuthDataState state = context.read<AuthBloc>().state as AuthDataState;
+    final AuthDataState state = context.read<PilluAuthBloc>().state as AuthDataState;
 
     if (state.user != null) {
       await Navigator.of(context).push(
         MaterialPageRoute<UsersPage>(
           fullscreenDialog: true,
-          builder: (final BuildContext context) => BlocProvider<AuthBloc>(
-            create: (final BuildContext context) => AuthBloc(AuthRepository()),
+          builder: (final BuildContext context) => BlocProvider<PilluAuthBloc>(
+            create: (final BuildContext context) => PilluAuthBloc(AuthRepository()),
             child: const UsersPage(),
           ),
         ),

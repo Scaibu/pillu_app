@@ -40,13 +40,13 @@ class DrawerList extends StatelessWidget {
           ),
           DrawerItem(icon: Icons.settings, title: 'Settings', onTap: () {}),
           const Divider(),
-          BlocBuilder<AuthBloc, AuthLocalState>(
+          BlocBuilder<PilluAuthBloc, AuthLocalState>(
             builder: (final BuildContext context, final Object? state) =>
                 DrawerItem(
               icon: Icons.logout,
               title: 'Log Out',
               onTap: () {
-                context.read<AuthBloc>().add(UserLogOutEvent());
+                context.read<PilluAuthBloc>().add(UserLogOutEvent());
               },
             ),
           ),

@@ -8,11 +8,11 @@ class AppDrawerData extends StatelessWidget {
   const AppDrawerData({super.key});
 
   @override
-  Widget build(final BuildContext context) => CustomBlocBuilder<AuthBloc>(
-        create: (final BuildContext context) => AuthBloc(AuthRepository()),
-        builder: (final BuildContext context, final AuthBloc bloc) =>
+  Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
+        create: (final BuildContext context) => PilluAuthBloc(AuthRepository()),
+        builder: (final BuildContext context, final PilluAuthBloc bloc) =>
             ThemeWrapper(
-          child: BlocSelector<AuthBloc, AuthLocalState, User?>(
+          child: BlocSelector<PilluAuthBloc, AuthLocalState, User?>(
             selector: (final AuthLocalState state) =>
                 (state as AuthDataState).user,
             builder: (final BuildContext context, final User? state) {

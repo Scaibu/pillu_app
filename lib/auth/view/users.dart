@@ -44,7 +44,7 @@ class UsersPage extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    BlocProvider.of<AuthBloc>(context).add(InitAuthEvent());
+    BlocProvider.of<PilluAuthBloc>(context).add(InitAuthEvent());
 
     return Scaffold(
       appBar: AppBar(

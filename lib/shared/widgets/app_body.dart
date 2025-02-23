@@ -10,16 +10,16 @@ class AppBody extends StatelessWidget {
   final PilluUserModel? pilluUser;
 
   @override
-  Widget build(final BuildContext context) => CustomBlocBuilder<AuthBloc>(
-        create: (final BuildContext context) => AuthBloc(AuthRepository()),
-        init: (final AuthBloc bloc) {
+  Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
+        create: (final BuildContext context) => PilluAuthBloc(AuthRepository()),
+        init: (final PilluAuthBloc bloc) {
           if (pilluUser == null) {
             bloc.add(AuthAuthenticated());
           }
         },
-        builder: (final BuildContext context, final AuthBloc bloc) =>
+        builder: (final BuildContext context, final PilluAuthBloc bloc) =>
             ThemeWrapper(
-          child: BlocBuilder<AuthBloc, AuthLocalState>(
+          child: BlocBuilder<PilluAuthBloc, AuthLocalState>(
             builder: (final BuildContext context, final AuthLocalState state) {
               if (state is AuthDataState) {
                 final AuthDataState currDataState = state;

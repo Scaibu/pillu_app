@@ -9,13 +9,17 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- pillu user is added">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- code refactor">
       <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/view/users.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/view/users.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/chat/rooms.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/rooms.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_header.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_header.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/shared/widgets/app_drawer_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_drawer_data.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/widgets/connect_user_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/connect_user_component.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +261,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740314090727</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="- code refactor">
+      <option name="closed" value="true" />
+      <created>1740315321078</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1740315321078</updated>
+    </task>
+    <task id="LOCAL-00019" summary="- code refactor">
+      <option name="closed" value="true" />
+      <created>1740315338355</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1740315338355</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -282,9 +302,9 @@
     <MESSAGE value="- removed extra packages" />
     <MESSAGE value="- login function is updated" />
     <MESSAGE value="- minor changes" />
-    <MESSAGE value="- code refactor" />
     <MESSAGE value="- chat ui and code updated" />
     <MESSAGE value="- pillu user is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="- pillu user is added" />
+    <MESSAGE value="- code refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="- code refactor" />
   </component>
 </project>

@@ -5,8 +5,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthLocalState> {
-  AuthBloc(this.authRepository) : super(AuthDataState()) {
+class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
+  PilluAuthBloc(this.authRepository) : super(AuthDataState()) {
     on<InitAuthEvent>(_initAll);
     on<UpdateAuthStateEvent>(_updateAuthState);
     on<AuthAuthenticated>(_onAuthStarted);
