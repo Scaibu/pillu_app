@@ -10,7 +10,6 @@ export 'package:flutter/services.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:image_picker/image_picker.dart';
 export 'package:mime/mime.dart';
-export 'package:open_filex/open_filex.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:pillu_app/auth/auth_api.dart';
 export 'package:pillu_app/auth/auth_repository.dart';

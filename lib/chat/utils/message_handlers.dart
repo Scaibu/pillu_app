@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui' as ui show Image;
 
 import 'package:http/http.dart' as http;
+import 'package:open_file/open_file.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
@@ -38,7 +39,16 @@ Future<void> handleMessageTap(
       }
     }
 
-    await OpenFilex.open(localPath);
+    await openFile(localPath);
+  }
+}
+
+Future<void> openFile(String localPath) async {
+  final file = File(localPath);
+  if (await file.exists()) {
+    OpenFile.open(localPath);
+  } else {
+    print('File not found');
   }
 }
 
