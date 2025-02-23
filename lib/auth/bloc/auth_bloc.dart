@@ -65,6 +65,7 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
   }
 
   Future<UserCredential> signInWithGoogle() async {
+
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 

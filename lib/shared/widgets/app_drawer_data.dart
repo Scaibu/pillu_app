@@ -1,4 +1,3 @@
-import 'package:pillu_app/auth/bloc/auth_state.dart';
 import 'package:pillu_app/chat/widget/app_drawer.dart';
 import 'package:pillu_app/chat/widget/login_view_component.dart';
 import 'package:pillu_app/config/bloc_config.dart';
@@ -9,7 +8,8 @@ class AppDrawerData extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
-        create: (final BuildContext context) => PilluAuthBloc(PilluAuthRepository()),
+        create: (final BuildContext context) =>
+            PilluAuthBloc(PilluAuthRepository()),
         builder: (final BuildContext context, final PilluAuthBloc bloc) =>
             ThemeWrapper(
           child: BlocSelector<PilluAuthBloc, AuthLocalState, User?>(

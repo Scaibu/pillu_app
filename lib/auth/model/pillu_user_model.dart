@@ -15,10 +15,10 @@ class PilluUserModel {
         id: map['id'] as String? ?? '',
       );
 
-  final String imageUrl;
-  final String firstName;
-  final String lastName;
-  final String id;
+  String imageUrl;
+  String firstName;
+  String lastName;
+  String id;
 
   /// Method to convert the UserModel to a Map (e.g., for JSON encoding)
   Map<String, dynamic> toMap() => <String, dynamic>{
@@ -27,4 +27,17 @@ class PilluUserModel {
         'lastName': lastName,
         'id': id,
       };
+
+  PilluUserModel copyWith({
+    final String? imageUrl,
+    final String? firstName,
+    final String? lastName,
+    final String? id,
+  }) =>
+      PilluUserModel(
+        imageUrl: imageUrl ?? this.imageUrl,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        id: id ?? this.id,
+      );
 }

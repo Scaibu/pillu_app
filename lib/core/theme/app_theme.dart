@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pillu_app/config/app_config.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class AppTheme {
   static ThemeData get lightTheme => ThemeData(
@@ -33,8 +34,8 @@ class AppTheme {
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide.none,
     ),
-    hintStyle: TextStyle(color: AppConfig.hint),
-    labelStyle: TextStyle(
+    hintStyle: buildJostTextStyle(color: AppConfig.hint),
+    labelStyle: buildJostTextStyle(
       color: AppConfig.label,
       fontWeight: FontWeight.w900,
     ),

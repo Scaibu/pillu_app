@@ -12,6 +12,7 @@ class RoomsPage extends StatelessWidget {
                 PilluAuthBloc(PilluAuthRepository()),
             child: Scaffold(
               appBar: buildAppBar(context),
+              resizeToAvoidBottomInset: false,
               drawer: const AppDrawerData(),
               body: const AppBody(),
             ),

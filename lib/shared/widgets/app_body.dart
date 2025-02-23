@@ -1,4 +1,3 @@
-import 'package:pillu_app/auth/bloc/auth_state.dart';
 import 'package:pillu_app/chat/widget/chat_room_list.dart';
 import 'package:pillu_app/chat/widget/login_view_component.dart';
 import 'package:pillu_app/config/bloc_config.dart';
@@ -11,7 +10,8 @@ class AppBody extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => CustomBlocBuilder<PilluAuthBloc>(
-        create: (final BuildContext context) => PilluAuthBloc(PilluAuthRepository()),
+        create: (final BuildContext context) =>
+            PilluAuthBloc(PilluAuthRepository()),
         init: (final PilluAuthBloc bloc) {
           if (pilluUser == null) {
             bloc.add(AuthAuthenticated());
