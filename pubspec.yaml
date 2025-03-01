@@ -56,7 +56,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - lib/flutter_chat_ui-main/lib/pillu_assets/
-    - lib/flutter_chat_ui-main/lib/pillu_assets/2.0x/
-    - lib/flutter_chat_ui-main/lib/pillu_assets/3.0x/
-    - lib/flutter_chat_ui-main/lib/pillu_assets/icon-attachment.png
+    - lib/flutter_chat_ui-main/lib/assets/
+    - lib/flutter_chat_ui-main/lib/assets/2.0x/
+    - lib/flutter_chat_ui-main/lib/assets/3.0x/
+

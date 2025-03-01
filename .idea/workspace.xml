@@ -9,44 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- final chat changes">
-      <change afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-delivered.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-document.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-reply.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-seen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-send.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/2.0x/icon-x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-delivered.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-document.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-reply.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-seen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-send.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/3.0x/icon-x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-arrow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-attachment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-delivered.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-document.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-reply.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-seen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-send.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pillu_assets/icon-x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/analysis_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-    </list>
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- final chat changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -400,7 +363,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740856857643</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="- final chat changes">
+      <option name="closed" value="true" />
+      <created>1740859190887</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1740859190887</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
