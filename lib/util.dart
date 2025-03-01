@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
@@ -22,43 +24,75 @@ Color getUserAvatarNameColor(final types.User user) {
 String getUserName(final types.User user) =>
     '${user.firstName ?? ''} ${user.lastName ?? ''}'.trim();
 
-Future<void> alertDialog(final BuildContext context, final String e) async =>
-    showDialog(
-      context: context,
-      builder: (final BuildContext context) => AlertDialog(
-        actions: <Widget>[
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () {
-              while (Navigator.canPop(context)) {
-                Navigator.of(context).pop();
-              }
-            },
+Future<void> alertDialog(
+  final BuildContext context,
+  final String message,
+) async {
+  final ThemeData theme = Theme.of(context);
+  const double fontSize = 14;
+
+  await showDialog<dynamic>(
+    context: context,
+    builder: (final BuildContext context) => AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      backgroundColor: theme.colorScheme.surface,
+      titlePadding: const EdgeInsets.only(top: 24, left: 24, right: 24),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      actionsPadding: const EdgeInsets.only(bottom: 12, right: 16),
+
+      // 🟥 Title Section
+      title: Row(
+        children: <Widget>[
+          Icon(
+            Icons.error_outline_rounded,
+            color: theme.colorScheme.error,
+            size: 28,
+          ),
+          const SizedBox(width: 10),
+          Flexible(
+            child: Text(
+              'Oops! Something went wrong',
+              style: buildJostTextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: fontSize,
+                color: theme.colorScheme.error,
+              ),
+            ),
           ),
         ],
-        content: Text(e.toString()),
-        title: const Text('Error'),
       ),
-    );
 
-Future<void> handleAuthProcess({
-  required final BuildContext context,
-  required final PilluAuthBloc bloc,
-  required final Future<void> Function() authOperation,
-  required final void Function() onSuccess,
-  required final void Function() onFailure,
-}) async {
-  FocusScope.of(context).unfocus();
+      // 🟦 Message Section
+      content: Text(
+        message,
+        style: buildJostTextStyle(
+          fontSize: fontSize * 0.9,
+          color: theme.textTheme.bodyMedium?.color,
+        ),
+        textAlign: TextAlign.left,
+      ),
 
-  try {
-    await authOperation();
-    if (context.mounted) {
-      onSuccess();
-    }
-  } catch (e) {
-    if (context.mounted) {
-      onFailure();
-      await alertDialog(context, e.toString());
-    }
-  }
+      // 🟩 Action Button
+      actions: <Widget>[
+        TextButton(
+          style: TextButton.styleFrom(
+            textStyle: buildJostTextStyle(fontSize: fontSize * 0.85),
+          ),
+          onPressed: () {
+            HapticFeedback.mediumImpact();
+            Navigator.of(context).pop();
+          },
+          child: Text(
+            'OK',
+            style: buildJostTextStyle(
+              fontWeight: FontWeight.w600,
+              color: theme.colorScheme.primary,
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }

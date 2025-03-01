@@ -68,7 +68,7 @@ Future<void> attachmentSheet(
       ),
     );
 
-void showToast(
+void toast(
   final BuildContext context, {
   required final String message,
 }) {

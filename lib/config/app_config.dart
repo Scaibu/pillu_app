@@ -7,8 +7,9 @@ class AppConfig {
   static String baseUrl = '';
   static bool debugShowChecked = false;
 
-  final bool isConfigureFirebase = false;
-  bool isConfigureSupabase = false;
+  static bool isConfigureFirebase = false;
+  static bool useGoogleSignIn = false;
+  static bool isConfigureSupabase = false;
 
   static Color primary = Colors.white;
   static Color background = Colors.white;
@@ -19,7 +20,8 @@ class AppConfig {
 
   void _environmentVariables(final FirebaseRemoteConfig remoteConfig) {
     supabaseUrl = remoteConfig.getString('supabase_url');
-    supabaseKey = remoteConfig.getString('supabase_key');
+    useGoogleSignIn = remoteConfig.getBool('use_google_sign_in');
+    supabaseUrl = remoteConfig.getString('supabase_url');
     isConfigureSupabase = remoteConfig.getBool('is_configure_supabase');
     baseUrl = remoteConfig.getString('base_url');
     debugShowChecked = remoteConfig.getBool('debug_show_checked');

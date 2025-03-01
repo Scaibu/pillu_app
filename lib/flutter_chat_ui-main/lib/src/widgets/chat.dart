@@ -31,7 +31,8 @@ import 'package:scroll_to_index/scroll_to_index.dart';
 /// to allow animating to them.
 final Map<String, int> chatMessageAutoScrollIndexById = <String, int>{};
 
-/// Entry widgets, represents the complete chat. If you wrap it in [SafeArea] and
+/// Entry widgets, represents the complete chat. If you wrap it in [SafeArea]
+/// and
 /// it should be full screen, set [SafeArea]'s `bottom` to `false`.
 class Chat extends StatefulWidget {
   /// Creates a chat widgets.
@@ -528,7 +529,7 @@ class ChatState extends State<Chat> {
               _onImagePressed(tappedMessage);
             }
 
-            widget.onMessageTap?.call(context, tappedMessage);
+            widget.onMessageTap.call(context, tappedMessage);
           },
           onMessageVisibilityChanged: widget.onMessageVisibilityChanged,
           onPreviewDataFetched: _onPreviewDataFetched,

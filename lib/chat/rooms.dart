@@ -1,3 +1,4 @@
+import 'package:pillu_app/config/bloc_config.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class RoomsPage extends StatelessWidget {
@@ -7,12 +8,16 @@ class RoomsPage extends StatelessWidget {
   Widget build(final BuildContext context) => SafeArea(
         child: Theme(
           data: AppTheme.lightTheme,
-          child: BlocProvider<PilluAuthBloc>(
+          child: CustomBlocBuilder<PilluAuthBloc>(
             create: (final BuildContext context) =>
                 PilluAuthBloc(PilluAuthRepository()),
-            child: Scaffold(
+            init: (final PilluAuthBloc bloc) {
+              bloc.add(AuthAuthenticated());
+            },
+            builder: (final BuildContext context, final PilluAuthBloc state) =>
+                Scaffold(
               appBar: buildAppBar(context),
-              resizeToAvoidBottomInset: false,
+              resizeToAvoidBottomInset: true,
               drawer: const AppDrawerData(),
               body: const AppBody(),
             ),

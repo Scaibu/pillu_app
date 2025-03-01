@@ -1,7 +1,4 @@
 # Extending core lint rules
-include:
-  - package:flutter_lints/flutter.yaml
-  - package:lint/analysis_options.yaml
 
 
 analyzer:

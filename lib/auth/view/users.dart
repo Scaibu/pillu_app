@@ -1,5 +1,3 @@
-import 'package:pillu_app/auth/bloc/auth_bloc.dart';
-import 'package:pillu_app/auth/bloc/auth_event.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
@@ -16,7 +14,7 @@ class UsersPage extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: hasImage ? Colors.transparent : color,
         backgroundImage: hasImage ? NetworkImage(user.imageUrl!) : null,
-        radius: 20,
+        minRadius: 40,
         child: !hasImage
             ? Text(
                 name.isEmpty ? '' : name[0].toUpperCase(),
@@ -43,40 +41,36 @@ class UsersPage extends StatelessWidget {
   }
 
   @override
-  Widget build(final BuildContext context) {
-    BlocProvider.of<PilluAuthBloc>(context).add(InitAuthEvent());
+  Widget build(final BuildContext context) => Scaffold(
+        appBar: AppBar(
+          systemOverlayStyle: SystemUiOverlayStyle.light,
+          title: const Text('Users'),
+        ),
+        body: StreamBuilder<List<types.User>>(
+          stream: FirebaseChatCore.instance.users(),
+          initialData: const <types.User>[],
+          builder: (
+            final BuildContext context,
+            final AsyncSnapshot<List<types.User>> snapshot,
+          ) {
+            if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(bottom: 200),
+                child: const Text('No users'),
+              );
+            }
 
-    return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle: SystemUiOverlayStyle.light,
-        title: const Text('Users'),
-      ),
-      body: StreamBuilder<List<types.User>>(
-        stream: FirebaseChatCore.instance.users(),
-        initialData: const <types.User>[],
-        builder: (
-          final BuildContext context,
-          final AsyncSnapshot<List<types.User>> snapshot,
-        ) {
-          if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.only(bottom: 200),
-              child: const Text('No users'),
+            return ListView.builder(
+              itemCount: snapshot.data!.length,
+              itemBuilder: (final BuildContext context, final int index) {
+                final types.User user = snapshot.data![index];
+                return listUserItemComponent(user, context);
+              },
             );
-          }
-
-          return ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (final BuildContext context, final int index) {
-              final types.User user = snapshot.data![index];
-              return listUserItemComponent(user, context);
-            },
-          );
-        },
-      ),
-    );
-  }
+          },
+        ),
+      );
 
   Widget listUserItemComponent(
     final types.User user,

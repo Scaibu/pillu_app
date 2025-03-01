@@ -16,14 +16,15 @@ extension RoomTypeToShortString on types.RoomType {
 
 /// Fetches user from Firebase and returns a promise.
 Future<Map<String, dynamic>> fetchUser(
-  FirebaseFirestore instance,
-  String userId,
-  String usersCollectionName, {
-  String? role,
+  final FirebaseFirestore instance,
+  final String userId,
+  final String usersCollectionName, {
+  final String? role,
 }) async {
-  final doc = await instance.collection(usersCollectionName).doc(userId).get();
+  final DocumentSnapshot<Map<String, dynamic>> doc =
+      await instance.collection(usersCollectionName).doc(userId).get();
 
-  final data = doc.data()!;
+  final Map<String, dynamic> data = doc.data()!;
 
   data['createdAt'] = data['createdAt']?.millisecondsSinceEpoch;
   data['id'] = doc.id;
@@ -37,13 +38,14 @@ Future<Map<String, dynamic>> fetchUser(
 /// Returns a list of [types.Room] created from Firebase query.
 /// If room has 2 participants, sets correct room name and image.
 Future<List<types.Room>> processRoomsQuery(
-  User firebaseUser,
-  FirebaseFirestore instance,
-  QuerySnapshot<Map<String, dynamic>> query,
-  String usersCollectionName,
+  final User firebaseUser,
+  final FirebaseFirestore instance,
+  final QuerySnapshot<Map<String, dynamic>> query,
+  final String usersCollectionName,
 ) async {
-  final futures = query.docs.map(
-    (doc) => processRoomDocument(
+  final Iterable<Future<types.Room>> futures = query.docs.map(
+    (final QueryDocumentSnapshot<Map<String, dynamic>> doc) =>
+        processRoomDocument(
       doc,
       firebaseUser,
       instance,
@@ -51,31 +53,32 @@ Future<List<types.Room>> processRoomsQuery(
     ),
   );
 
-  return await Future.wait(futures);
+  return Future.wait(futures);
 }
 
 /// Returns a [types.Room] created from Firebase document.
 Future<types.Room> processRoomDocument(
-  DocumentSnapshot<Map<String, dynamic>> doc,
-  User firebaseUser,
-  FirebaseFirestore instance,
-  String usersCollectionName,
+  final DocumentSnapshot<Map<String, dynamic>> doc,
+  final User firebaseUser,
+  final FirebaseFirestore instance,
+  final String usersCollectionName,
 ) async {
-  final data = doc.data()!;
+  final Map<String, dynamic> data = doc.data()!;
 
   data['createdAt'] = data['createdAt']?.millisecondsSinceEpoch;
   data['id'] = doc.id;
   data['updatedAt'] = data['updatedAt']?.millisecondsSinceEpoch;
 
-  var imageUrl = data['imageUrl'] as String?;
-  var name = data['name'] as String?;
-  final type = data['type'] as String;
-  final userIds = data['userIds'] as List<dynamic>;
-  final userRoles = data['userRoles'] as Map<String, dynamic>?;
+  String? imageUrl = data['imageUrl'] as String?;
+  String? name = data['name'] as String?;
+  final String type = data['type'] as String;
+  final List<dynamic> userIds = data['userIds'] as List<dynamic>;
+  final Map<String, dynamic>? userRoles =
+      data['userRoles'] as Map<String, dynamic>?;
 
-  final users = await Future.wait(
+  final List<Map<String, dynamic>> users = await Future.wait(
     userIds.map(
-      (userId) => fetchUser(
+      (final dynamic userId) => fetchUser(
         instance,
         userId as String,
         usersCollectionName,
@@ -86,8 +89,8 @@ Future<types.Room> processRoomDocument(
 
   if (type == types.RoomType.direct.toShortString()) {
     try {
-      final otherUser = users.firstWhere(
-        (u) => u['id'] != firebaseUser.uid,
+      final Map<String, dynamic> otherUser = users.firstWhere(
+        (final Map<String, dynamic> u) => u['id'] != firebaseUser.uid,
       );
 
       imageUrl = otherUser['imageUrl'] as String?;
@@ -104,10 +107,10 @@ Future<types.Room> processRoomDocument(
   data['users'] = users;
 
   if (data['lastMessages'] != null) {
-    final lastMessages = data['lastMessages'].map((lm) {
-      final author = users.firstWhere(
-        (u) => u['id'] == lm['authorId'],
-        orElse: () => {'id': lm['authorId'] as String},
+    final dynamic lastMessages = data['lastMessages'].map((final dynamic lm) {
+      final Map<String, dynamic> author = users.firstWhere(
+        (final Map<String, dynamic> u) => u['id'] == lm['authorId'],
+        orElse: () => <String, dynamic>{'id': lm['authorId'] as String},
       );
 
       lm['author'] = author;

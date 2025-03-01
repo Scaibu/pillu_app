@@ -63,7 +63,7 @@ class ChatRoomList extends StatelessWidget {
       child: CircleAvatar(
         backgroundColor: backgroundColor,
         backgroundImage: backgroundImage,
-        radius: 20,
+        radius: 30,
         child: child,
       ),
     );

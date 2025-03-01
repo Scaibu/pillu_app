@@ -36,7 +36,7 @@ class ConnectUserComponent extends StatelessWidget {
         ),
       );
     } else {
-      showToast(
+      toast(
         context,
         message: 'Please connect first to chat with others',
       );

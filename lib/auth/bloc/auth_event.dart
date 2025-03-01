@@ -6,8 +6,6 @@ sealed class AuthEvent extends Equatable {
   List<Object?> get props => <Object?>[];
 }
 
-class InitAuthEvent extends AuthEvent {}
-
 class AuthAuthenticated extends AuthEvent {
   AuthAuthenticated({this.user});
 
@@ -16,17 +14,5 @@ class AuthAuthenticated extends AuthEvent {
   @override
   List<Object?> get props => <Object?>[user];
 }
-
-class UpdateAuthStateEvent extends AuthEvent {
-  UpdateAuthStateEvent({this.loggingIn, this.registering});
-
-  final bool? loggingIn;
-  final bool? registering;
-
-  @override
-  List<Object?> get props => <Object?>[loggingIn, registering];
-}
-
-class SetUserEvent extends AuthEvent {}
 
 class UserLogOutEvent extends AuthEvent {}

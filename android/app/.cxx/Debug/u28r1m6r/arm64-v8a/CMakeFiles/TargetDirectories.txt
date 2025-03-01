@@ -1,0 +1,2 @@
+/home/j/live/pillu_app/android/app/.cxx/Debug/u28r1m6r/arm64-v8a/CMakeFiles/edit_cache.dir
+/home/j/live/pillu_app/android/app/.cxx/Debug/u28r1m6r/arm64-v8a/CMakeFiles/rebuild_cache.dir
