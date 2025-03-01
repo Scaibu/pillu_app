@@ -9,12 +9,13 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     on<AuthAuthenticated>(_onAuthStarted);
     on<UserLogOutEvent>(_logOut);
     _listenToAuthStateChanges();
-
   }
 
   @override
   Future<void> close() {
     _authSubscription?.cancel();
+    _chatUserController.close();
+
     return super.close();
   }
 
@@ -22,21 +23,14 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
 
   StreamSubscription<User?>? _authSubscription;
 
+  final StreamController<types.User?> _chatUserController =
+      StreamController<types.User?>.broadcast();
+
+  Stream<types.User?> get chatUserStream => _chatUserController.stream;
+
   void _listenToAuthStateChanges() {
     _authSubscription = authRepository.authStateChanges.listen(
-      (final User? user) async {
-        if (user != null) {
-          final types.User chatUser = types.User(
-            id: user.uid,
-            firstName: user.displayName ?? '',
-            imageUrl: user.photoURL,
-          );
-          _chatUserController.add(chatUser);
-        } else {
-          _chatUserController.add(null);
-        }
-        add(AuthAuthenticated(user: user));
-      },
+      _listenAuthUser,
       onError: (final dynamic error) {
         _chatUserController.add(null);
         add(AuthAuthenticated());
@@ -44,10 +38,32 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     );
   }
 
-  final StreamController<types.User?> _chatUserController =
-      StreamController<types.User?>.broadcast();
+  void _listenAuthUser(final User? user) {
+    if (user != null && user.uid.isNotEmpty) {
+      _listenUser(user);
+    } else {
+      _chatUserController.add(null);
+      add(AuthAuthenticated());
+    }
+  }
 
-  Stream<types.User?> get chatUserStream => _chatUserController.stream;
+  void _listenUser(final User user) {
+    FirebaseChatCore.instance.currentUser().listen(
+      (final types.User? chatUser) {
+        if (chatUser != null) {
+          _chatUserController.add(chatUser);
+          add(AuthAuthenticated(user: user));
+        } else {
+          _chatUserController.add(null);
+          add(AuthAuthenticated());
+        }
+      },
+      onError: (final _) {
+        _chatUserController.add(null);
+        add(AuthAuthenticated());
+      },
+    );
+  }
 
   Future<void> _onAuthStarted(
     final AuthAuthenticated event,

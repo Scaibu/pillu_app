@@ -508,7 +508,6 @@ class FirebaseChatCore {
   }
 
   /// Returns a stream of the current user from Firebase.
-  /// Returns a stream of the current user from Firebase.
   Stream<types.User?> currentUser() {
     if (firebaseUser == null) {
       return const Stream<types.User?>.empty();
@@ -518,7 +517,7 @@ class FirebaseChatCore {
         .doc(firebaseUser!.uid)
         .snapshots()
         .map(
-          (final DocumentSnapshot<Map<String, dynamic>> doc) {
+      (final DocumentSnapshot<Map<String, dynamic>> doc) {
         if (!doc.exists) {
           return null;
         }
@@ -538,6 +537,4 @@ class FirebaseChatCore {
       },
     );
   }
-
-
 }

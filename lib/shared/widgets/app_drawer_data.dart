@@ -1,5 +1,4 @@
 import 'package:pillu_app/chat/widget/app_drawer.dart';
-import 'package:pillu_app/chat/widget/login_view_component.dart';
 import 'package:pillu_app/config/bloc_config.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 

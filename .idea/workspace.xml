@@ -9,11 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- currently it stable and I can work with it now">
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- minor changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_firebase_chat_core-main/lib/src/firebase_chat_core.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_firebase_chat_core-main/lib/src/firebase_chat_core.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/widgets/app_drawer_data.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_drawer_data.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,7 +341,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740828629920</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="- minor changes">
+      <option name="closed" value="true" />
+      <created>1740833015873</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1740833015873</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -365,11 +373,11 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="- removed extra packages" />
     <MESSAGE value="- login function is updated" />
-    <MESSAGE value="- minor changes" />
     <MESSAGE value="- chat ui and code updated" />
     <MESSAGE value="- pillu user is added" />
     <MESSAGE value="- code refactor" />
     <MESSAGE value="- currently it stable and I can work with it now" />
-    <option name="LAST_COMMIT_MESSAGE" value="- currently it stable and I can work with it now" />
+    <MESSAGE value="- minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="- minor changes" />
   </component>
 </project>
