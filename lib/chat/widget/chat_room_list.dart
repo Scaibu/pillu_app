@@ -1,5 +1,6 @@
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
+import 'package:pillu_app/shared/widgets/button.dart';
 
 class ChatRoomList extends StatelessWidget {
   const ChatRoomList({super.key, final User? user}) : _user = user;
@@ -11,8 +12,29 @@ class ChatRoomList extends StatelessWidget {
     final types.Room room,
   ) async {
     await Navigator.of(context).push(
-      MaterialPageRoute<ChatPage>(
-        builder: (final BuildContext context) => ChatPage(room: room),
+      PageRouteBuilder<dynamic>(
+        pageBuilder: (
+          final BuildContext context,
+          final Animation<double> animation,
+          final Animation<double> secondaryAnimation,
+        ) =>
+            ChatPage(room: room),
+        transitionsBuilder: (
+          final BuildContext context,
+          final Animation<double> animation,
+          final Animation<double> secondaryAnimation,
+          final Widget child,
+        ) =>
+            SlideTransition(
+          position: Tween<Offset>(begin: const Offset(0.5, 0), end: Offset.zero)
+              .animate(
+            CurvedAnimation(parent: animation, curve: Curves.easeOut),
+          ),
+          child: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        ),
       ),
     );
   }
@@ -86,8 +108,7 @@ class ChatRoomList extends StatelessWidget {
       );
 
   Widget _buildRoomItem(final types.Room room, final BuildContext context) =>
-      GestureDetector(
-        behavior: HitTestBehavior.translucent,
+      CustomSelectionTapEffectButton(
         onTap: () async => _goToChatPage(context, room),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

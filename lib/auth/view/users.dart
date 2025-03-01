@@ -1,5 +1,6 @@
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
+import 'package:pillu_app/shared/widgets/button.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({super.key});
@@ -18,7 +19,7 @@ class UsersPage extends StatelessWidget {
         child: !hasImage
             ? Text(
                 name.isEmpty ? '' : name[0].toUpperCase(),
-                style: const TextStyle(color: Colors.white),
+                style: buildJostTextStyle(color: Colors.white),
               )
             : null,
       ),
@@ -34,8 +35,29 @@ class UsersPage extends StatelessWidget {
         await FirebaseChatCore.instance.createRoom(otherUser);
     navigator.pop();
     await navigator.push(
-      MaterialPageRoute<ChatPage>(
-        builder: (final BuildContext context) => ChatPage(room: room),
+      PageRouteBuilder<dynamic>(
+        pageBuilder: (
+          final BuildContext context,
+          final Animation<double> animation,
+          final Animation<double> secondaryAnimation,
+        ) =>
+            ChatPage(room: room),
+        transitionsBuilder: (
+          final BuildContext context,
+          final Animation<double> animation,
+          final Animation<double> secondaryAnimation,
+          final Widget child,
+        ) =>
+            SlideTransition(
+          position: Tween<Offset>(begin: const Offset(0.2, 0), end: Offset.zero)
+              .animate(
+            CurvedAnimation(parent: animation, curve: Curves.easeOut),
+          ),
+          child: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        ),
       ),
     );
   }
@@ -44,7 +66,13 @@ class UsersPage extends StatelessWidget {
   Widget build(final BuildContext context) => Scaffold(
         appBar: AppBar(
           systemOverlayStyle: SystemUiOverlayStyle.light,
-          title: const Text('Users'),
+          centerTitle: true,
+          title: ThemeWrapper(
+            child: Text(
+              'Chat Users',
+              style: buildJostTextStyle(fontSize: 14),
+            ),
+          ),
         ),
         body: StreamBuilder<List<types.User>>(
           stream: FirebaseChatCore.instance.users(),
@@ -57,7 +85,10 @@ class UsersPage extends StatelessWidget {
               return Container(
                 alignment: Alignment.center,
                 margin: const EdgeInsets.only(bottom: 200),
-                child: const Text('No users'),
+                child: Text(
+                  'No users',
+                  style: buildJostTextStyle(fontSize: 14),
+                ),
               );
             }
 
@@ -76,16 +107,16 @@ class UsersPage extends StatelessWidget {
     final types.User user,
     final BuildContext context,
   ) =>
-      GestureDetector(
+      CustomSelectionTapEffectButton(
         onTap: () async {
           await _handlePressed(user, context);
         },
-        child: Container(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
             children: <Widget>[
               _buildAvatar(user),
-              Text(getUserName(user)),
+              Text(getUserName(user), style: buildJostTextStyle(fontSize: 14)),
             ],
           ),
         ),
