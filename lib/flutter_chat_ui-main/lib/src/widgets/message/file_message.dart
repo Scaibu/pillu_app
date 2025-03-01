@@ -58,13 +58,13 @@ class FileMessage extends StatelessWidget {
                   else
                     ((AppConfig.isPackage)
                         ? Image.asset(
-                            'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-document.png',
+                            'pillu_assets/icon-document.png',
                             color: InheritedChatTheme.of(context)
                                 .theme
                                 .inputTextColor,
                           )
                         : Image.asset(
-                            'lib/flutter_chat_ui-main/lib/assets/icon-document.png',
+                            'lib/flutter_chat_ui-main/lib/pillu_assets/icon-document.png',
                             color: InheritedChatTheme.of(context)
                                 .theme
                                 .inputTextColor,

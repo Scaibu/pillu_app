@@ -23,7 +23,7 @@ analyzer:
     - "build/**"
     - ".dart_tool/**"
     # Assets
-    - "assets/**"
+    - "pillu_assets/**"
     - "bricks/**"
 
   plugins:

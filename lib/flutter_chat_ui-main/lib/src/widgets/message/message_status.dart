@@ -23,11 +23,11 @@ class MessageStatus extends StatelessWidget {
             ? InheritedChatTheme.of(context).theme.deliveredIcon!
             : ((AppConfig.isPackage)
                 ? Image.asset(
-                    'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-delivered.png',
+                    'pillu_assets/icon-delivered.png',
                     color: InheritedChatTheme.of(context).theme.inputTextColor,
                   )
                 : Image.asset(
-                    'lib/flutter_chat_ui-main/lib/assets/icon-delivered.png',
+                    'lib/flutter_chat_ui-main/lib/pillu_assets/icon-delivered.png',
                     color: InheritedChatTheme.of(context).theme.inputTextColor,
                   ));
       case types.Status.error:
@@ -35,11 +35,11 @@ class MessageStatus extends StatelessWidget {
             ? InheritedChatTheme.of(context).theme.errorIcon!
             : ((AppConfig.isPackage)
                 ? Image.asset(
-                    'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-error.png',
+                    'pillu_assets/icon-error.png',
                     color: InheritedChatTheme.of(context).theme.inputTextColor,
                   )
                 : Image.asset(
-                    'lib/flutter_chat_ui-main/lib/assets/icon-error.png',
+                    'lib/flutter_chat_ui-main/lib/pillu_assets/icon-error.png',
                     color: InheritedChatTheme.of(context).theme.inputTextColor,
                   ));
       case types.Status.seen:
@@ -47,11 +47,11 @@ class MessageStatus extends StatelessWidget {
             ? InheritedChatTheme.of(context).theme.seenIcon!
             : ((AppConfig.isPackage)
                 ? Image.asset(
-                    'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-seen.png',
+                    'pillu_assets/icon-seen.png',
                     color: InheritedChatTheme.of(context).theme.inputTextColor,
                   )
                 : Image.asset(
-                    'lib/flutter_chat_ui-main/lib/assets/icon-seen.png',
+                    'lib/flutter_chat_ui-main/lib/pillu_assets/icon-seen.png',
                     color: InheritedChatTheme.of(context).theme.inputTextColor,
                   ));
       case types.Status.sending:
