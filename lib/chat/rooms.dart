@@ -15,11 +15,13 @@ class RoomsPage extends StatelessWidget {
               bloc.add(AuthAuthenticated());
             },
             builder: (final BuildContext context, final PilluAuthBloc state) =>
-                Scaffold(
-              appBar: buildAppBar(context),
-              resizeToAvoidBottomInset: true,
-              drawer: const AppDrawerData(),
-              body: const AppBody(),
+                ThemeWrapper(
+              child: Scaffold(
+                appBar: buildAppBar(context),
+                resizeToAvoidBottomInset: true,
+                drawer: const AppDrawerData(),
+                body: const AppBody(),
+              ),
             ),
           ),
         ),

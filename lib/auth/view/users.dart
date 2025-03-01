@@ -63,43 +63,45 @@ class UsersPage extends StatelessWidget {
   }
 
   @override
-  Widget build(final BuildContext context) => Scaffold(
-        appBar: AppBar(
-          systemOverlayStyle: SystemUiOverlayStyle.light,
-          centerTitle: true,
-          title: ThemeWrapper(
-            child: Text(
-              'Chat Users',
-              style: buildJostTextStyle(fontSize: 14),
+  Widget build(final BuildContext context) => ThemeWrapper(
+        child: Scaffold(
+          appBar: AppBar(
+            systemOverlayStyle: SystemUiOverlayStyle.light,
+            centerTitle: true,
+            title: ThemeWrapper(
+              child: Text(
+                'Chat Users',
+                style: buildJostTextStyle(fontSize: 14),
+              ),
             ),
           ),
-        ),
-        body: StreamBuilder<List<types.User>>(
-          stream: FirebaseChatCore.instance.users(),
-          initialData: const <types.User>[],
-          builder: (
-            final BuildContext context,
-            final AsyncSnapshot<List<types.User>> snapshot,
-          ) {
-            if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Container(
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(bottom: 200),
-                child: Text(
-                  'No users',
-                  style: buildJostTextStyle(fontSize: 14),
-                ),
-              );
-            }
+          body: StreamBuilder<List<types.User>>(
+            stream: FirebaseChatCore.instance.users(),
+            initialData: const <types.User>[],
+            builder: (
+              final BuildContext context,
+              final AsyncSnapshot<List<types.User>> snapshot,
+            ) {
+              if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                return Container(
+                  alignment: Alignment.center,
+                  margin: const EdgeInsets.only(bottom: 200),
+                  child: Text(
+                    'No users',
+                    style: buildJostTextStyle(fontSize: 14),
+                  ),
+                );
+              }
 
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (final BuildContext context, final int index) {
-                final types.User user = snapshot.data![index];
-                return listUserItemComponent(user, context);
-              },
-            );
-          },
+              return ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (final BuildContext context, final int index) {
+                  final types.User user = snapshot.data![index];
+                  return listUserItemComponent(user, context);
+                },
+              );
+            },
+          ),
         ),
       );
 
