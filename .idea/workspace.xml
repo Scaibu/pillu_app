@@ -10,8 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- currently it stable and I can work with it now">
-      <change beforePath="$PROJECT_DIR$/lib/chat/widget/chat_room_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/chat_room_list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/library/pillu_lib.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/widgets/app_body.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -331,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740828608077</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="- currently it stable and I can work with it now">
+      <option name="closed" value="true" />
+      <created>1740828629920</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1740828629920</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -361,16 +371,5 @@
     <MESSAGE value="- code refactor" />
     <MESSAGE value="- currently it stable and I can work with it now" />
     <option name="LAST_COMMIT_MESSAGE" value="- currently it stable and I can work with it now" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/chat/widget/login_view_component.dart</url>
-          <line>59</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

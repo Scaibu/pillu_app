@@ -11,24 +11,11 @@ class AppBody extends StatelessWidget {
         builder: (final BuildContext context, final PilluAuthBloc bloc) =>
             ThemeWrapper(
           child: BlocBuilder<PilluAuthBloc, AuthLocalState>(
-            builder: (
-              final BuildContext context,
-              final AuthLocalState state,
-            ) {
-              if (state is AuthDataState) {
-                final AuthDataState currDataState = state;
-                if (currDataState.hasError) {
-                  return Container();
-                }
-
-                if (currDataState.user == null) {
-                  return const LoginViewComponent();
-                } else {
-                  return const ChatRoomList();
-                }
+            builder: (final BuildContext context, final AuthLocalState state) {
+              if (state is AuthDataState && state.user != null) {
+                return const ChatRoomList();
               }
-
-              return const Offstage();
+              return const LoginViewComponent();
             },
           ),
         ),

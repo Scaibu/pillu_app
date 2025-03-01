@@ -9,6 +9,7 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     on<AuthAuthenticated>(_onAuthStarted);
     on<UserLogOutEvent>(_logOut);
     _listenToAuthStateChanges();
+
   }
 
   @override
@@ -23,14 +24,30 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
 
   void _listenToAuthStateChanges() {
     _authSubscription = authRepository.authStateChanges.listen(
-      (final User? user) {
+      (final User? user) async {
+        if (user != null) {
+          final types.User chatUser = types.User(
+            id: user.uid,
+            firstName: user.displayName ?? '',
+            imageUrl: user.photoURL,
+          );
+          _chatUserController.add(chatUser);
+        } else {
+          _chatUserController.add(null);
+        }
         add(AuthAuthenticated(user: user));
       },
       onError: (final dynamic error) {
-        add(AuthAuthenticated()); // Handle error state
+        _chatUserController.add(null);
+        add(AuthAuthenticated());
       },
     );
   }
+
+  final StreamController<types.User?> _chatUserController =
+      StreamController<types.User?>.broadcast();
+
+  Stream<types.User?> get chatUserStream => _chatUserController.stream;
 
   Future<void> _onAuthStarted(
     final AuthAuthenticated event,

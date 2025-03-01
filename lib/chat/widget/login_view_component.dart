@@ -43,8 +43,6 @@ class LoginViewComponent extends HookWidget {
       password: password.text,
     );
 
-
-
     if (context.mounted) {
       await ChatService(
         pilluUser: PilluUserModel(
