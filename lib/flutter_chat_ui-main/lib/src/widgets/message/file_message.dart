@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pillu_app/config/app_config.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/util.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
@@ -55,10 +56,19 @@ class FileMessage extends StatelessWidget {
                   if (InheritedChatTheme.of(context).theme.documentIcon != null)
                     InheritedChatTheme.of(context).theme.documentIcon!
                   else
-                    Image.asset(
-                      'lib/flutter_chat_ui-main/lib/assets/icon-document.png',
-                      color: color,
-                    ),
+                    ((AppConfig.isPackage)
+                        ? Image.asset(
+                            'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-document.png',
+                            color: InheritedChatTheme.of(context)
+                                .theme
+                                .inputTextColor,
+                          )
+                        : Image.asset(
+                            'lib/flutter_chat_ui-main/lib/assets/icon-document.png',
+                            color: InheritedChatTheme.of(context)
+                                .theme
+                                .inputTextColor,
+                          )),
                 ],
               ),
             ),

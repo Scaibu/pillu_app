@@ -2,35 +2,61 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class AppConfig {
-  static String supabaseUrl = '';
-  static String supabaseKey = '';
-  static String baseUrl = '';
-  static bool debugShowChecked = false;
-
+  static String _supabaseUrl = '';
+  static String _supabaseKey = '';
+  static String _baseUrl = '';
+  static bool _debugShowChecked = false;
   static bool isConfigureFirebase = false;
-  static bool useGoogleSignIn = false;
-  static bool isConfigureSupabase = false;
+  static bool _useGoogleSignIn = false;
+  static bool _isConfigureSupabase = false;
+  static Color _primary = Colors.white;
+  static Color _background = Colors.white;
+  static Color _card = Colors.white;
+  static Color _textPrimary = Colors.white;
+  static Color _hint = Colors.white;
+  static Color _label = Colors.white;
+  static bool _isPackage = false;
 
-  static Color primary = Colors.white;
-  static Color background = Colors.white;
-  static Color card = Colors.white;
-  static Color textPrimary = Colors.white;
-  static Color hint = Colors.white;
-  static Color label = Colors.white;
+  static String get supabaseUrl => _supabaseUrl;
+
+  static String get supabaseKey => _supabaseKey;
+
+  static String get baseUrl => _baseUrl;
+
+  static bool get debugShowChecked => _debugShowChecked;
+
+  static bool get useGoogleSignIn => _useGoogleSignIn;
+
+  static bool get isConfigureSupabase => _isConfigureSupabase;
+
+  static Color get primary => _primary;
+
+  static Color get background => _background;
+
+  static Color get card => _card;
+
+  static Color get textPrimary => _textPrimary;
+
+  static Color get hint => _hint;
+
+  static Color get label => _label;
+
+  static bool get isPackage => _isPackage;
 
   void _environmentVariables(final FirebaseRemoteConfig remoteConfig) {
-    supabaseUrl = remoteConfig.getString('supabase_url');
-    useGoogleSignIn = remoteConfig.getBool('use_google_sign_in');
-    supabaseUrl = remoteConfig.getString('supabase_url');
-    isConfigureSupabase = remoteConfig.getBool('is_configure_supabase');
-    baseUrl = remoteConfig.getString('base_url');
-    debugShowChecked = remoteConfig.getBool('debug_show_checked');
-    primary = _getColor(remoteConfig.getString('primary_color'));
-    background = _getColor(remoteConfig.getString('background_color'));
-    card = _getColor(remoteConfig.getString('card_color'));
-    textPrimary = _getColor(remoteConfig.getString('text_primary_color'));
-    hint = _getColor(remoteConfig.getString('hint_color'));
-    label = _getColor(remoteConfig.getString('label_color'));
+    _supabaseUrl = remoteConfig.getString('supabase_url');
+    _useGoogleSignIn = remoteConfig.getBool('use_google_sign_in');
+    _supabaseKey = remoteConfig.getString('supabase_key');
+    _isConfigureSupabase = remoteConfig.getBool('is_configure_supabase');
+    _baseUrl = remoteConfig.getString('base_url');
+    _debugShowChecked = remoteConfig.getBool('debug_show_checked');
+    _primary = _getColor(remoteConfig.getString('primary_color'));
+    _background = _getColor(remoteConfig.getString('background_color'));
+    _card = _getColor(remoteConfig.getString('card_color'));
+    _textPrimary = _getColor(remoteConfig.getString('text_primary_color'));
+    _hint = _getColor(remoteConfig.getString('hint_color'));
+    _label = _getColor(remoteConfig.getString('label_color'));
+    _isPackage = remoteConfig.getBool('is_package');
   }
 
   Future<void> _fetchRemoteConfig() async {

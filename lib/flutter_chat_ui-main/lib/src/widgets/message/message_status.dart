@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pillu_app/config/app_config.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
 
@@ -20,24 +21,39 @@ class MessageStatus extends StatelessWidget {
       case types.Status.sent:
         return InheritedChatTheme.of(context).theme.deliveredIcon != null
             ? InheritedChatTheme.of(context).theme.deliveredIcon!
-            : Image.asset(
-                'lib/flutter_chat_ui-main/lib/assets/icon-delivered.png',
-                color: InheritedChatTheme.of(context).theme.primaryColor,
-              );
+            : ((AppConfig.isPackage)
+                ? Image.asset(
+                    'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-delivered.png',
+                    color: InheritedChatTheme.of(context).theme.inputTextColor,
+                  )
+                : Image.asset(
+                    'lib/flutter_chat_ui-main/lib/assets/icon-delivered.png',
+                    color: InheritedChatTheme.of(context).theme.inputTextColor,
+                  ));
       case types.Status.error:
         return InheritedChatTheme.of(context).theme.errorIcon != null
             ? InheritedChatTheme.of(context).theme.errorIcon!
-            : Image.asset(
-                'lib/flutter_chat_ui-main/lib/assets/icon-error.png',
-                color: InheritedChatTheme.of(context).theme.errorColor,
-              );
+            : ((AppConfig.isPackage)
+                ? Image.asset(
+                    'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-error.png',
+                    color: InheritedChatTheme.of(context).theme.inputTextColor,
+                  )
+                : Image.asset(
+                    'lib/flutter_chat_ui-main/lib/assets/icon-error.png',
+                    color: InheritedChatTheme.of(context).theme.inputTextColor,
+                  ));
       case types.Status.seen:
         return InheritedChatTheme.of(context).theme.seenIcon != null
             ? InheritedChatTheme.of(context).theme.seenIcon!
-            : Image.asset(
-                'lib/flutter_chat_ui-main/lib/assets/icon-seen.png',
-                color: InheritedChatTheme.of(context).theme.primaryColor,
-              );
+            : ((AppConfig.isPackage)
+                ? Image.asset(
+                    'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-seen.png',
+                    color: InheritedChatTheme.of(context).theme.inputTextColor,
+                  )
+                : Image.asset(
+                    'lib/flutter_chat_ui-main/lib/assets/icon-seen.png',
+                    color: InheritedChatTheme.of(context).theme.inputTextColor,
+                  ));
       case types.Status.sending:
         return InheritedChatTheme.of(context).theme.sendingIcon != null
             ? InheritedChatTheme.of(context).theme.sendingIcon!

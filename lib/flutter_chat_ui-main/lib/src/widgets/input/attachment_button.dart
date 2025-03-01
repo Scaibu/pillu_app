@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pillu_app/config/app_config.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart';
 
@@ -48,10 +49,19 @@ class AttachmentButton extends StatelessWidget {
                   ),
                 )
               : InheritedChatTheme.of(context).theme.attachmentButtonIcon ??
-                  Image.asset(
-                    'lib/flutter_chat_ui-main/lib/assets/icon-attachment.png',
-                    color: InheritedChatTheme.of(context).theme.inputTextColor,
-                  ),
+                  ((AppConfig.isPackage)
+                      ? Image.asset(
+                          'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-attachment.png',
+                          color: InheritedChatTheme.of(context)
+                              .theme
+                              .inputTextColor,
+                        )
+                      : Image.asset(
+                          'lib/flutter_chat_ui-main/lib/assets/icon-attachment.png',
+                          color: InheritedChatTheme.of(context)
+                              .theme
+                              .inputTextColor,
+                        )),
           onPressed: isLoading ? null : onPressed,
           padding: padding,
           splashRadius: 24,

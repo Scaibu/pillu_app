@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pillu_app/config/app_config.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_chat_theme.dart';
 import 'package:pillu_app/flutter_chat_ui-main/lib/src/widgets/state/inherited_l10n.dart';
 
@@ -29,10 +30,17 @@ class SendButton extends StatelessWidget {
               minWidth: 24,
             ),
             icon: InheritedChatTheme.of(context).theme.sendButtonIcon ??
-                Image.asset(
-                  'lib/flutter_chat_ui-main/lib/assets/icon-send.png',
-                  color: InheritedChatTheme.of(context).theme.inputTextColor,
-                ),
+                ((AppConfig.isPackage)
+                    ? Image.asset(
+                        'packages/pillu_app/flutter_chat_ui-main/lib/assets/icon-send.png',
+                        color:
+                            InheritedChatTheme.of(context).theme.inputTextColor,
+                      )
+                    : Image.asset(
+                        'lib/flutter_chat_ui-main/lib/assets/icon-send.png',
+                        color:
+                            InheritedChatTheme.of(context).theme.inputTextColor,
+                      )),
             onPressed: onPressed,
             padding: padding,
             splashRadius: 24,

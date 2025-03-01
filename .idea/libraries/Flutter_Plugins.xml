@@ -40,7 +40,6 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/gtk-2.1.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/open_file_linux-0.0.5" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/open_file_web-0.0.4" />
-      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file_picker-9.0.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/open_file_mac-1.0.3" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_auth_web-5.14.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/shared_preferences-2.5.2" />
@@ -54,6 +53,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/app_links-6.4.0" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/image_picker_macos-0.2.1+2" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/firebase_remote_config-5.4.1" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/file_picker-9.0.0" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
