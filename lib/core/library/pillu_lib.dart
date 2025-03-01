@@ -39,6 +39,7 @@ export 'package:pillu_app/shared/text_styles.dart';
 export 'package:pillu_app/shared/widgets/app_bars.dart';
 export 'package:pillu_app/shared/widgets/app_body.dart';
 export 'package:pillu_app/shared/widgets/app_drawer_data.dart';
+export 'package:pillu_app/shared/widgets/button.dart';
 export 'package:pillu_app/util.dart';
 export 'package:supabase_flutter/supabase_flutter.dart'
     hide OAuthProvider, User;

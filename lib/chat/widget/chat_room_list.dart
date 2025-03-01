@@ -1,6 +1,6 @@
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
-import 'package:pillu_app/shared/widgets/button.dart';
+
 
 class ChatRoomList extends StatelessWidget {
   const ChatRoomList({super.key, final User? user}) : _user = user;
