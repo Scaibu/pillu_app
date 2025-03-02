@@ -9,7 +9,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- final chat changes" />
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- final chat changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/url_linkifier.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/url_linkifier.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/utils.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/widgets/link_preview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/widgets/link_preview.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,7 +65,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -387,7 +393,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740860627939</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="- final chat changes">
+      <option name="closed" value="true" />
+      <created>1740899625407</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1740899625407</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="ToolWindowManager">
