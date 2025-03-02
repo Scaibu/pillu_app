@@ -57,7 +57,7 @@ class AttachmentButton extends StatelessWidget {
                               .inputTextColor,
                         )
                       : Image.asset(
-                          'lib/flutter_chat_ui-main/lib/pillu_assets/icon-attachment.png',
+                          'lib/flutter_chat_ui-main/lib/assets/icon-attachment.png',
                           color: InheritedChatTheme.of(context)
                               .theme
                               .inputTextColor,

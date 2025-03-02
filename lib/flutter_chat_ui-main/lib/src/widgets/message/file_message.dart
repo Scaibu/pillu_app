@@ -64,7 +64,7 @@ class FileMessage extends StatelessWidget {
                                 .inputTextColor,
                           )
                         : Image.asset(
-                            'lib/flutter_chat_ui-main/lib/pillu_assets/icon-document.png',
+                            'lib/flutter_chat_ui-main/lib/assets/icon-document.png',
                             color: InheritedChatTheme.of(context)
                                 .theme
                                 .inputTextColor,

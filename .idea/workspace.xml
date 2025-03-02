@@ -10,11 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- final chat changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/url_linkifier.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/url_linkifier.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/utils.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/widgets/link_preview.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_link_previewer-main/lib/src/widgets/link_preview.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -401,7 +400,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740899625407</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="- final chat changes">
+      <option name="closed" value="true" />
+      <created>1740899649156</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1740899649156</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
