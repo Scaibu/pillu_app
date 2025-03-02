@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart' hide UrlLinkifier;
 import 'package:pillu_app/core/library/flutter_chat_types.dart'
@@ -95,7 +97,8 @@ class LinkPreview extends StatefulWidget {
   /// data again.
   final PreviewData? previewData;
 
-  /// Request timeout after which the request will be cancelled. Defaults to 5 seconds.
+  /// Request timeout after which the request will be cancelled. Defaults to 5
+  /// seconds.
   final Duration? requestTimeout;
 
   /// Text used for parsing.
@@ -104,7 +107,8 @@ class LinkPreview extends StatefulWidget {
   /// Style of the provided text.
   final TextStyle? textStyle;
 
-  /// Widget to display above the preview. If null, defaults to a linkified [text].
+  /// Widget to display above the preview. If null, defaults to a linkified
+  /// [text].
   final Widget? textWidget;
 
   /// User agent to send as GET header when requesting link preview url.
@@ -142,15 +146,14 @@ class _LinkPreviewState extends State<LinkPreview>
     didUpdateWidget(widget);
   }
 
-  Widget _animated(Widget child) => SizeTransition(
-        axis: Axis.vertical,
+  Widget _animated(final Widget child) => SizeTransition(
         axisAlignment: -1,
         sizeFactor: _animation,
         child: child,
       );
 
-  Widget _bodyWidget(PreviewData data, double width) {
-    final padding = widget.padding ??
+  Widget _bodyWidget(final PreviewData data, final double width) {
+    final EdgeInsets padding = widget.padding ??
         const EdgeInsets.only(
           bottom: 16,
           left: 24,
@@ -161,8 +164,9 @@ class _LinkPreviewState extends State<LinkPreview>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         GestureDetector(
-          onTap:
-              widget.openOnPreviewTitleTap ? () => _onOpen(data.link!) : null,
+          onTap: widget.openOnPreviewTitleTap
+              ? () async => _onOpen(data.link!)
+              : null,
           child: Container(
             padding: EdgeInsets.only(
               bottom: padding.bottom,
@@ -186,24 +190,25 @@ class _LinkPreviewState extends State<LinkPreview>
   }
 
   Widget _containerWidget({
-    required bool animate,
-    bool withPadding = false,
-    Widget? child,
+    required final bool animate,
+    final bool withPadding = false,
+    final Widget? child,
   }) {
-    final padding = widget.padding ??
+    final EdgeInsets padding = widget.padding ??
         const EdgeInsets.symmetric(
           horizontal: 24,
           vertical: 16,
         );
 
-    final shouldAnimate = widget.enableAnimation == true && animate;
+    final bool shouldAnimate =
+        (widget.enableAnimation ?? false) == true && animate;
 
     return Container(
       constraints: BoxConstraints(maxWidth: widget.width),
       padding: withPadding ? padding : null,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Padding(
             padding: withPadding
                 ? EdgeInsets.zero
@@ -215,7 +220,7 @@ class _LinkPreviewState extends State<LinkPreview>
                   ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 if (widget.header != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 6),
@@ -239,7 +244,7 @@ class _LinkPreviewState extends State<LinkPreview>
     );
   }
 
-  Widget _descriptionWidget(String description) => Container(
+  Widget _descriptionWidget(final String description) => Container(
         margin: const EdgeInsets.only(top: 8),
         child: Text(
           description,
@@ -249,12 +254,12 @@ class _LinkPreviewState extends State<LinkPreview>
         ),
       );
 
-  Future<PreviewData> _fetchData(String text) async {
+  Future<PreviewData> _fetchData(final String text) async {
     setState(() {
       isFetchingPreviewData = true;
     });
 
-    final previewData = await getPreviewData(
+    final PreviewData previewData = await getPreviewData(
       text,
       proxy: widget.corsProxy,
       requestTimeout: widget.requestTimeout,
@@ -264,8 +269,8 @@ class _LinkPreviewState extends State<LinkPreview>
     return previewData;
   }
 
-  Future<void> _handlePreviewDataFetched(PreviewData previewData) async {
-    await Future.delayed(
+  Future<void> _handlePreviewDataFetched(final PreviewData previewData) async {
+    await Future<dynamic>.delayed(
       widget.animationDuration ?? const Duration(milliseconds: 300),
     );
 
@@ -277,7 +282,7 @@ class _LinkPreviewState extends State<LinkPreview>
     }
   }
 
-  bool _hasData(PreviewData? previewData) =>
+  bool _hasData(final PreviewData? previewData) =>
       previewData?.title != null ||
       previewData?.description != null ||
       previewData?.image?.url != null;
@@ -287,9 +292,11 @@ class _LinkPreviewState extends State<LinkPreview>
       widget.previewData?.description == null &&
       widget.previewData?.image?.url != null;
 
-  Widget _imageWidget(String imageUrl, String linkUrl, double width) =>
+  Widget _imageWidget(
+          final String imageUrl, final String linkUrl, final double width) =>
       GestureDetector(
-        onTap: widget.openOnPreviewImageTap ? () => _onOpen(linkUrl) : null,
+        onTap:
+            widget.openOnPreviewImageTap ? () async => _onOpen(linkUrl) : null,
         child: Container(
           constraints: BoxConstraints(
             maxHeight: width,
@@ -305,11 +312,11 @@ class _LinkPreviewState extends State<LinkPreview>
       );
 
   Widget _linkify() => SelectableLinkify(
-        linkifiers: const [EmailLinkifier(), UrlLinkifier()],
+        linkifiers: const <Linkifier>[EmailLinkifier(), UrlLinkifier()],
         linkStyle: widget.linkStyle,
         maxLines: 100,
         minLines: 1,
-        onOpen: (link) => _onOpen(link.url),
+        onOpen: (final LinkableElement link) async => _onOpen(link.url),
         options: const LinkifyOptions(
           defaultToHttps: true,
           humanize: false,
@@ -319,9 +326,9 @@ class _LinkPreviewState extends State<LinkPreview>
         style: widget.textStyle,
       );
 
-  Widget _minimizedBodyWidget(PreviewData data) => Column(
+  Widget _minimizedBodyWidget(final PreviewData data) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           if (data.title != null || data.description != null)
             Container(
               margin: const EdgeInsets.only(top: 16),
@@ -331,7 +338,7 @@ class _LinkPreviewState extends State<LinkPreview>
                   Expanded(
                     child: GestureDetector(
                       onTap: widget.openOnPreviewTitleTap
-                          ? () => _onOpen(data.link!)
+                          ? () async => _onOpen(data.link!)
                           : null,
                       child: Container(
                         margin: const EdgeInsets.only(right: 4),
@@ -354,12 +361,15 @@ class _LinkPreviewState extends State<LinkPreview>
         ],
       );
 
-  Widget _minimizedImageWidget(String imageUrl, String linkUrl) => ClipRRect(
+  Widget _minimizedImageWidget(final String imageUrl, final String linkUrl) =>
+      ClipRRect(
         borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),
         child: GestureDetector(
-          onTap: widget.openOnPreviewImageTap ? () => _onOpen(linkUrl) : null,
+          onTap: widget.openOnPreviewImageTap
+              ? () async => _onOpen(linkUrl)
+              : null,
           child: SizedBox(
             height: 48,
             width: 48,
@@ -370,19 +380,19 @@ class _LinkPreviewState extends State<LinkPreview>
         ),
       );
 
-  Future<void> _onOpen(String url) async {
+  Future<void> _onOpen(final String url) async {
     if (widget.onLinkPressed != null) {
       widget.onLinkPressed!(url);
     } else {
-      final uri = Uri.parse(url);
+      final Uri uri = Uri.parse(url);
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri, mode: LaunchMode.externalApplication);
       }
     }
   }
 
-  Widget _titleWidget(String title) {
-    final style = widget.metadataTitleStyle ??
+  Widget _titleWidget(final String title) {
+    final TextStyle style = widget.metadataTitleStyle ??
         const TextStyle(
           fontWeight: FontWeight.bold,
         );
@@ -396,19 +406,20 @@ class _LinkPreviewState extends State<LinkPreview>
   }
 
   @override
-  void didUpdateWidget(covariant LinkPreview oldWidget) {
+  void didUpdateWidget(covariant final LinkPreview oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (!isFetchingPreviewData && widget.previewData == null) {
-      _fetchData(widget.text);
+      unawaited(_fetchData(widget.text));
     }
 
     if (widget.previewData != null && oldWidget.previewData == null) {
       setState(() {
         shouldAnimate = true;
       });
-      _controller.reset();
-      _controller.forward();
+      _controller
+        ..reset()
+        ..forward();
     } else if (widget.previewData != null) {
       setState(() {
         shouldAnimate = false;
@@ -423,19 +434,20 @@ class _LinkPreviewState extends State<LinkPreview>
   }
 
   @override
-  Widget build(BuildContext context) {
-    final previewData = widget.previewData;
+  Widget build(final BuildContext context) {
+    final PreviewData? previewData = widget.previewData;
 
     if (previewData != null && _hasData(previewData)) {
       if (widget.previewBuilder != null) {
         return widget.previewBuilder!(context, previewData);
       } else {
-        final aspectRatio = widget.previewData!.image == null
+        final double? aspectRatio = widget.previewData!.image == null
             ? null
             : widget.previewData!.image!.width /
                 widget.previewData!.image!.height;
 
-        final width = aspectRatio == 1 ? widget.width : widget.width - 32;
+        final double width =
+            aspectRatio == 1 ? widget.width : widget.width - 32;
 
         return _containerWidget(
           animate: shouldAnimate,

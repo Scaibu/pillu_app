@@ -1,19 +1,19 @@
 import 'package:linkify/linkify.dart';
 import 'package:meta/meta.dart';
 
-final _urlRegex = RegExp(
+final RegExp _urlRegex = RegExp(
   r'^(.*?)((?:https?:\/\/|www\.)[^\s/$.?#].[^\s]*)',
   caseSensitive: false,
   dotAll: true,
 );
 
-final _looseUrlRegex = RegExp(
+final RegExp _looseUrlRegex = RegExp(
   r'^(.*?)((https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))',
   caseSensitive: false,
   dotAll: true,
 );
 
-final _protocolIdentifierRegex = RegExp(
+final RegExp _protocolIdentifierRegex = RegExp(
   r'^(https?:\/\/)',
   caseSensitive: false,
 );
@@ -27,18 +27,19 @@ class UrlLinkifier extends Linkifier {
   /// Parses text to find all links inside it.
   @override
   List<LinkifyElement> parse(
-    List<LinkifyElement> elements,
-    LinkifyOptions options,
+    final List<LinkifyElement> elements,
+    final LinkifyOptions options,
   ) {
-    final list = <LinkifyElement>[];
+    final List<LinkifyElement> list = <LinkifyElement>[];
 
-    for (final element in elements) {
+    for (final LinkifyElement element in elements) {
       if (element is TextElement) {
-        var loose = false;
-        var match = _urlRegex.firstMatch(element.text);
+        bool loose = false;
+        RegExpMatch? match = _urlRegex.firstMatch(element.text);
 
-        if (match?.group(1)?.isNotEmpty == true) {
-          final looseMatch = _looseUrlRegex.firstMatch(match!.group(1)!);
+        if ((match?.group(1) ?? '').isNotEmpty) {
+          final RegExpMatch? looseMatch =
+              _looseUrlRegex.firstMatch(match!.group(1)!);
           if (looseMatch != null) {
             match = looseMatch;
             loose = true;
@@ -53,14 +54,14 @@ class UrlLinkifier extends Linkifier {
         if (match == null) {
           list.add(element);
         } else {
-          final text = element.text.replaceFirst(match.group(0)!, '');
+          final String text = element.text.replaceFirst(match.group(0)!, '');
 
-          if (match.group(1)?.isNotEmpty == true) {
+          if ((match.group(1) ?? '').isNotEmpty) {
             list.add(TextElement(match.group(1)!));
           }
 
-          if (match.group(2)?.isNotEmpty == true) {
-            var originalUrl = match.group(2)!;
+          if ((match.group(2) ?? '').isNotEmpty) {
+            String originalUrl = match.group(2)!;
             String? end;
 
             if (options.excludeLastPeriod &&
@@ -69,7 +70,7 @@ class UrlLinkifier extends Linkifier {
               originalUrl = originalUrl.substring(0, originalUrl.length - 1);
             }
 
-            final url = originalUrl;
+            final String url = originalUrl;
 
             if (loose || !originalUrl.startsWith(_protocolIdentifierRegex)) {
               originalUrl = (options.defaultToHttps ? 'https://' : 'http://') +
@@ -89,7 +90,7 @@ class UrlLinkifier extends Linkifier {
           }
 
           if (text.isNotEmpty) {
-            list.addAll(parse([TextElement(text)], options));
+            list.addAll(parse(<LinkifyElement>[TextElement(text)], options));
           }
         }
       } else {
@@ -105,18 +106,19 @@ class UrlLinkifier extends Linkifier {
 @immutable
 class UrlElement extends LinkableElement {
   /// Creates [UrlElement].
-  UrlElement(String url, [String? text]) : super(text, url);
+  UrlElement(final String url, [final String? text]) : super(text, url);
 
   @override
   // ignore: unnecessary_overrides
   int get hashCode => super.hashCode;
 
   @override
-  bool operator ==(Object other) => equals(other);
+  bool operator ==(final Object other) => equals(other);
 
   @override
   // ignore: type_annotate_public_apis
-  bool equals(other) => other is UrlElement && super.equals(other);
+  bool equals(final dynamic other) =>
+      other is UrlElement && super.equals(other);
 
   @override
   String toString() => "LinkElement: '$url' ($text)";
