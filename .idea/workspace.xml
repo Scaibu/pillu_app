@@ -9,12 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- final chat changes">
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/attachment_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/input/send_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/file_message.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message_status.dart" afterDir="false" />
-    </list>
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- final chat changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -408,7 +403,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740899649156</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="- final chat changes">
+      <option name="closed" value="true" />
+      <created>1740900087450</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1740900087451</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
