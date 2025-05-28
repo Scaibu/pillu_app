@@ -213,6 +213,23 @@ class FirebaseChatCore {
     });
   }
 
+  /// Updates [types.User] fields in Firebase to reflect name and avatar
+  /// changes or other relevant metadata without overwriting the entire
+  /// document.
+  Future<void> updateUserInFirestore(final types.User user) async {
+    await getFirebaseFirestore()
+        .collection(config.usersCollectionName)
+        .doc(user.id)
+        .update(<String, dynamic>{
+      'firstName': user.firstName,
+      'imageUrl': user.imageUrl,
+      'lastName': user.lastName,
+      'metadata': user.metadata,
+      'role': user.role?.toShortString(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    });
+  }
+
   /// Removes message document.
   Future<void> deleteMessage(
       final String roomId, final String messageId) async {
