@@ -26,6 +26,7 @@ class LuxuryTextField extends StatefulWidget {
     this.keyboardType = TextInputType.text,
     this.inputFormatters,
     this.maxLength,
+    this.enabled,
   });
 
   final TextEditingController controller;
@@ -38,6 +39,7 @@ class LuxuryTextField extends StatefulWidget {
   final TextInputType keyboardType;
   final List<TextInputFormatter>? inputFormatters;
   final int? maxLength;
+  final bool? enabled;
 
   @override
   State<LuxuryTextField> createState() => _LuxuryTextFieldState();
@@ -83,11 +85,17 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
   }
 
   Future<void> _handleFocusChange() async {
+    if (!mounted) {
+      return;
+    }
     setState(() {
       _isFocused = widget.focusNode.hasFocus;
     });
     if (_isFocused) {
       await _animationController.forward();
+      if (!mounted) {
+        return;
+      }
       await HapticFeedback.lightImpact();
     } else {
       await _animationController.reverse();
@@ -96,6 +104,7 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
 
   @override
   void dispose() {
+    widget.focusNode.removeListener(_handleFocusChange); // Add this
     _animationController.dispose();
     super.dispose();
   }
@@ -124,10 +133,10 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
         animation: _animationController,
         builder: (final BuildContext context, final Widget? child) =>
             Transform.scale(
-              scale:
+          scale:
               _isFocused ? _scaleAnimation.value * _pulseAnimation.value : 1.0,
-              child: child,
-            ),
+          child: child,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -142,9 +151,9 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
                     textInputAction: widget.textInputAction,
                     inputFormatters: widget.inputFormatters,
                     maxLength: widget.maxLength,
+                    enabled: widget.enabled,
                     style: buildJostTextStyle(
                       fontWeight: FontWeight.w500,
-
                     ),
                     validator: (final String? value) {
                       final String? error = widget.validator?.call(value);
@@ -203,20 +212,20 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
   }
 
   Widget _buildLeadingIcon(final ThemeData theme) => AnimatedContainer(
-    duration: const Duration(milliseconds: 200),
-    padding: const EdgeInsets.symmetric(horizontal: 12),
-    child: AnimatedRotation(
-      duration: const Duration(milliseconds: 300),
-      turns: _isFocused ? 0.125 : 0,
-      child: Icon(
-        Icons.edit_outlined,
-        color: _isFocused
-            ? theme.colorScheme.primary
-            : theme.colorScheme.onSurface.withOpacity(0.5),
-        size: _isFocused ? 22 : 20,
-      ),
-    ),
-  );
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: AnimatedRotation(
+          duration: const Duration(milliseconds: 300),
+          turns: _isFocused ? 0.125 : 0,
+          child: Icon(
+            Icons.edit_outlined,
+            color: _isFocused
+                ? theme.colorScheme.primary
+                : theme.colorScheme.onSurface.withOpacity(0.5),
+            size: _isFocused ? 22 : 20,
+          ),
+        ),
+      );
 
   Widget _buildTrailingIcon(final ThemeData theme) {
     if (widget.controller.text.isEmpty) {
@@ -288,12 +297,12 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
   }
 
   OutlineInputBorder _buildBorder(final ThemeData theme) => OutlineInputBorder(
-    borderRadius: BorderRadius.circular(12),
-    borderSide: BorderSide(
-      color: theme.colorScheme.outline.withOpacity(0.2),
-      width: 1.5,
-    ),
-  );
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(
+          color: theme.colorScheme.outline.withOpacity(0.2),
+          width: 1.5,
+        ),
+      );
 
   OutlineInputBorder _buildFocusedBorder(final ThemeData theme) =>
       OutlineInputBorder(

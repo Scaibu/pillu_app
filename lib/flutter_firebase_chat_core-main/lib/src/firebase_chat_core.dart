@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
+import 'package:pillu_app/core/library/pillu_lib.dart';
 
 import 'firebase_chat_core_config.dart';
 import 'util.dart';
@@ -216,18 +217,43 @@ class FirebaseChatCore {
   /// Updates [types.User] fields in Firebase to reflect name and avatar
   /// changes or other relevant metadata without overwriting the entire
   /// document.
-  Future<void> updateUserInFirestore(final types.User user) async {
-    await getFirebaseFirestore()
-        .collection(config.usersCollectionName)
-        .doc(user.id)
-        .update(<String, dynamic>{
-      'firstName': user.firstName,
-      'imageUrl': user.imageUrl,
-      'lastName': user.lastName,
-      'metadata': user.metadata,
-      'role': user.role?.toShortString(),
-      'updatedAt': FieldValue.serverTimestamp(),
-    });
+  Future<void> updateUserInFirestore({
+    required final BuildContext? context,
+    required final types.User user,
+  }) async {
+    try {
+      final Map<String, dynamic> dataToUpdate = <String, dynamic>{};
+
+      if (user.firstName != null) {
+        dataToUpdate['firstName'] = user.firstName;
+      }
+      if (user.imageUrl != null) {
+        dataToUpdate['imageUrl'] = user.imageUrl;
+      }
+      if (user.lastName != null) {
+        dataToUpdate['lastName'] = user.lastName;
+      }
+      if (user.metadata != null) {
+        dataToUpdate['metadata'] = user.metadata;
+      }
+      if (user.role != null) {
+        dataToUpdate['role'] = user.role!.toShortString();
+      }
+
+      // Always update the timestamp if you're making any update
+      if (dataToUpdate.isNotEmpty) {
+        dataToUpdate['updatedAt'] = FieldValue.serverTimestamp();
+
+        await getFirebaseFirestore()
+            .collection(config.usersCollectionName)
+            .doc(user.id)
+            .update(dataToUpdate);
+      }
+    } catch (e) {
+      if (context != null && context.mounted) {
+        toast(context, message: 'Something went wrong!');
+      }
+    }
   }
 
   /// Removes message document.
