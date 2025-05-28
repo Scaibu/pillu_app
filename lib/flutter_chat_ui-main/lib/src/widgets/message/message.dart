@@ -314,7 +314,9 @@ class Message extends StatelessWidget {
   Widget build(final BuildContext context) {
     final MediaQueryData query = MediaQuery.of(context);
     final types.User user = InheritedUser.of(context).user;
-    final bool currentUserIsAuthor = user.id == message.author.id;
+
+    final bool currentUserIsAuthor = _isCurrentAuth(user);
+
     final bool enlargeEmojis =
         emojiEnlargementBehavior != EmojiEnlargementBehavior.never &&
             message is types.TextMessage &&
@@ -420,5 +422,10 @@ class Message extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool _isCurrentAuth(final types.User user) {
+    final bool currentUserIsAuthor = user.id == message.author.id;
+    return currentUserIsAuthor;
   }
 }
