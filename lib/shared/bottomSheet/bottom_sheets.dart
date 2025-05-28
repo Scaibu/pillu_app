@@ -19,9 +19,9 @@ Future<void> attachmentSheet(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 TextButton(
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.pop(context);
-                    handleImageSelection(roomID);
+                    await handleImageSelection(roomID);
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,
@@ -37,9 +37,9 @@ Future<void> attachmentSheet(
                   color: Theme.of(context).dividerColor,
                 ),
                 TextButton(
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.pop(context);
-                    handleFileSelection(roomId: roomID);
+                    await handleFileSelection(roomId: roomID);
                   },
                   child: Align(
                     alignment: Alignment.centerLeft,

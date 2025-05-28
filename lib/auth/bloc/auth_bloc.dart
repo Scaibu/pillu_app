@@ -12,9 +12,9 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
   }
 
   @override
-  Future<void> close() {
-    _authSubscription?.cancel();
-    _chatUserController.close();
+  Future<void> close() async {
+    await _authSubscription?.cancel();
+    await _chatUserController.close();
 
     return super.close();
   }

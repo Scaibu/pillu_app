@@ -78,9 +78,11 @@ Future<void> alertDialog(
           style: TextButton.styleFrom(
             textStyle: buildJostTextStyle(fontSize: fontSize * 0.85),
           ),
-          onPressed: () {
-            HapticFeedback.mediumImpact();
-            Navigator.of(context).pop();
+          onPressed: () async {
+            await HapticFeedback.mediumImpact();
+            if (context.mounted) {
+              Navigator.of(context).pop();
+            }
           },
           child: Text(
             'OK',
