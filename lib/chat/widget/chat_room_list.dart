@@ -1,6 +1,6 @@
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
-
+import 'package:pillu_app/shared/navigation.dart';
 
 class ChatRoomList extends StatelessWidget {
   const ChatRoomList({super.key, final User? user}) : _user = user;
@@ -11,32 +11,7 @@ class ChatRoomList extends StatelessWidget {
     final BuildContext context,
     final types.Room room,
   ) async {
-    await Navigator.of(context).push(
-      PageRouteBuilder<dynamic>(
-        pageBuilder: (
-          final BuildContext context,
-          final Animation<double> animation,
-          final Animation<double> secondaryAnimation,
-        ) =>
-            ChatPage(room: room),
-        transitionsBuilder: (
-          final BuildContext context,
-          final Animation<double> animation,
-          final Animation<double> secondaryAnimation,
-          final Widget child,
-        ) =>
-            SlideTransition(
-          position: Tween<Offset>(begin: const Offset(0.5, 0), end: Offset.zero)
-              .animate(
-            CurvedAnimation(parent: animation, curve: Curves.easeOut),
-          ),
-          child: FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
-        ),
-      ),
-    );
+    await createPage(context, ChatPage(room: room));
   }
 
   Widget _buildAvatar(final types.Room room) {

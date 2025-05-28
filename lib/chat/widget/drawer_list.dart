@@ -1,4 +1,6 @@
 import 'package:pillu_app/core/library/pillu_lib.dart';
+import 'package:pillu_app/profile/profile_view.dart';
+import 'package:pillu_app/shared/navigation.dart';
 
 class DrawerList extends StatelessWidget {
   const DrawerList({super.key});
@@ -6,11 +8,17 @@ class DrawerList extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => ListView(
         children: <Widget>[
-          DrawerItem(icon: Icons.person, title: 'Profile', onTap: () {}),
+          DrawerItem(
+            icon: Icons.person,
+            title: 'Profile',
+            onTap: () async {
+              await createPage(context, const ProfilePage());
+            },
+          ),
           DrawerItem(
             icon: Icons.swap_horiz,
             title: 'Switch Chat Profile',
-            onTap: () {},
+            onTap: () async {},
           ),
           DrawerItem(icon: Icons.call, title: 'Call', onTap: () {}),
           DrawerItem(
@@ -50,7 +58,7 @@ class DrawerList extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(height: 50)
+          const SizedBox(height: 50),
         ],
       );
 }

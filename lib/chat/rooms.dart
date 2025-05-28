@@ -17,7 +17,7 @@ class RoomsPage extends StatelessWidget {
             builder: (final BuildContext context, final PilluAuthBloc state) =>
                 ThemeWrapper(
               child: Scaffold(
-                appBar: buildAppBar(context),
+                appBar: buildAppBar(context, title: 'Chat Connect'),
                 resizeToAvoidBottomInset: true,
                 drawer: const AppDrawerData(),
                 body: const AppBody(),
