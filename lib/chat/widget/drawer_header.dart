@@ -23,7 +23,10 @@ class DrawerHeaderWidget extends StatelessWidget {
               final AsyncSnapshot<types.User?> snapshot,
             ) {
               if (!snapshot.hasData || snapshot.hasError) {
-                return const Offstage();
+                return Container(
+                  height: 329,
+                  color: Theme.of(context).primaryColor,
+                );
               }
 
               final types.User? data = snapshot.data;
@@ -44,9 +47,22 @@ class DrawerHeaderWidget extends StatelessWidget {
                               child: CachedNetworkImage(
                                 imageUrl: data?.imageUrl ?? '',
                                 fit: BoxFit.contain,
+                                placeholder: (
+                                  final BuildContext context,
+                                  final String url,
+                                ) =>
+                                    const CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  maxRadius: 70,
+                                  child: Icon(Icons.person, size: 40),
+                                ),
                               ),
                             )
-                          : const Icon(Icons.person, size: 40),
+                          : const CircleAvatar(
+                              backgroundColor: Colors.white,
+                              maxRadius: 70,
+                              child: Icon(Icons.person, size: 40),
+                            ),
                     ),
                     const SizedBox(height: 16),
                     Column(

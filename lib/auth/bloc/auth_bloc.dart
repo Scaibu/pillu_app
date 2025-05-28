@@ -14,13 +14,12 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
   @override
   Future<void> close() async {
     await _authSubscription?.cancel();
+    await _chatUserSubscription?.cancel();
     await _chatUserController.close();
-
     return super.close();
   }
 
   final PilluAuthRepository authRepository;
-
   StreamSubscription<User?>? _authSubscription;
 
   final StreamController<types.User?> _chatUserController =
@@ -47,20 +46,43 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     }
   }
 
+  static types.User? _cachedChatUser;
+  StreamSubscription<types.User?>? _chatUserSubscription;
+
   void _listenUser(final User user) {
-    FirebaseChatCore.instance.currentUser().listen(
+    if (_cachedChatUser != null && !_chatUserController.isClosed) {
+      _chatUserController.add(_cachedChatUser);
+      add(AuthAuthenticated(user: user));
+    }
+
+    _chatUserSubscription = FirebaseChatCore.instance.currentUser().listen(
       (final types.User? chatUser) {
         if (chatUser != null) {
-          _chatUserController.add(chatUser);
-          add(AuthAuthenticated(user: user));
+          _cachedChatUser = chatUser;
+          if (!_chatUserController.isClosed) {
+            _chatUserController.add(chatUser);
+          }
+          if (!isClosed) {
+            add(AuthAuthenticated(user: user));
+          }
         } else {
-          _chatUserController.add(null);
-          add(AuthAuthenticated());
+          _cachedChatUser = null;
+          if (!_chatUserController.isClosed) {
+            _chatUserController.add(null);
+          }
+          if (!isClosed) {
+            add(AuthAuthenticated());
+          }
         }
       },
       onError: (final _) {
-        _chatUserController.add(null);
-        add(AuthAuthenticated());
+        _cachedChatUser = null;
+        if (!_chatUserController.isClosed) {
+          _chatUserController.add(null);
+        }
+        if (!isClosed) {
+          add(AuthAuthenticated());
+        }
       },
     );
   }
@@ -96,6 +118,8 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
     final UserLogOutEvent event,
     final Emitter<AuthLocalState> emit,
   ) async {
+    _cachedChatUser = null;
+    _chatUserController.add(null);
     await FirebaseAuth.instance.signOut();
     emit(AuthDataState());
   }

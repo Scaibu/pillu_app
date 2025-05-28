@@ -25,4 +25,10 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
-/.idea/
+/.idea/caches/
+/.idea/libraries/
+/.idea/runConfigurations/
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/workspace.xml
