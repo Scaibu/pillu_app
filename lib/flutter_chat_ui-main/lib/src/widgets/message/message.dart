@@ -424,8 +424,23 @@ class Message extends StatelessWidget {
     );
   }
 
+  /// Checks whether the provided user is the author of the current message.
+  ///
+  /// This method compares the given user's unique identifier (`id`)
+  /// against the author id of the current message. It returns `true`
+  /// if the user is the author, and `false` otherwise. This is typically
+  /// used to determine message alignment or permissions (e.g., editing/deleting).
+  ///
+  /// Parameters:
+  /// - [user]: The user to compare against the message author.
+  ///
+  /// Returns:
+  /// - A boolean indicating if the user is the message author.
   bool _isCurrentAuth(final types.User user) {
+    /// Compare the provided user's id with the message author's id
     final bool currentUserIsAuthor = user.id == message.author.id;
+
+    /// Return true if they match; false otherwise
     return currentUserIsAuthor;
   }
 }
