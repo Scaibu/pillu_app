@@ -133,57 +133,60 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
           children: <Widget>[
             Stack(
               children: <Widget>[
-                TextFormField(
-                  controller: widget.controller,
-                  focusNode: widget.focusNode,
-                  keyboardType: widget.keyboardType,
-                  textInputAction: widget.textInputAction,
-                  inputFormatters: widget.inputFormatters,
-                  maxLength: widget.maxLength,
-                  style: buildJostTextStyle(
-                    fontWeight: FontWeight.w500,
-
-                  ),
-                  validator: (final String? value) {
-                    final String? error = widget.validator?.call(value);
-                    setState(() => _errorText = error);
-                    return error;
-                  },
-                  onFieldSubmitted: widget.onFieldSubmitted,
-                  decoration: InputDecoration(
-                    labelText: widget.labelText,
-                    hintText: widget.hintText,
-                    filled: true,
-                    fillColor: _getFieldColor(theme),
-                    border: _buildBorder(theme),
-                    enabledBorder: _buildBorder(theme),
-                    focusedBorder: _buildFocusedBorder(theme),
-                    errorBorder: _buildErrorBorder(theme),
-                    focusedErrorBorder: _buildErrorBorder(theme),
-                    contentPadding: const EdgeInsets.all(16),
-                    prefixIcon: _buildLeadingIcon(theme),
-                    suffixIcon: _buildTrailingIcon(theme),
-                    labelStyle: buildJostTextStyle(
-                      color: _isFocused
-                          ? theme.colorScheme.primary
-                          : theme.colorScheme.onSurface.withOpacity(0.7),
-                      fontWeight: FontWeight.w600,
-                    ),
-                    hintStyle: buildJostTextStyle(
-                      color: theme.colorScheme.onSurface.withOpacity(0.5),
-                      fontWeight: FontWeight.normal,
-                    ),
-                    errorStyle: buildJostTextStyle(
-                      color: theme.colorScheme.error,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: TextFormField(
+                    controller: widget.controller,
+                    focusNode: widget.focusNode,
+                    keyboardType: widget.keyboardType,
+                    textInputAction: widget.textInputAction,
+                    inputFormatters: widget.inputFormatters,
+                    maxLength: widget.maxLength,
+                    style: buildJostTextStyle(
                       fontWeight: FontWeight.w500,
+
                     ),
+                    validator: (final String? value) {
+                      final String? error = widget.validator?.call(value);
+                      setState(() => _errorText = error);
+                      return error;
+                    },
+                    onFieldSubmitted: widget.onFieldSubmitted,
+                    decoration: InputDecoration(
+                      labelText: widget.labelText,
+                      hintText: widget.hintText,
+                      filled: true,
+                      fillColor: _getFieldColor(theme),
+                      border: _buildBorder(theme),
+                      enabledBorder: _buildBorder(theme),
+                      focusedBorder: _buildFocusedBorder(theme),
+                      errorBorder: _buildErrorBorder(theme),
+                      focusedErrorBorder: _buildErrorBorder(theme),
+                      contentPadding: const EdgeInsets.all(16),
+                      prefixIcon: _buildLeadingIcon(theme),
+                      suffixIcon: _buildTrailingIcon(theme),
+                      labelStyle: buildJostTextStyle(
+                        color: _isFocused
+                            ? theme.colorScheme.primary
+                            : theme.colorScheme.onSurface.withOpacity(0.7),
+                        fontWeight: FontWeight.w600,
+                      ),
+                      hintStyle: buildJostTextStyle(
+                        color: theme.colorScheme.onSurface.withOpacity(0.5),
+                        fontWeight: FontWeight.normal,
+                      ),
+                      errorStyle: buildJostTextStyle(
+                        color: theme.colorScheme.error,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    onChanged: (final String value) {
+                      setState(() {});
+                      if (_errorText != null) {
+                        widget.validator?.call(value);
+                      }
+                    },
                   ),
-                  onChanged: (final String value) {
-                    setState(() {});
-                    if (_errorText != null) {
-                      widget.validator?.call(value);
-                    }
-                  },
                 ),
                 if (_isFocused)
                   Positioned(
@@ -193,7 +196,6 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
                   ),
               ],
             ),
-            if (_errorText != null) _buildErrorMessage(theme),
           ],
         ),
       ),
@@ -284,28 +286,6 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
       ),
     );
   }
-
-  Widget _buildErrorMessage(final ThemeData theme) => AnimatedContainer(
-    duration: const Duration(milliseconds: 200),
-    margin: const EdgeInsets.only(top: 4, left: 16),
-    child: Row(
-      children: <Widget>[
-        Icon(
-          Icons.error_outline,
-          color: theme.colorScheme.error,
-          size: 14,
-        ),
-        const SizedBox(width: 4),
-        Text(
-          _errorText!,
-          style: buildJostTextStyle(
-            color: theme.colorScheme.error,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ],
-    ),
-  );
 
   OutlineInputBorder _buildBorder(final ThemeData theme) => OutlineInputBorder(
     borderRadius: BorderRadius.circular(12),
