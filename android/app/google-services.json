@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "693866944655-oe4qtk6giighhl6kbepurjutlqal98od.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pillu.pillu_app",
+            "certificate_hash": "e40e9386bbc04a4f0690dd9da0fe3d525e08e8e1"
+          }
+        },
+        {
+          "client_id": "693866944655-qgdkg6vcvimfd8np7qls624ke04akipq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pillu.pillu_app",
+            "certificate_hash": "36163c8bd6d4bc86228f983a6fa7a6ea6bc72033"
+          }
+        },
+        {
           "client_id": "693866944655-d5t59ta0fu5dveb38ej0ibfremkpkm3k.apps.googleusercontent.com",
           "client_type": 3
         }
