@@ -8,37 +8,28 @@ part of 'partial_audio.dart';
 // **************************************************************************
 
 PartialAudio _$PartialAudioFromJson(Map<String, dynamic> json) => PartialAudio(
+      name: json['name'] as String,
+      size: (json['size'] as num).toInt(),
+      uri: json['uri'] as String,
       duration: Duration(microseconds: (json['duration'] as num).toInt()),
       metadata: json['metadata'] as Map<String, dynamic>?,
       mimeType: json['mimeType'] as String?,
-      name: json['name'] as String,
       repliedMessage: json['repliedMessage'] == null
           ? null
           : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
-      size: (json['size'] as num).toInt(),
-      uri: json['uri'] as String,
       waveForm: (json['waveForm'] as List<dynamic>?)
           ?.map((e) => (e as num).toDouble())
           .toList(),
     );
 
-Map<String, dynamic> _$PartialAudioToJson(PartialAudio instance) {
-  final val = <String, dynamic>{
-    'duration': instance.duration.inMicroseconds,
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('metadata', instance.metadata);
-  writeNotNull('mimeType', instance.mimeType);
-  val['name'] = instance.name;
-  writeNotNull('repliedMessage', instance.repliedMessage?.toJson());
-  val['size'] = instance.size;
-  val['uri'] = instance.uri;
-  writeNotNull('waveForm', instance.waveForm);
-  return val;
-}
+Map<String, dynamic> _$PartialAudioToJson(PartialAudio instance) =>
+    <String, dynamic>{
+      'duration': instance.duration.inMicroseconds,
+      'metadata': instance.metadata,
+      'mimeType': instance.mimeType,
+      'name': instance.name,
+      'repliedMessage': instance.repliedMessage,
+      'size': instance.size,
+      'uri': instance.uri,
+      'waveForm': instance.waveForm,
+    };

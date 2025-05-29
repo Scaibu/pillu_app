@@ -9,11 +9,12 @@ part of 'system_message.dart';
 
 SystemMessage _$SystemMessageFromJson(Map<String, dynamic> json) =>
     SystemMessage(
+      id: json['id'] as String,
+      text: json['text'] as String,
       author: json['author'] == null
           ? null
           : User.fromJson(json['author'] as Map<String, dynamic>),
       createdAt: (json['createdAt'] as num?)?.toInt(),
-      id: json['id'] as String,
       metadata: json['metadata'] as Map<String, dynamic>?,
       remoteId: json['remoteId'] as String?,
       repliedMessage: json['repliedMessage'] == null
@@ -22,35 +23,25 @@ SystemMessage _$SystemMessageFromJson(Map<String, dynamic> json) =>
       roomId: json['roomId'] as String?,
       showStatus: json['showStatus'] as bool?,
       status: $enumDecodeNullable(_$StatusEnumMap, json['status']),
-      text: json['text'] as String,
       type: $enumDecodeNullable(_$MessageTypeEnumMap, json['type']),
       updatedAt: (json['updatedAt'] as num?)?.toInt(),
     );
 
-Map<String, dynamic> _$SystemMessageToJson(SystemMessage instance) {
-  final val = <String, dynamic>{
-    'author': instance.author.toJson(),
-  };
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('createdAt', instance.createdAt);
-  val['id'] = instance.id;
-  writeNotNull('metadata', instance.metadata);
-  writeNotNull('remoteId', instance.remoteId);
-  writeNotNull('repliedMessage', instance.repliedMessage?.toJson());
-  writeNotNull('roomId', instance.roomId);
-  writeNotNull('showStatus', instance.showStatus);
-  writeNotNull('status', _$StatusEnumMap[instance.status]);
-  val['type'] = _$MessageTypeEnumMap[instance.type]!;
-  writeNotNull('updatedAt', instance.updatedAt);
-  val['text'] = instance.text;
-  return val;
-}
+Map<String, dynamic> _$SystemMessageToJson(SystemMessage instance) =>
+    <String, dynamic>{
+      'author': instance.author,
+      'createdAt': instance.createdAt,
+      'id': instance.id,
+      'metadata': instance.metadata,
+      'remoteId': instance.remoteId,
+      'repliedMessage': instance.repliedMessage,
+      'roomId': instance.roomId,
+      'showStatus': instance.showStatus,
+      'status': _$StatusEnumMap[instance.status],
+      'type': _$MessageTypeEnumMap[instance.type]!,
+      'updatedAt': instance.updatedAt,
+      'text': instance.text,
+    };
 
 const _$StatusEnumMap = {
   Status.delivered: 'delivered',

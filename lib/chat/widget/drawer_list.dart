@@ -1,4 +1,5 @@
 import 'package:pillu_app/core/library/pillu_lib.dart';
+import 'package:pillu_app/explore/explore_view.dart';
 import 'package:pillu_app/profile/profile_view.dart';
 import 'package:pillu_app/shared/navigation.dart';
 
@@ -16,9 +17,11 @@ class DrawerList extends StatelessWidget {
             },
           ),
           DrawerItem(
-            icon: Icons.swap_horiz,
-            title: 'Switch Chat Profile',
-            onTap: () async {},
+            icon: Icons.explore,
+            title: 'Explore',
+            onTap: () async {
+              await createPage(context, const ExplorePage());
+            },
           ),
           DrawerItem(icon: Icons.call, title: 'Call', onTap: () {}),
           DrawerItem(

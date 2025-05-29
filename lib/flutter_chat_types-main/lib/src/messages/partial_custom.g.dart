@@ -15,16 +15,8 @@ PartialCustom _$PartialCustomFromJson(Map<String, dynamic> json) =>
           : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$PartialCustomToJson(PartialCustom instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('metadata', instance.metadata);
-  writeNotNull('repliedMessage', instance.repliedMessage?.toJson());
-  return val;
-}
+Map<String, dynamic> _$PartialCustomToJson(PartialCustom instance) =>
+    <String, dynamic>{
+      'metadata': instance.metadata,
+      'repliedMessage': instance.repliedMessage,
+    };

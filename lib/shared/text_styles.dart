@@ -27,6 +27,11 @@ class LuxuryTextField extends StatefulWidget {
     this.inputFormatters,
     this.maxLength,
     this.enabled,
+    this.maxLines = 1,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.contentPadding,
+    this.hidePrefixIcon,
   });
 
   final TextEditingController controller;
@@ -40,6 +45,11 @@ class LuxuryTextField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final int? maxLength;
   final bool? enabled;
+  final int? maxLines;
+  final Widget? prefixIcon;
+  final bool? hidePrefixIcon;
+  final Widget? suffixIcon;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   State<LuxuryTextField> createState() => _LuxuryTextFieldState();
@@ -160,6 +170,7 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
                       setState(() => _errorText = error);
                       return error;
                     },
+                    maxLines: widget.maxLines,
                     onFieldSubmitted: widget.onFieldSubmitted,
                     decoration: InputDecoration(
                       labelText: widget.labelText,
@@ -171,9 +182,13 @@ class _LuxuryTextFieldState extends State<LuxuryTextField>
                       focusedBorder: _buildFocusedBorder(theme),
                       errorBorder: _buildErrorBorder(theme),
                       focusedErrorBorder: _buildErrorBorder(theme),
-                      contentPadding: const EdgeInsets.all(16),
-                      prefixIcon: _buildLeadingIcon(theme),
-                      suffixIcon: _buildTrailingIcon(theme),
+                      contentPadding:
+                          widget.contentPadding ?? const EdgeInsets.all(16),
+                      prefixIcon: (widget.hidePrefixIcon ?? false)
+                          ? null
+                          : widget.prefixIcon ?? _buildLeadingIcon(theme),
+                      suffixIcon:
+                          widget.suffixIcon ?? _buildTrailingIcon(theme),
                       labelStyle: buildJostTextStyle(
                         color: _isFocused
                             ? theme.colorScheme.primary

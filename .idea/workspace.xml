@@ -9,10 +9,46 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- google firebase configuration is updated">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- profile page is added in chat application">
+      <change afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/components/list_of_posts.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/components/list_of_tabs.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/components/post_composer.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/components/profile_image_component.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/explore_view.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/model/appTab/app_tab.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/model/appTab/app_tab.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/model/post/post.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/model/post/post.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/model/postWithUser/post_with_user.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/model/postWithUser/post_with_user.g.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/repository/post_repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/error_widget_component.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/loading_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_ui-main/lib/src/widgets/message/message.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/library/flutter_chat_types.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/library/flutter_chat_types.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/audio_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/audio_message.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/custom_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/custom_message.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/file_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/file_message.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/image_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/image_message.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_audio.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_audio.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_custom.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_custom.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_file.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_file.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_image.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_image.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_text.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_text.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_video.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_video.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/system_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/system_message.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/text_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/text_message.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/unsupported_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/unsupported_message.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/video_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/video_message.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/preview_data.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/preview_data.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/room.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/room.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/user.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/user.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/shared/text_styles.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/text_styles.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +84,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -112,11 +161,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/explore/model/post" />
+      <recent name="$PROJECT_DIR$/lib/explore/model/AppTab" />
+      <recent name="$PROJECT_DIR$/lib/explore/bloc" />
+      <recent name="$PROJECT_DIR$/lib/profile/bloc" />
       <recent name="$PROJECT_DIR$/lib/chat" />
-      <recent name="$PROJECT_DIR$/lib/auth/view" />
-      <recent name="$PROJECT_DIR$/lib/auth/login_v" />
-      <recent name="$PROJECT_DIR$/lib/auth/login/view" />
-      <recent name="$PROJECT_DIR$/lib/auth/user" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -464,7 +513,55 @@
       <option name="project" value="LOCAL" />
       <updated>1748413573205</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="add helper method to check if the given user is the message author&#10;&#10;- What the function/code does in simple terms:&#10;  Determines whether the provided user is the same as the message author.&#10;&#10;- How it works step-by-step:&#10;  1. Takes a user as input.&#10;  2. Compares the user's id with the message author's id.&#10;  3. Returns true if they match, false otherwise.&#10;&#10;- Could be loop-based instead of recursive:&#10;  Not applicable, this is a direct comparison.&#10;&#10;- Could use memoization if performance is a concern:&#10;  Unnecessary at this stage, as the check is simple and fast.&#10;&#10;- Could use tail-recursion if language optimizes it:&#10;  Not relevant; no recursion involved.">
+      <option name="closed" value="true" />
+      <created>1748415088139</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1748415088139</updated>
+    </task>
+    <task id="LOCAL-00044" summary="- added comment for this _isCurrentAuth">
+      <option name="closed" value="true" />
+      <created>1748415178865</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1748415178865</updated>
+    </task>
+    <task id="LOCAL-00045" summary="- add slide and fade transition for route navigation using custom page builder&#10;&#10;- What the function/code does in simple terms.&#10;  This function creates a new page route with a custom transition animation where the new screen slides in from the right while simultaneously fading in. It pushes the given widget onto the navigation stack.&#10;&#10;- A detailed step-by-step explanation of how it works. the how? how? how? how?how meta why&#10;&#10;  1. The function is declared as asynchronous and returns a Future&lt;void&gt;, indicating that it performs asynchronous work (in this case, waiting for navigation) but does not return a result.&#10;  &#10;  2. It receives two parameters:&#10;     - context: a BuildContext used to access the Navigator&#10;     - widget: the destination screen to be pushed&#10;&#10;  3. The function uses Navigator.of(context).push(...) to initiate navigation to a new page. Instead of using standard routes like MaterialPageRoute, it uses PageRouteBuilder for custom transitions.&#10;&#10;  4. PageRouteBuilder has two key components:&#10;     - pageBuilder: this defines which widget should be displayed as the new page. Here, it simply returns the provided widget. This builder also accepts animation and secondaryAnimation, but they are not used here for modifying the widget directly.&#10;     - transitionsBuilder: this defines the visual transition that should occur when switching from one screen to another.&#10;&#10;  5. Inside the transitionsBuilder:&#10;     - A slide animation is created using Tween&lt;Offset&gt;. The Tween defines a movement from Offset(0.5, 0), which is halfway to the right of the screen (X=0.5), to Offset.zero, which means the final position (X=0). This gives the effect of the widget sliding in from the right.&#10;     - This tween is animated using CurvedAnimation to apply easing (Curves.easeOut), which causes the animation to start quickly and slow down toward the end, providing a more natural movement.&#10;     - The same primary animation is also used directly for fade (opacity), providing a smooth fade-in effect as the widget appears.&#10;&#10;  6. Both animations are combined:&#10;     - The SlideTransition wraps the child (destination widget), applying the horizontal slide.&#10;     - Inside the SlideTransition, a FadeTransition applies the opacity animation. This nesting means the widget slides in while fading in at the same time.&#10;&#10;- Any important behavior or considerations (e.g., error handling, performance).&#10;&#10;  - Since PageRouteBuilder is used directly, it provides fine-grained control over animation but requires manual configuration.&#10;  - No exception handling is included; if called from an invalid context (e.g., context not mounted), it could throw errors.&#10;  - Transition performance is generally efficient, but heavy widgets might cause frame drops without appropriate optimization.&#10;  - This custom transition enhances user experience by making page changes feel smooth and intentional.&#10;  - The animation is hardcoded (e.g., slide from the right); changing direction or style requires manually adjusting the tween and animation curves.&#10;&#10;- What does it do? → How step-by-step? → How each mechanism works? →&#10;  - It pushes a new page with a custom route.&#10;  - The custom route uses a slide and fade transition.&#10;  - The slide comes from the right (Offset(0.5, 0)) using Tween + CurvedAnimation.&#10;  - The fade uses the same animation for opacity.&#10;  - These are applied using SlideTransition and FadeTransition widgets.&#10;  - The result is a smooth animated page transition controlled via PageRouteBuilder.">
+      <option name="closed" value="true" />
+      <created>1748415930442</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1748415930442</updated>
+    </task>
+    <task id="LOCAL-00046" summary="update user fields in firestore without overwriting full document&#10;- This function updates selected user details in Firestore such as name, avatar URL, metadata, role, and timestamp without deleting or replacing the full document.&#10;- Step-by-step breakdown of how it works:&#10;&#10;  1. The function is asynchronous and returns a Future, meaning it performs an operation that completes later.&#10;  2. It takes a user object of type types.User as an argument, which holds user information like name, avatar, and other metadata.&#10;  3. It calls getFirebaseFirestore() to obtain an instance of Firebase Firestore.&#10;  4. It accesses the specific Firestore collection where user documents are stored. This collection name comes from config.usersCollectionName.&#10;  5. Within that collection, it targets the specific document for the user using user.id as the document identifier.&#10;  6. It calls the update method, which only modifies specific fields provided in the map and preserves all other fields in the document.&#10;     - 'firstName': updates the user's first name to the new value.&#10;     - 'imageUrl': updates the profile image URL.&#10;     - 'lastName': updates the last name.&#10;     - 'metadata': updates any additional dynamic key-value pairs.&#10;     - 'role': calls toShortString() on the role object (if it's not null) to convert it to a string for storage.&#10;     - 'updatedAt': sets the update time to the current server timestamp using FieldValue.serverTimestamp().&#10;&#10;- This selective update ensures existing data in other fields of the document remains untouched.&#10;- The function is crucial for user profile edits, enabling partial updates instead of complete overwrites, reducing risks of data loss and minimizing unnecessary write costs.&#10;- By using serverTimestamp(), the function ensures consistent time recording based on the server's clock rather than client-side time, which can be unreliable or manipulated.">
+      <option name="closed" value="true" />
+      <created>1748423300842</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1748423300842</updated>
+    </task>
+    <task id="LOCAL-00047" summary="- code optimization code refractor">
+      <option name="closed" value="true" />
+      <created>1748423354892</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1748423354892</updated>
+    </task>
+    <task id="LOCAL-00048" summary="- profile page is added in chat application">
+      <option name="closed" value="true" />
+      <created>1748428069552</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1748428069552</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -499,6 +596,12 @@
     <MESSAGE value="fix(auth): safely cache and stream chat user updates with cancellation&#10;&#10;- Added in-memory caching for Firebase chat user to reduce delay in user retrieval&#10;- Listens to Firebase stream and updates both stream controller and auth state&#10;- Ensured add calls are only made when BLoC and controller are open&#10;- Subscribed to Firebase stream in a cancellable way to avoid leaks or crashes&#10;- Cancelled Firebase stream in BLoC close to maintain stability and prevent Bad state errors" />
     <MESSAGE value="add validation and account creation logic with password match enforcement&#10;&#10;- What the function/code does in simple terms:&#10;  This code handles user input validation for password fields and triggers account creation only if validations pass. It ensures the password and confirm password fields match, and prevents the user from proceeding otherwise.&#10;&#10;- A detailed step-by-step explanation of how it works:&#10;  1. `_passwordValidation` checks whether the password field is empty. If so, it returns an error message to prompt user input.&#10;  2. `_confirmPasswordValidation` checks whether the `password` and `confirmPassword` fields match. If they don't, it returns an error message to inform the user.&#10;  3. `signUpLogin` is the main method invoked to initiate account creation.&#10;     - It first uses the provided `formKey` to validate all form fields via `formKey.currentState!.validate()`. This ensures all associated `TextFormField` validators (such as `_passwordValidation`) are executed.&#10;     - If any validation fails, it exits early and prevents further actions.&#10;     - It then performs a direct comparison between `password.text` and `confirmPassword.text` again to redundantly confirm they match, even if validation already covered it.&#10;     - If the two fields do not match, a `toast` notification and `alertDialog` are both shown to the user to indicate the mismatch, and the function exits early.&#10;     - If all checks pass, it proceeds to call `_createChatUserAccount`, passing along user details for registration.&#10;&#10;- Important behavior or considerations:&#10;  - Uses synchronous field validation and asynchronous flow control.&#10;  - Double-checks password match both in form validation and in logic, adding redundancy for safety.&#10;  - Prevents account creation unless every validation passes.&#10;  - Provides user feedback using both toast and alert dialog in case of mismatch.&#10;  - Relies on `FormState.validate()` to integrate custom field-level checks.&#10;&#10;- What does it do?&#10;  It acts as a guard layer that ensures user input integrity before creating an account.&#10;&#10;- How step-by-step?&#10;  By using a combination of inline validators and procedural logic after form validation.&#10;&#10;- How each mechanism works?&#10;  - `formKey.currentState!.validate()` scans all field validators and ensures they return null (meaning valid).&#10;  - Text fields use `TextEditingController.text` to access user input.&#10;  - Redundant comparison in `signUpLogin` ensures defense-in-depth for password correctness.&#10;  - `_createChatUserAccount` is only called if all validation logic passes.&#10;&#10;- Why this design?&#10;  This structure modularizes field-specific validations and separates input checking from account registration, improving maintainability and clarity.&#10;&#10;- Why not alternatives?&#10;  - Could combine password match check into one location instead of repeating.&#10;  - Could introduce a reusable validator widget for consistent password validation logic.&#10;  - Could use form-level validation callback instead of embedding logic in `signUpLogin`.&#10;&#10;- Why is the task needed?&#10;  User account creation workflows require strict validation to ensure security and data consistency.&#10;&#10;- Why is the domain valuable?&#10;  Secure authentication flows are critical to any app managing user identity or access.&#10;&#10;- Meta-why: why is computation structured this way?&#10;  Structured this way to ensure stepwise validation (early exits on failure), centralized flow control (`signUpLogin`), and reusable validators. This separation of concerns reduces cognitive load and minimizes side effects across unrelated operations.&#10;&#10;- Could be loop-based instead of recursive.&#10;  Not applicable; there’s no recursion here.&#10;&#10;- Could use memoization if performance is a concern.&#10;  Not needed due to trivial computational cost; these are basic synchronous checks.&#10;&#10;- Could use tail-recursion if language optimizes it.&#10;  Not relevant; no recursion involved in any part of the logic." />
     <MESSAGE value="- google firebase configuration is updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="- google firebase configuration is updated" />
+    <MESSAGE value="add helper method to check if the given user is the message author&#10;&#10;- What the function/code does in simple terms:&#10;  Determines whether the provided user is the same as the message author.&#10;&#10;- How it works step-by-step:&#10;  1. Takes a user as input.&#10;  2. Compares the user's id with the message author's id.&#10;  3. Returns true if they match, false otherwise.&#10;&#10;- Could be loop-based instead of recursive:&#10;  Not applicable, this is a direct comparison.&#10;&#10;- Could use memoization if performance is a concern:&#10;  Unnecessary at this stage, as the check is simple and fast.&#10;&#10;- Could use tail-recursion if language optimizes it:&#10;  Not relevant; no recursion involved." />
+    <MESSAGE value="- added comment for this _isCurrentAuth" />
+    <MESSAGE value="- add slide and fade transition for route navigation using custom page builder&#10;&#10;- What the function/code does in simple terms.&#10;  This function creates a new page route with a custom transition animation where the new screen slides in from the right while simultaneously fading in. It pushes the given widget onto the navigation stack.&#10;&#10;- A detailed step-by-step explanation of how it works. the how? how? how? how?how meta why&#10;&#10;  1. The function is declared as asynchronous and returns a Future&lt;void&gt;, indicating that it performs asynchronous work (in this case, waiting for navigation) but does not return a result.&#10;  &#10;  2. It receives two parameters:&#10;     - context: a BuildContext used to access the Navigator&#10;     - widget: the destination screen to be pushed&#10;&#10;  3. The function uses Navigator.of(context).push(...) to initiate navigation to a new page. Instead of using standard routes like MaterialPageRoute, it uses PageRouteBuilder for custom transitions.&#10;&#10;  4. PageRouteBuilder has two key components:&#10;     - pageBuilder: this defines which widget should be displayed as the new page. Here, it simply returns the provided widget. This builder also accepts animation and secondaryAnimation, but they are not used here for modifying the widget directly.&#10;     - transitionsBuilder: this defines the visual transition that should occur when switching from one screen to another.&#10;&#10;  5. Inside the transitionsBuilder:&#10;     - A slide animation is created using Tween&lt;Offset&gt;. The Tween defines a movement from Offset(0.5, 0), which is halfway to the right of the screen (X=0.5), to Offset.zero, which means the final position (X=0). This gives the effect of the widget sliding in from the right.&#10;     - This tween is animated using CurvedAnimation to apply easing (Curves.easeOut), which causes the animation to start quickly and slow down toward the end, providing a more natural movement.&#10;     - The same primary animation is also used directly for fade (opacity), providing a smooth fade-in effect as the widget appears.&#10;&#10;  6. Both animations are combined:&#10;     - The SlideTransition wraps the child (destination widget), applying the horizontal slide.&#10;     - Inside the SlideTransition, a FadeTransition applies the opacity animation. This nesting means the widget slides in while fading in at the same time.&#10;&#10;- Any important behavior or considerations (e.g., error handling, performance).&#10;&#10;  - Since PageRouteBuilder is used directly, it provides fine-grained control over animation but requires manual configuration.&#10;  - No exception handling is included; if called from an invalid context (e.g., context not mounted), it could throw errors.&#10;  - Transition performance is generally efficient, but heavy widgets might cause frame drops without appropriate optimization.&#10;  - This custom transition enhances user experience by making page changes feel smooth and intentional.&#10;  - The animation is hardcoded (e.g., slide from the right); changing direction or style requires manually adjusting the tween and animation curves.&#10;&#10;- What does it do? → How step-by-step? → How each mechanism works? →&#10;  - It pushes a new page with a custom route.&#10;  - The custom route uses a slide and fade transition.&#10;  - The slide comes from the right (Offset(0.5, 0)) using Tween + CurvedAnimation.&#10;  - The fade uses the same animation for opacity.&#10;  - These are applied using SlideTransition and FadeTransition widgets.&#10;  - The result is a smooth animated page transition controlled via PageRouteBuilder." />
+    <MESSAGE value="update user fields in firestore without overwriting full document&#10;- This function updates selected user details in Firestore such as name, avatar URL, metadata, role, and timestamp without deleting or replacing the full document.&#10;- Step-by-step breakdown of how it works:&#10;&#10;  1. The function is asynchronous and returns a Future, meaning it performs an operation that completes later.&#10;  2. It takes a user object of type types.User as an argument, which holds user information like name, avatar, and other metadata.&#10;  3. It calls getFirebaseFirestore() to obtain an instance of Firebase Firestore.&#10;  4. It accesses the specific Firestore collection where user documents are stored. This collection name comes from config.usersCollectionName.&#10;  5. Within that collection, it targets the specific document for the user using user.id as the document identifier.&#10;  6. It calls the update method, which only modifies specific fields provided in the map and preserves all other fields in the document.&#10;     - 'firstName': updates the user's first name to the new value.&#10;     - 'imageUrl': updates the profile image URL.&#10;     - 'lastName': updates the last name.&#10;     - 'metadata': updates any additional dynamic key-value pairs.&#10;     - 'role': calls toShortString() on the role object (if it's not null) to convert it to a string for storage.&#10;     - 'updatedAt': sets the update time to the current server timestamp using FieldValue.serverTimestamp().&#10;&#10;- This selective update ensures existing data in other fields of the document remains untouched.&#10;- The function is crucial for user profile edits, enabling partial updates instead of complete overwrites, reducing risks of data loss and minimizing unnecessary write costs.&#10;- By using serverTimestamp(), the function ensures consistent time recording based on the server's clock rather than client-side time, which can be unreliable or manipulated." />
+    <MESSAGE value="- code optimization code refractor" />
+    <MESSAGE value="- profile page is added in chat application" />
+    <option name="LAST_COMMIT_MESSAGE" value="- profile page is added in chat application" />
   </component>
 </project>

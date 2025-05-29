@@ -1,4 +1,3 @@
-library flutter_chat_types;
 
 export '../../flutter_chat_types-main/lib/src/message.dart';
 export '../../flutter_chat_types-main/lib/src/messages/audio_message.dart';

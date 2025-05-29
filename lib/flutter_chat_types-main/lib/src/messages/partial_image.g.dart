@@ -8,32 +8,24 @@ part of 'partial_image.dart';
 // **************************************************************************
 
 PartialImage _$PartialImageFromJson(Map<String, dynamic> json) => PartialImage(
+      name: json['name'] as String,
+      size: json['size'] as num,
+      uri: json['uri'] as String,
       height: (json['height'] as num?)?.toDouble(),
       metadata: json['metadata'] as Map<String, dynamic>?,
-      name: json['name'] as String,
       repliedMessage: json['repliedMessage'] == null
           ? null
           : Message.fromJson(json['repliedMessage'] as Map<String, dynamic>),
-      size: json['size'] as num,
-      uri: json['uri'] as String,
       width: (json['width'] as num?)?.toDouble(),
     );
 
-Map<String, dynamic> _$PartialImageToJson(PartialImage instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('height', instance.height);
-  writeNotNull('metadata', instance.metadata);
-  val['name'] = instance.name;
-  writeNotNull('repliedMessage', instance.repliedMessage?.toJson());
-  val['size'] = instance.size;
-  val['uri'] = instance.uri;
-  writeNotNull('width', instance.width);
-  return val;
-}
+Map<String, dynamic> _$PartialImageToJson(PartialImage instance) =>
+    <String, dynamic>{
+      'height': instance.height,
+      'metadata': instance.metadata,
+      'name': instance.name,
+      'repliedMessage': instance.repliedMessage,
+      'size': instance.size,
+      'uri': instance.uri,
+      'width': instance.width,
+    };
