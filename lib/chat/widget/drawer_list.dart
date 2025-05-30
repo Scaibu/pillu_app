@@ -1,5 +1,6 @@
 import 'package:pillu_app/core/library/pillu_lib.dart';
 import 'package:pillu_app/explore/explore_view.dart';
+import 'package:pillu_app/friend/friend_view.dart';
 import 'package:pillu_app/profile/profile_view.dart';
 import 'package:pillu_app/shared/navigation.dart';
 
@@ -23,12 +24,14 @@ class DrawerList extends StatelessWidget {
               await createPage(context, const ExplorePage());
             },
           ),
-          DrawerItem(icon: Icons.call, title: 'Call', onTap: () {}),
           DrawerItem(
             icon: Icons.people,
             title: 'Discover & Community',
-            onTap: () {},
+            onTap: () async {
+              await createPage(context, const FriendPage());
+            },
           ),
+          DrawerItem(icon: Icons.call, title: 'Call', onTap: () {}),
           DrawerItem(
             icon: Icons.privacy_tip,
             title: 'Anonymous & Temporary Chats',
