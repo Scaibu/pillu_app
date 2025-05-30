@@ -15,6 +15,8 @@ abstract class Post {
     required final String authorId,
     required final PostType type,
     required final DateTime createdAt,
+    required final String appTabId,
+    required final String appTabType,
     final String? text,
     final String? imageUrl,
     final String? videoUrl,
@@ -24,6 +26,8 @@ abstract class Post {
   const Post._({
     required this.id,
     required this.authorId,
+    required this.appTabId,
+    required this.appTabType,
     required this.type,
     required this.createdAt,
     this.text,
@@ -37,6 +41,8 @@ abstract class Post {
 
   final String id;
   final String authorId;
+  final String appTabId;
+  final String appTabType;
   final PostType type;
   final String? text;
   final String? imageUrl;
@@ -55,6 +61,8 @@ abstract class Post {
         videoUrl,
         pollOptions,
         createdAt,
+        appTabId,
+        appTabType,
       ];
 
   Post copyWith({
@@ -66,6 +74,8 @@ abstract class Post {
     final String? videoUrl,
     final List<String>? pollOptions,
     final DateTime? createdAt,
+    final String appTabId,
+    final String appTabType,
   });
 }
 
@@ -75,6 +85,8 @@ class _Post extends Post {
     required super.authorId,
     required super.type,
     required super.createdAt,
+    required super.appTabId,
+    required super.appTabType,
     super.text,
     super.imageUrl,
     super.videoUrl,
@@ -91,6 +103,8 @@ class _Post extends Post {
     final String? videoUrl,
     final List<String>? pollOptions,
     final DateTime? createdAt,
+    final String? appTabId,
+    final String? appTabType,
   }) =>
       _Post(
         id: id ?? this.id,
@@ -101,5 +115,7 @@ class _Post extends Post {
         videoUrl: videoUrl ?? this.videoUrl,
         pollOptions: pollOptions ?? this.pollOptions,
         createdAt: createdAt ?? this.createdAt,
+        appTabId: appTabId ?? this.appTabId,
+        appTabType: appTabType ?? this.appTabType,
       );
 }

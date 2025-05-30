@@ -9,45 +9,23 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- profile page is added in chat application">
-      <change afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/components/list_of_posts.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/components/list_of_tabs.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/components/post_composer.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/components/profile_image_component.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/explore_view.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/model/appTab/app_tab.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/model/appTab/app_tab.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/model/post/post.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/model/post/post.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/model/postWithUser/post_with_user.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/model/postWithUser/post_with_user.g.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/repository/post_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/error_widget_component.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/loading_widget.dart" afterDir="false" />
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- explore page is added">
+      <change afterPath="$PROJECT_DIR$/lib/explore/components/list_of_post_shrimmer.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/explore/components/post_component.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/shimmer_box.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/library/flutter_chat_types.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/library/flutter_chat_types.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/audio_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/audio_message.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/custom_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/custom_message.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/file_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/file_message.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/image_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/image_message.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_audio.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_audio.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_custom.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_custom.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_file.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_file.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_image.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_image.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_text.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_text.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_video.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/partial_video.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/system_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/system_message.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/text_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/text_message.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/unsupported_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/unsupported_message.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/video_message.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/messages/video_message.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/preview_data.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/preview_data.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/room.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/room.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/user.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_chat_types-main/lib/src/user.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/shared/text_styles.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/shared/text_styles.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/bloc/explore_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/bloc/explore_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/bloc/explore_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/components/list_of_posts.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/components/list_of_posts.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/components/post_composer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/components/post_composer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/model/post/post.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/model/post/post.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/model/post/post.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/model/post/post.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/model/postWithUser/post_with_user.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/model/postWithUser/post_with_user.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/explore/repository/post_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/repository/post_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_firebase_chat_core-main/lib/src/firebase_chat_core.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_firebase_chat_core-main/lib/src/firebase_chat_core.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -561,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748428069552</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="- explore page is added">
+      <option name="closed" value="true" />
+      <created>1748508430934</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1748508430934</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -602,6 +588,7 @@
     <MESSAGE value="update user fields in firestore without overwriting full document&#10;- This function updates selected user details in Firestore such as name, avatar URL, metadata, role, and timestamp without deleting or replacing the full document.&#10;- Step-by-step breakdown of how it works:&#10;&#10;  1. The function is asynchronous and returns a Future, meaning it performs an operation that completes later.&#10;  2. It takes a user object of type types.User as an argument, which holds user information like name, avatar, and other metadata.&#10;  3. It calls getFirebaseFirestore() to obtain an instance of Firebase Firestore.&#10;  4. It accesses the specific Firestore collection where user documents are stored. This collection name comes from config.usersCollectionName.&#10;  5. Within that collection, it targets the specific document for the user using user.id as the document identifier.&#10;  6. It calls the update method, which only modifies specific fields provided in the map and preserves all other fields in the document.&#10;     - 'firstName': updates the user's first name to the new value.&#10;     - 'imageUrl': updates the profile image URL.&#10;     - 'lastName': updates the last name.&#10;     - 'metadata': updates any additional dynamic key-value pairs.&#10;     - 'role': calls toShortString() on the role object (if it's not null) to convert it to a string for storage.&#10;     - 'updatedAt': sets the update time to the current server timestamp using FieldValue.serverTimestamp().&#10;&#10;- This selective update ensures existing data in other fields of the document remains untouched.&#10;- The function is crucial for user profile edits, enabling partial updates instead of complete overwrites, reducing risks of data loss and minimizing unnecessary write costs.&#10;- By using serverTimestamp(), the function ensures consistent time recording based on the server's clock rather than client-side time, which can be unreliable or manipulated." />
     <MESSAGE value="- code optimization code refractor" />
     <MESSAGE value="- profile page is added in chat application" />
-    <option name="LAST_COMMIT_MESSAGE" value="- profile page is added in chat application" />
+    <MESSAGE value="- explore page is added" />
+    <option name="LAST_COMMIT_MESSAGE" value="- explore page is added" />
   </component>
 </project>

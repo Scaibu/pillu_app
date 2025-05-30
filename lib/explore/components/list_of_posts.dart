@@ -1,82 +1,75 @@
 import 'package:intl/intl.dart';
 import 'package:pillu_app/core/library/pillu_lib.dart';
 import 'package:pillu_app/explore/bloc/explore_bloc.dart';
+import 'package:pillu_app/explore/bloc/explore_event.dart';
 import 'package:pillu_app/explore/bloc/explore_state.dart';
-import 'package:pillu_app/explore/model/post/post.dart';
+import 'package:pillu_app/explore/components/list_of_post_shrimmer.dart';
+import 'package:pillu_app/explore/components/post_component.dart';
+import 'package:pillu_app/explore/model/postWithUser/post_with_user.dart';
 
 class ListOfPost extends StatelessWidget {
   const ListOfPost({super.key});
 
-  Widget buildPostListView(final BuildContext context, final List<Post> posts) {
+  Widget buildPostListView(
+    final BuildContext context,
+    final List<PostWithUser> posts,
+  ) {
     final ThemeData theme = Theme.of(context);
     final DateFormat dateFormat = DateFormat.yMMMd();
+    final ExploreBloc bloc = context.read<ExploreBloc>();
+    final String? selectedTabId = bloc.state.selectedTabId;
+    final String currentUserId =
+        FirebaseChatCore.instance.firebaseUser?.uid ?? '';
 
     return Column(
-      children: posts
-          .map(
-            (final Post post) => Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          dateFormat.format(post.createdAt),
-                          style: buildJostTextStyle(
-                            fontSize: 8,
-                            color: theme.hintColor,
-                          ),
+      children: posts.map(
+        (final PostWithUser post) {
+          final bool isOwnedByCurrentUser = post.post.authorId == currentUserId;
+
+          return Column(
+            children: <Widget>[
+              Dismissible(
+                key: ValueKey<String>(post.post.id),
+                direction: isOwnedByCurrentUser
+                    ? DismissDirection.endToStart
+                    : DismissDirection.none,
+                background: isOwnedByCurrentUser
+                    ? Container(
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        color: theme.colorScheme.error,
+                        child: Icon(
+                          Icons.delete,
+                          color: theme.colorScheme.onError,
                         ),
-                        const SizedBox(height: 4),
-                        if (post.text != null && post.text!.isNotEmpty)
-                          Text(
-                            post.text!,
-                            style: buildJostTextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w500,
-                              color: theme.textTheme.bodyLarge?.color,
-                            ),
-                          ),
-                        if (post.imageUrl != null)
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.network(
-                              post.imageUrl!,
-                              height: 200,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        if (post.pollOptions != null &&
-                            post.pollOptions!.isNotEmpty)
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: post.pollOptions!
-                                .map(
-                                  (final String option) => Padding(
-                                padding:
-                                const EdgeInsets.symmetric(vertical: 4),
-                                child: Text(
-                                  '• $option',
-                                  style: buildJostTextStyle(fontSize: 13),
-                                ),
-                              ),
-                            )
-                                .toList(),
-                          ),
-                      ],
-                    ),
-                  ),
+                      )
+                    : const SizedBox.shrink(),
+                confirmDismiss: (final _) async => isOwnedByCurrentUser,
+                onDismissed: (final _) {
+                  if (selectedTabId != null && isOwnedByCurrentUser) {
+                    bloc.add(
+                      DeletePost(
+                        tabId: selectedTabId,
+                        postId: post.post.id,
+                        imageUrl: post.post.imageUrl,
+                      ),
+                    );
+                  }
+                },
+                child: PostComponent(
+                  theme: theme,
+                  dateFormat: dateFormat,
+                  post: post,
                 ),
-                Divider(color: Theme.of(context).primaryColor,thickness: 0.2),
-              ],
-            ),
-          )
-          .toList(),
+              ),
+              Divider(
+                color: Theme.of(context).primaryColor,
+                thickness: 0.2,
+              ),
+            ],
+          );
+        },
+      ).toList(),
     );
   }
 
@@ -87,8 +80,12 @@ class ListOfPost extends StatelessWidget {
           final BuildContext context,
           final ExploreState state,
         ) {
-          final List<Post> posts =
-              state.postsByTabId[state.selectedTabId] ?? <Post>[];
+          final List<PostWithUser> posts =
+              state.postsByTabId[state.selectedTabId] ?? <PostWithUser>[];
+
+          if (state.status == ExploreStatus.loading) {
+            return const ListOfPostShrimmer();
+          }
 
           return buildPostListView(context, posts);
         },

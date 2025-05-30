@@ -580,4 +580,34 @@ class FirebaseChatCore {
       },
     );
   }
+
+  /// Returns the current user from Firebase as a Future.
+  Future<types.User?> user() async {
+    if (firebaseUser == null) {
+      return null;
+    }
+
+    final DocumentSnapshot<Map<String, dynamic>> doc =
+        await getFirebaseFirestore()
+            .collection(config.usersCollectionName)
+            .doc(firebaseUser!.uid)
+            .get();
+
+    if (!doc.exists) {
+      return null;
+    }
+
+    final Map<String, dynamic> data = doc.data() ?? <String, dynamic>{};
+
+    return types.User(
+      id: doc.id,
+      firstName: data['firstName'] as String?,
+      lastName: data['lastName'] as String?,
+      imageUrl: data['imageUrl'] as String?,
+      createdAt: data['createdAt']?.millisecondsSinceEpoch as int?,
+      lastSeen: data['lastSeen']?.millisecondsSinceEpoch as int?,
+      updatedAt: data['updatedAt']?.millisecondsSinceEpoch as int?,
+      metadata: data['metadata'] as Map<String, dynamic>?,
+    );
+  }
 }
