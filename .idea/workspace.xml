@@ -9,24 +9,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- explore page is added">
-      <change afterPath="$PROJECT_DIR$/lib/explore/components/list_of_post_shrimmer.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/explore/components/post_component.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/shared/widgets/shimmer_box.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- now use can upload image in their text in explore tab">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/bloc/explore_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/bloc/explore_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/bloc/explore_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/bloc/explore_state.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/components/list_of_posts.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/components/list_of_posts.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/components/post_composer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/components/post_composer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/model/post/post.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/model/post/post.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/model/post/post.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/model/post/post.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/model/postWithUser/post_with_user.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/model/postWithUser/post_with_user.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/explore/repository/post_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/explore/repository/post_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/auth/bloc/auth_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/bloc/auth_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/login_view_component.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/flutter_firebase_chat_core-main/lib/src/firebase_chat_core.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_firebase_chat_core-main/lib/src/firebase_chat_core.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,29 +100,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Flutter.main.dart.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;io.flutter.reload.alreadyRun&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/j/live/pillu_app&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Flutter.main.dart.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "io.flutter.reload.alreadyRun": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/j/live/pillu_app",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -154,14 +143,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1724261648987</updated>
-    </task>
-    <task id="LOCAL-00001" summary="- removed extra packages">
-      <option name="closed" value="true" />
-      <created>1724264049600</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1724264049600</updated>
     </task>
     <task id="LOCAL-00002" summary="- removed extra packages">
       <option name="closed" value="true" />
@@ -547,7 +528,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748508430934</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="- now use can upload image in their text in explore tab">
+      <option name="closed" value="true" />
+      <created>1748604654280</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1748604654281</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -589,6 +578,21 @@
     <MESSAGE value="- code optimization code refractor" />
     <MESSAGE value="- profile page is added in chat application" />
     <MESSAGE value="- explore page is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="- explore page is added" />
+    <MESSAGE value="- now use can upload image in their text in explore tab" />
+    <option name="LAST_COMMIT_MESSAGE" value="- now use can upload image in their text in explore tab" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="Dart">
+          <url>file://$PROJECT_DIR$/lib/chat/widget/login_view_component.dart</url>
+          <line>77</line>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="dart-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

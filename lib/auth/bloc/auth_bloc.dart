@@ -8,6 +8,23 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
   PilluAuthBloc(this.authRepository) : super(AuthDataState()) {
     on<AuthAuthenticated>(_onAuthStarted);
     on<UserLogOutEvent>(_logOut);
+    on<IsRestartEvent>(
+      (final IsRestartEvent event, final Emitter<AuthLocalState> emit) {
+        if (state is AuthDataState) {
+          final AuthDataState currState = state as AuthDataState;
+          emit(currState.copyWith(isRestartEvent: true));
+        }
+      },
+    );
+
+    on<StartCurrentEvent>(
+      (final StartCurrentEvent event, final Emitter<AuthLocalState> emit) {
+        if (state is AuthDataState) {
+          final AuthDataState currState = state as AuthDataState;
+          emit(currState.copyWith(isRestartEvent: false));
+        }
+      },
+    );
     _listenToAuthStateChanges();
   }
 

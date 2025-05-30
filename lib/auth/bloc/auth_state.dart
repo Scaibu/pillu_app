@@ -14,9 +14,11 @@ class AuthDataState extends AuthLocalState {
     this.message,
     this.unAuthenticated = true,
     this.hasError = false,
+    this.isRestartEvent = false,
   });
 
   final bool loggingIn;
+  final bool isRestartEvent;
   final bool registering;
   final bool unAuthenticated;
   final bool hasError;
@@ -31,6 +33,7 @@ class AuthDataState extends AuthLocalState {
         message,
         unAuthenticated,
         hasError,
+        isRestartEvent,
       ];
 
   AuthDataState copyWith({
@@ -40,6 +43,7 @@ class AuthDataState extends AuthLocalState {
     final String? message,
     final bool? unAuthenticated,
     final bool? hasError,
+    final bool? isRestartEvent,
   }) =>
       AuthDataState(
         loggingIn: loggingIn ?? this.loggingIn,
@@ -48,5 +52,6 @@ class AuthDataState extends AuthLocalState {
         message: message ?? this.message,
         unAuthenticated: unAuthenticated ?? this.unAuthenticated,
         hasError: hasError ?? this.hasError,
+        isRestartEvent: isRestartEvent ?? this.isRestartEvent,
       );
 }

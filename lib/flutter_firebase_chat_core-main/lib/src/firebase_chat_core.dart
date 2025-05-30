@@ -42,7 +42,8 @@ class FirebaseChatCore {
   /// Sets custom config to change default names for rooms
   /// and users collections. Also see [FirebaseChatCoreConfig].
   Future<void> setConfig(
-      final FirebaseChatCoreConfig firebaseChatCoreConfig) async {
+    final FirebaseChatCoreConfig firebaseChatCoreConfig,
+  ) async {
     config = firebaseChatCoreConfig;
   }
 
@@ -170,7 +171,7 @@ class FirebaseChatCore {
 
     final List<types.User> users = <types.User>[
       types.User.fromJson(currentUser),
-      otherUser
+      otherUser,
     ];
 
     // Create new room with sorted user ids array.
@@ -199,19 +200,39 @@ class FirebaseChatCore {
   /// Creates [types.User] in Firebase to store name and avatar used on
   /// rooms list.
   Future<void> createUserInFirestore(final types.User user) async {
+    final Map<String, dynamic> data = <String, dynamic>{
+      'createdAt': FieldValue.serverTimestamp(),
+      'lastSeen': FieldValue.serverTimestamp(),
+      'updatedAt': FieldValue.serverTimestamp(),
+    };
+
+    if ((user.firstName ?? '').trim().isNotEmpty) {
+      data['firstName'] = user.firstName;
+    }
+
+    if ((user.lastName ?? '').trim().isNotEmpty) {
+      data['lastName'] = user.lastName;
+    }
+
+    if ((user.imageUrl ?? '').trim().isNotEmpty) {
+      data['imageUrl'] = user.imageUrl;
+    }
+
+    if ((user.metadata ?? <String, dynamic>{}).isNotEmpty) {
+      data['metadata'] = user.metadata;
+    }
+
+    if (user.role != null) {
+      final String roleString = user.role!.toShortString();
+      if (roleString.isNotEmpty) {
+        data['role'] = roleString;
+      }
+    }
+
     await getFirebaseFirestore()
         .collection(config.usersCollectionName)
         .doc(user.id)
-        .set(<String, dynamic>{
-      'createdAt': FieldValue.serverTimestamp(),
-      'firstName': user.firstName,
-      'imageUrl': user.imageUrl,
-      'lastName': user.lastName,
-      'lastSeen': FieldValue.serverTimestamp(),
-      'metadata': user.metadata,
-      'role': user.role?.toShortString(),
-      'updatedAt': FieldValue.serverTimestamp(),
-    });
+        .set(data, SetOptions(merge: true));
   }
 
   /// Updates [types.User] fields in Firebase to reflect name and avatar
@@ -258,7 +279,9 @@ class FirebaseChatCore {
 
   /// Removes message document.
   Future<void> deleteMessage(
-      final String roomId, final String messageId) async {
+    final String roomId,
+    final String messageId,
+  ) async {
     await getFirebaseFirestore()
         .collection('${config.roomsCollectionName}/$roomId/messages')
         .doc(messageId)
@@ -318,8 +341,10 @@ class FirebaseChatCore {
           (final QuerySnapshot<Map<String, dynamic>> snapshot) =>
               snapshot.docs.fold<List<types.Message>>(
             <types.Message>[],
-            (final List<types.Message> previousValue,
-                final QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+            (
+              final List<types.Message> previousValue,
+              final QueryDocumentSnapshot<Map<String, dynamic>> doc,
+            ) {
               final Map<String, dynamic> data = doc.data();
               final types.User author = room.users.firstWhere(
                 (final types.User u) => u.id == data['authorId'],
@@ -333,7 +358,7 @@ class FirebaseChatCore {
 
               return <types.Message>[
                 ...previousValue,
-                types.Message.fromJson(data)
+                types.Message.fromJson(data),
               ];
             },
           ),
@@ -438,8 +463,10 @@ class FirebaseChatCore {
 
     if (message != null) {
       final Map<String, dynamic> messageMap = message.toJson()
-        ..removeWhere((final String key, final dynamic value) =>
-            key == 'author' || key == 'id');
+        ..removeWhere(
+          (final String key, final dynamic value) =>
+              key == 'author' || key == 'id',
+        );
       messageMap['authorId'] = firebaseUser!.uid;
       messageMap['createdAt'] = FieldValue.serverTimestamp();
       messageMap['updatedAt'] = FieldValue.serverTimestamp();
@@ -487,11 +514,13 @@ class FirebaseChatCore {
     }
 
     final Map<String, dynamic> roomMap = room.toJson()
-      ..removeWhere((final String key, final dynamic value) =>
-          key == 'createdAt' ||
-          key == 'id' ||
-          key == 'lastMessages' ||
-          key == 'users');
+      ..removeWhere(
+        (final String key, final dynamic value) =>
+            key == 'createdAt' ||
+            key == 'id' ||
+            key == 'lastMessages' ||
+            key == 'users',
+      );
 
     if (room.type == types.RoomType.direct) {
       roomMap['imageUrl'] = null;
@@ -500,11 +529,13 @@ class FirebaseChatCore {
 
     roomMap['lastMessages'] = room.lastMessages?.map((final types.Message m) {
       final Map<String, dynamic> messageMap = m.toJson()
-        ..removeWhere((final String key, final dynamic value) =>
-            key == 'author' ||
-            key == 'createdAt' ||
-            key == 'id' ||
-            key == 'updatedAt');
+        ..removeWhere(
+          (final String key, final dynamic value) =>
+              key == 'author' ||
+              key == 'createdAt' ||
+              key == 'id' ||
+              key == 'updatedAt',
+        );
 
       messageMap['authorId'] = m.author.id;
 
@@ -531,8 +562,10 @@ class FirebaseChatCore {
           (final QuerySnapshot<Map<String, dynamic>> snapshot) =>
               snapshot.docs.fold<List<types.User>>(
             <types.User>[],
-            (final List<types.User> previousValue,
-                final QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+            (
+              final List<types.User> previousValue,
+              final QueryDocumentSnapshot<Map<String, dynamic>> doc,
+            ) {
               if (firebaseUser!.uid == doc.id) {
                 return previousValue;
               }
