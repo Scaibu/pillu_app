@@ -583,6 +583,30 @@ class FirebaseChatCore {
         );
   }
 
+  Stream<List<types.User>> friends() {
+    if (firebaseUser == null) {
+      return const Stream<List<types.User>>.empty();
+    }
+
+    return getFirebaseFirestore()
+        .collection('users')
+        .doc(firebaseUser!.uid)
+        .collection('friends')
+        .snapshots()
+        .map(
+          (final QuerySnapshot<Map<String, dynamic>> snapshot) => snapshot.docs
+              .map((final QueryDocumentSnapshot<Map<String, dynamic>> doc) {
+            final Map<String, dynamic> data = doc.data();
+
+            return types.User(
+              id: data['friendId'] as String,
+              firstName: data['friendName'] as String?,
+              imageUrl: data['friendImageUrl'] as String?,
+            );
+          }).toList(),
+        );
+  }
+
   /// Returns a stream of the current user from Firebase.
   Stream<types.User?> currentUser() {
     if (firebaseUser == null) {

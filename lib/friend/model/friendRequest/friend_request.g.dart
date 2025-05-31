@@ -13,7 +13,7 @@ FriendRequest _$FriendRequestFromJson(Map<String, dynamic> json) =>
       senderName: json['senderName'] as String,
       senderImageUrl: json['senderImageUrl'] as String,
       status: json['status'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: const TimestampConverter().fromJson(json['createdAt']),
       message: json['message'] as String?,
     );
 
@@ -23,6 +23,6 @@ Map<String, dynamic> _$FriendRequestToJson(FriendRequest instance) =>
       'senderName': instance.senderName,
       'senderImageUrl': instance.senderImageUrl,
       'status': instance.status,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': const TimestampConverter().toJson(instance.createdAt),
       'message': instance.message,
     };

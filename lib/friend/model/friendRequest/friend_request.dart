@@ -1,6 +1,7 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:pillu_app/shared/converter/timestamp_converter.dart';
 
 part 'friend_request.g.dart';
 
@@ -23,7 +24,8 @@ class FriendRequest {
   final String senderId;
   final String senderName;
   final String senderImageUrl;
-  final String status; // e.g., 'pending', 'accepted'
+  final String status;
+  @TimestampConverter()
   final DateTime createdAt;
   final String? message;
 

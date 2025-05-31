@@ -103,6 +103,8 @@ class FriendBloc extends Bloc<FriendEvent, FriendState> {
         message: event.message,
       );
       emit(state.copyWith(status: FriendStatus.success));
+
+      add(FriendInitEvent());
     } catch (e) {
       emit(
         state.copyWith(
@@ -128,6 +130,8 @@ class FriendBloc extends Bloc<FriendEvent, FriendState> {
         senderImageUrl: event.senderImageUrl,
       );
       emit(state.copyWith(status: FriendStatus.success));
+
+      add(LoadReceivedFriendRequestsEvent(event.senderId ?? ''));
     } catch (e) {
       emit(
         state.copyWith(

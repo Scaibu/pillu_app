@@ -96,3 +96,141 @@ Future<void> alertDialog(
     ),
   );
 }
+
+Future<String?> showMessageBox({
+  required final BuildContext context,
+  required final String title,
+  required final String hint,
+}) async {
+  final TextEditingController controller = TextEditingController();
+  final FocusNode focusNode = FocusNode();
+  final ThemeData theme = Theme.of(context);
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  return showDialog<String>(
+    context: context,
+    barrierDismissible: false,
+    builder: (final BuildContext context) => MediaQuery.removeViewInsets(
+      context: context,
+      removeBottom: true,
+      child: Center(
+        child: Padding(
+          padding: MediaQuery.of(context).viewInsets,
+          child: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 480,
+                minWidth: 320,
+              ),
+              child: AlertDialog(
+                backgroundColor: theme.colorScheme.surface,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24),
+                ),
+                insetPadding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                titlePadding:
+                    const EdgeInsets.only(top: 24, left: 24, right: 24),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                actionsPadding:
+                    const EdgeInsets.only(bottom: 16, right: 16, left: 16),
+
+                // Title
+                title: Text(
+                  title,
+                  style: buildJostTextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: theme.colorScheme.onSurface,
+                  ),
+                ),
+
+                // Form wrapping the input
+                content: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Add a short, friendly message.'
+                        ' Let them know why you want to connect!',
+                        style: buildJostTextStyle(
+                          fontSize: 13,
+                          color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      LuxuryTextField(
+                        controller: controller,
+                        focusNode: focusNode,
+                        labelText: hint,
+                        hintText: 'Hey, I’d love to connect!',
+                        textInputAction: TextInputAction.done,
+                        maxLines: 3,
+
+                        // Add validator for non-empty check
+                        validator: (final String? value) {
+                          if (value == null || value.trim().isEmpty) {
+                            return 'Message cannot be empty';
+                          }
+                          return null;
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Actions
+                actions: <Widget>[
+                  SizedBox(
+                    width: double.infinity,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop(); // cancel
+                          },
+                          child: Text(
+                            'Cancel',
+                            style: buildJostTextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: theme.colorScheme.error,
+                            ),
+                          ),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: theme.colorScheme.primary,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          onPressed: () {
+                            // Validate form before sending
+                            if (formKey.currentState?.validate() ?? false) {
+                              Navigator.of(context).pop(controller.text.trim());
+                            }
+                          },
+                          child: Text(
+                            'Send Request',
+                            style: buildJostTextStyle(
+                              fontWeight: FontWeight.w600,
+                              color: theme.colorScheme.onPrimary,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  );
+}

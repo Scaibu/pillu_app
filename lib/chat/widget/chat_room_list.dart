@@ -86,11 +86,35 @@ class ChatRoomList extends StatelessWidget {
       CustomSelectionTapEffectButton(
         onTap: () async => _goToChatPage(context, room),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.surface,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: Colors.black.withOpacity(0.2),
+                blurRadius: 6,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
           child: Row(
             children: <Widget>[
               _buildAvatar(room),
-              Text(room.name ?? '', style: buildJostTextStyle()),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  room.name ?? '',
+                  style: buildJostTextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.onSurface,
+                  ),
+                ),
+              ),
+              Icon(Icons.chevron_right,
+                  color: Theme.of(context).iconTheme.color),
             ],
           ),
         ),

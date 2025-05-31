@@ -12,7 +12,7 @@ BlockedUser _$BlockedUserFromJson(Map<String, dynamic> json) => BlockedUser(
       blockedUserName: json['blockedUserName'] as String,
       blockedUserImageUrl: json['blockedUserImageUrl'] as String,
       status: json['status'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: const TimestampConverter().fromJson(json['createdAt']),
     );
 
 Map<String, dynamic> _$BlockedUserToJson(BlockedUser instance) =>
@@ -21,5 +21,5 @@ Map<String, dynamic> _$BlockedUserToJson(BlockedUser instance) =>
       'blockedUserName': instance.blockedUserName,
       'blockedUserImageUrl': instance.blockedUserImageUrl,
       'status': instance.status,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': const TimestampConverter().toJson(instance.createdAt),
     };

@@ -8,104 +8,160 @@ import 'package:pillu_app/friend/bloc/friend_state.dart';
 class UsersTab extends StatelessWidget {
   const UsersTab({super.key});
 
+  String _userName(final User user) => <String>[
+        (user.firstName ?? user.id).replaceAll(RegExp(r'\s+'), ' ').trim(),
+        (user.lastName ?? '').replaceAll(RegExp(r'\s+'), ' ').trim(),
+      ].where((final String s) => s.isNotEmpty).join(' ');
+
   @override
-  Widget build(final BuildContext context) =>
-      BlocSelector<PilluAuthBloc, AuthLocalState, auth.User?>(
-        selector: (final AuthLocalState state) => (state as AuthDataState).user,
-        builder: (final BuildContext context, final auth.User? userState) =>
-            BlocBuilder<FriendBloc, FriendState>(
-          builder: (final BuildContext context, final FriendState state) {
-            final ThemeData theme = Theme.of(context);
+  Widget build(final BuildContext context) {
+    context.read<FriendBloc>().add(FriendInitEvent());
 
-            if (state.status == FriendStatus.loading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state.status == FriendStatus.failure) {
-              return Center(
-                child: Text(
-                  state.errorMessage ?? 'Failed to load users',
-                  style: buildJostTextStyle(
-                    color: theme.textTheme.bodyLarge?.color,
-                  ),
-                ),
-              );
-            } else if (state.suggestedUsers.isEmpty) {
-              return Center(
-                child: Text(
-                  'No users found',
-                  style: buildJostTextStyle(
-                    color: theme.textTheme.bodyLarge?.color,
-                  ),
-                ),
-              );
-            }
+    return BlocSelector<PilluAuthBloc, AuthLocalState, auth.User?>(
+      selector: (final AuthLocalState state) => (state as AuthDataState).user,
+      builder: (final BuildContext context, final auth.User? userState) =>
+          BlocBuilder<FriendBloc, FriendState>(
+        builder: (final BuildContext context, final FriendState state) {
+          final ThemeData theme = Theme.of(context);
 
-            return ListView.separated(
-              itemCount: state.suggestedUsers.length,
-              separatorBuilder: (final BuildContext context, final int index) =>
-                  Divider(
-                color: Theme.of(context).primaryColor,
-                thickness: 0.2,
+          if (state.status == FriendStatus.loading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state.status == FriendStatus.failure) {
+            return Center(
+              child: Text(
+                state.errorMessage ?? 'Failed to load users',
+                style: buildJostTextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: theme.colorScheme.error,
+                ),
               ),
-              itemBuilder: (final BuildContext context, final int index) {
-                final User user = state.suggestedUsers[index];
-
-                return Padding(
-                  padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
-                  child: Row(
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(user.imageUrl ?? ''),
-                        maxRadius: 25,
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: Text(
-                          "${user.firstName ?? user.id}${user.lastName ?? ''}",
-                          style: buildJostTextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color: theme.textTheme.titleMedium?.color,
-                          ),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          final User? currentUser =
-                              await FirebaseChatCore.instance.user();
-                          if (currentUser == null) {
-                            return;
-                          }
-
-                          if (context.mounted) {
-                            context.read<FriendBloc>().add(
-                                  SendFriendRequestEvent(
-                                    senderId: currentUser.id,
-                                    senderName:
-                                        currentUser.firstName ?? 'Unknown',
-                                    senderImageUrl: currentUser.imageUrl ?? '',
-                                    receiverId: user.id,
-                                    receiverName: user.firstName ?? 'NoName',
-                                    receiverImageUrl: user.imageUrl ?? '',
-                                    message: "Let's connect!",
-                                  ),
-                                );
-                          }
-                        },
-                        child: Text(
-                          'Add',
-                          style: buildJostTextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color: theme.colorScheme.primary,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
             );
-          },
-        ),
-      );
+          } else if (state.suggestedUsers.isEmpty) {
+            return Center(
+              child: Text(
+                'No users found',
+                style: buildJostTextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                  color: theme.colorScheme.onBackground,
+                ),
+              ),
+            );
+          }
+
+          return ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            itemCount: state.suggestedUsers.length,
+            itemBuilder: (final BuildContext context, final int index) {
+              final User user = state.suggestedUsers[index];
+
+              return Container(
+                margin: const EdgeInsets.only(bottom: 12),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surface,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                      color: theme.shadowColor.withOpacity(0.3),
+                      blurRadius: 6,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: ListTile(
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  leading: CircleAvatar(
+                    backgroundImage: user.imageUrl != null
+                        ? NetworkImage(user.imageUrl!)
+                        : null,
+                    backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
+                    radius: 26,
+                    child: user.imageUrl == null
+                        ? Text(
+                            user.firstName!.isNotEmpty
+                                ? user.firstName![0].toUpperCase()
+                                : '?',
+                            style: buildJostTextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: theme.colorScheme.primary,
+                            ),
+                          )
+                        : null,
+                  ),
+                  title: Text(
+                    _userName(user),
+                    style: buildJostTextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  ),
+                  trailing: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.colorScheme.primary,
+                      foregroundColor: theme.colorScheme.onPrimary,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 0,
+                    ),
+                    onPressed: () async {
+                      final User? currentUser =
+                          await FirebaseChatCore.instance.user();
+                      if (currentUser == null) {
+                        return;
+                      }
+
+                      if (context.mounted) {
+                        final String? result = await showMessageBox(
+                          context: context,
+                          title: 'Write a message',
+                          hint: 'Type your reply here...',
+                        );
+
+                        if (context.mounted && result != null) {
+                          context.read<FriendBloc>().add(
+                                SendFriendRequestEvent(
+                                  senderId: currentUser.id,
+                                  senderName: _userName(currentUser),
+                                  senderImageUrl: currentUser.imageUrl ?? '',
+                                  receiverId: user.id,
+                                  receiverName: _userName(user),
+                                  receiverImageUrl: user.imageUrl ?? '',
+                                  message: (result ?? '').isNotEmpty
+                                      ? result
+                                      : "'Hey, I’d love to connect!'",
+                                ),
+                              );
+
+
+                        }
+                      }
+                    },
+                    child: Text(
+                      'Add',
+                      style: buildJostTextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: theme.colorScheme.onPrimary,
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
 }

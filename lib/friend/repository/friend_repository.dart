@@ -98,7 +98,6 @@ class FriendRepository {
     }
   }
 
-// Helper method to convert Firestore Timestamps to milliseconds
   void _convertTimestamps(final Map<String, dynamic> data) {
     final List<String> timestampFields = <String>[
       'createdAt',
@@ -108,13 +107,9 @@ class FriendRepository {
 
     for (final String field in timestampFields) {
       if (data[field] != null) {
-        // Check if it's a Firestore Timestamp
         if (data[field].runtimeType.toString() == 'Timestamp') {
-          // Convert Timestamp to milliseconds
           data[field] = (data[field] as dynamic).millisecondsSinceEpoch as int;
-        }
-        // If it's already an int or can be converted to int, keep it
-        else if (data[field] is num) {
+        } else if (data[field] is num) {
           data[field] = (data[field] as num).toInt();
         }
       }

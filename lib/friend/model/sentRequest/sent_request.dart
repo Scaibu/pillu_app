@@ -1,6 +1,7 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:pillu_app/shared/converter/timestamp_converter.dart';
 
 part 'sent_request.g.dart';
 
@@ -23,7 +24,9 @@ class SentRequest {
   final String receiverId;
   final String receiverName;
   final String receiverImageUrl;
-  final String status; // e.g., 'pending', 'accepted'
+  final String status;
+
+  @TimestampConverter()
   final DateTime createdAt;
   final String? message;
 

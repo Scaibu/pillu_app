@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pillu_app/auth/bloc/auth_bloc.dart';
-import 'package:pillu_app/auth/bloc/auth_state.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 import 'package:pillu_app/friend/bloc/friend_bloc.dart';
 import 'package:pillu_app/friend/bloc/friend_event.dart';
 import 'package:pillu_app/friend/bloc/friend_state.dart';
@@ -14,6 +11,7 @@ class SentRequestsTab extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final FriendBloc bloc = BlocProvider.of<FriendBloc>(context);
+    final ThemeData theme = Theme.of(context);
 
     return BlocSelector<PilluAuthBloc, AuthLocalState, auth.User?>(
       selector: (final AuthLocalState state) => (state as AuthDataState).user,
@@ -28,19 +26,92 @@ class SentRequestsTab extends StatelessWidget {
               return Center(
                 child: Text(
                   state.errorMessage ?? 'Failed to load sent requests',
+                  style: buildJostTextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: theme.colorScheme.error,
+                  ),
                 ),
               );
             } else if (state.sentRequests.isEmpty) {
-              return const Center(child: Text('No sent requests'));
+              return Center(
+                child: Text(
+                  'No sent requests',
+                  style: buildJostTextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: theme.colorScheme.onBackground,
+                  ),
+                ),
+              );
             }
+
             return ListView.builder(
+              padding: const EdgeInsets.all(12),
               itemCount: state.sentRequests.length,
               itemBuilder: (final BuildContext context, final int index) {
                 final SentRequest request = state.sentRequests[index];
-                return ListTile(
-                  title: Text(request.receiverName),
-                  subtitle: Text(request.message ?? ''),
-                  trailing: const Text('Pending'),
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surface,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: theme.shadowColor.withOpacity(0.3),
+                        blurRadius: 6,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(request.receiverImageUrl),
+                      backgroundColor:
+                          theme.colorScheme.primary.withOpacity(0.1),
+                      radius: 26,
+                    ),
+                    title: Text(
+                      request.receiverName,
+                      style: buildJostTextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: theme.colorScheme.onSurface,
+                      ),
+                    ),
+                    subtitle:
+                        request.message != null && request.message!.isNotEmpty
+                            ? Text(
+                                request.message!,
+                                style: buildJostTextStyle(
+                                  fontSize: 13,
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                ),
+                              )
+                            : null,
+                    trailing: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.secondaryContainer,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        'Pending',
+                        style: buildJostTextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: theme.colorScheme.onSecondaryContainer,
+                        ),
+                      ),
+                    ),
+                  ),
                 );
               },
             );

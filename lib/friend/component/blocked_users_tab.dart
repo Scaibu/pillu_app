@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pillu_app/auth/bloc/auth_bloc.dart';
-import 'package:pillu_app/auth/bloc/auth_state.dart';
+import 'package:pillu_app/core/library/pillu_lib.dart';
 import 'package:pillu_app/friend/bloc/friend_bloc.dart';
 import 'package:pillu_app/friend/bloc/friend_event.dart';
 import 'package:pillu_app/friend/bloc/friend_state.dart';
@@ -13,6 +10,7 @@ class BlockedUsersTab extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     final FriendBloc bloc = BlocProvider.of<FriendBloc>(context);
 
     return BlocSelector<PilluAuthBloc, AuthLocalState, auth.User?>(
@@ -26,21 +24,77 @@ class BlockedUsersTab extends StatelessWidget {
               return const Center(child: CircularProgressIndicator());
             } else if (state.status == FriendStatus.failure) {
               return Center(
-                  child: Text(
-                      state.errorMessage ?? 'Failed to load blocked users'));
+                child: Text(
+                  state.errorMessage ?? 'Failed to load blocked users',
+                  style: buildJostTextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: theme.colorScheme.error,
+                  ),
+                ),
+              );
             } else if (state.blockedUsers.isEmpty) {
-              return const Center(child: Text('No blocked users'));
+              return Center(
+                child: Text(
+                  'No blocked users',
+                  style: buildJostTextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: theme.colorScheme.onBackground,
+                  ),
+                ),
+              );
             }
+
             return ListView.builder(
+              padding: const EdgeInsets.all(12),
               itemCount: state.blockedUsers.length,
               itemBuilder: (final BuildContext context, final int index) {
                 final BlockedUser blocked = state.blockedUsers[index];
-                return ListTile(
-                  leading: CircleAvatar(
+                final String name = (blocked.blockedUserName ?? '').trim();
+
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 12),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surface,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: theme.shadowColor.withOpacity(0.3),
+                        blurRadius: 6,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
+                    leading: CircleAvatar(
                       backgroundImage:
-                          NetworkImage(blocked.blockedUserImageUrl ?? '')),
-                  title: Text(blocked.blockedUserName ?? ''),
-                  subtitle: Text('Blocked'),
+                          NetworkImage(blocked.blockedUserImageUrl ?? ''),
+                      backgroundColor:
+                          theme.colorScheme.primary.withOpacity(0.1),
+                      radius: 26,
+                    ),
+                    title: Text(
+                      name.isNotEmpty ? name : 'Blocked User',
+                      style: buildJostTextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                        color: theme.colorScheme.onSurface,
+                      ),
+                    ),
+                    subtitle: Text(
+                      'Blocked',
+                      style: buildJostTextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                        color: theme.colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
                 );
               },
             );

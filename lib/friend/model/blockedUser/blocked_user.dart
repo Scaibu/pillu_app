@@ -1,6 +1,7 @@
 // @dart = 3.0
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
+import 'package:pillu_app/shared/converter/timestamp_converter.dart';
 
 part 'blocked_user.g.dart';
 
@@ -23,6 +24,7 @@ class BlockedUser {
   final String blockedUserName;
   final String blockedUserImageUrl;
   final String status; // 'blocked'
+  @TimestampConverter()
   final DateTime createdAt;
 
   Map<String, dynamic> toJson() => _$BlockedUserToJson(this);

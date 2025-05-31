@@ -12,7 +12,7 @@ SentRequest _$SentRequestFromJson(Map<String, dynamic> json) => SentRequest(
       receiverName: json['receiverName'] as String,
       receiverImageUrl: json['receiverImageUrl'] as String,
       status: json['status'] as String,
-      createdAt: DateTime.parse(json['createdAt'] as String),
+      createdAt: const TimestampConverter().fromJson(json['createdAt']),
       message: json['message'] as String?,
     );
 
@@ -22,6 +22,6 @@ Map<String, dynamic> _$SentRequestToJson(SentRequest instance) =>
       'receiverName': instance.receiverName,
       'receiverImageUrl': instance.receiverImageUrl,
       'status': instance.status,
-      'createdAt': instance.createdAt.toIso8601String(),
+      'createdAt': const TimestampConverter().toJson(instance.createdAt),
       'message': instance.message,
     };
