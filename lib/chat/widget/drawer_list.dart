@@ -62,7 +62,7 @@ class DrawerList extends StatelessWidget {
           const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(icon: Icons.settings, title: 'Settings', onTap: () {}),
           const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
-          BlocBuilder<PilluAuthBloc, AuthLocalState>(
+          BlocBuilder<PilluAuthBloc, AuthDataState>(
             builder: (final BuildContext context, final Object? state) =>
                 DrawerItem(
               icon: Icons.logout,

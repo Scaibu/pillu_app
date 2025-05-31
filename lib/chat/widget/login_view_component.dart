@@ -1,4 +1,5 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
 class LoginViewComponent extends HookWidget {
@@ -22,7 +23,7 @@ class LoginViewComponent extends HookWidget {
     if (value?.isEmpty ?? true) {
       return 'Please enter your email';
     }
-    // Simple email validation
+
     final RegExp emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
     if (!emailRegExp.hasMatch(value ?? '')) {
       return 'Please enter a valid email address';
@@ -47,14 +48,14 @@ class LoginViewComponent extends HookWidget {
     return null;
   }
 
-  Future<void> signUpLogin({
+  Future<void> _callSignUpLogin({
     required final BuildContext context,
-    required final TextEditingController emailController,
+    required final TextEditingController email,
     required final TextEditingController password,
     required final GlobalKey<FormState> formKey,
     required final TextEditingController confirmPassword,
-    required final TextEditingController lastNameController,
-    required final TextEditingController firstNameController,
+    required final TextEditingController lastName,
+    required final TextEditingController firstName,
   }) async {
     if (password.text.isEmpty) {
       if (context.mounted) {
@@ -65,7 +66,7 @@ class LoginViewComponent extends HookWidget {
       return;
     }
 
-    if (emailController.text.isEmpty) {
+    if (email.text.isEmpty) {
       if (context.mounted) {
         toast(context, message: 'Email is empty');
         await alertDialog(context, 'Email is empty');
@@ -76,11 +77,12 @@ class LoginViewComponent extends HookWidget {
 
     if (confirmPassword.text.isEmpty) {
       await _createChatUserAccount(
-        emailController,
-        password,
-        firstNameController,
-        lastNameController,
-        context,
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        context: context,
+        isUploadPicture: false,
       );
       return;
     }
@@ -99,45 +101,81 @@ class LoginViewComponent extends HookWidget {
 
     if (context.mounted) {
       await _createChatUserAccount(
-        emailController,
-        password,
-        firstNameController,
-        lastNameController,
-        context,
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        context: context,
+        isUploadPicture: true,
       );
     }
   }
 
-  Future<void> _createChatUserAccount(
-    final TextEditingController emailController,
-    final TextEditingController password,
-    final TextEditingController? firstNameController,
-    final TextEditingController? lastNameController,
-    final BuildContext context,
-  ) async {
-    final UserCredential value = await authApi.registerUser(
-      context: context,
-      email: emailController.text,
-      password: password.text,
-    );
+  Future<void> _createChatUserAccount({
+    required final TextEditingController email,
+    required final TextEditingController password,
+    required final TextEditingController? firstName,
+    required final TextEditingController? lastName,
+    required final BuildContext context,
+    required final bool isUploadPicture,
+  }) async {
+    final PilluAuthBloc bloc = context.read<PilluAuthBloc>();
 
     if (context.mounted) {
-      await ChatService(
-        pilluUser: PilluUserModel(
-          firstName: firstNameController?.text ?? '',
-          lastName: lastNameController?.text ?? '',
-          imageUrl: value.user?.photoURL ?? '',
-          id: value.user?.uid ?? '',
-        ),
-      ).createChatUser(context);
-    }
+      bloc.add(AuthLoadingEvent(isLoading: true));
 
-    if (context.mounted) {
-      context.read<PilluAuthBloc>().add(AuthAuthenticated(user: value.user));
+      try {
+        final UserCredential value = await AuthApi.registerUser(
+          context: context,
+          email: email.text,
+          password: password.text,
+        );
+
+        if (context.mounted) {
+          final String? imageUrl;
+          if (isUploadPicture) {
+            imageUrl = await uploadUserProfilePicture(
+              context: context,
+              id: value.user?.uid ?? '',
+            );
+          } else {
+            imageUrl = '';
+          }
+
+          final types.User user = types.User(
+            imageUrl:
+                isUploadPicture ? '' : imageUrl ?? value.user?.photoURL ?? '',
+            firstName: firstName?.text ?? '',
+            lastName: lastName?.text ?? '',
+            id: value.user?.uid ?? '',
+          );
+
+          await FirebaseChatCore.instance.createUserInFirestore(user);
+
+          if (context.mounted) {
+            bloc.add(AuthLoadingEvent(isLoading: false));
+            toast(
+              context,
+              message: 'Welcome back, ${user.firstName} ${user.lastName}!',
+            );
+
+            context
+                .read<PilluAuthBloc>()
+                .add(AuthAuthenticated(user: value.user));
+          }
+        }
+      } catch (e) {
+        if (context.mounted) {
+          context.read<PilluAuthBloc>().add(UserLogOutEvent());
+          toast(context, message: e.toString());
+          await alertDialog(context, e.toString());
+          bloc.add(AuthLoadingEvent(isLoading: false));
+        }
+      }
     }
   }
 
-  Future<void> handleSignUpOrLogin({
+  Future<void> _signInSignUp({
     required final BuildContext context,
     required final TextEditingController emailController,
     required final TextEditingController password,
@@ -147,19 +185,18 @@ class LoginViewComponent extends HookWidget {
     required final TextEditingController lastNameController,
     required final TextEditingController confirmPassword,
   }) async {
-    final AuthDataState currState =
-        context.read<PilluAuthBloc>().state as AuthDataState;
+    final AuthDataState currState = context.read<PilluAuthBloc>().state;
 
     final bool isRestart = currState.isRestartEvent;
 
     if (isExecute) {
-      await signUpLogin(
+      await _callSignUpLogin(
         context: context,
-        emailController: emailController,
+        email: emailController,
         password: password,
         formKey: formKey,
-        firstNameController: firstNameController,
-        lastNameController: lastNameController,
+        firstName: firstNameController,
+        lastName: lastNameController,
         confirmPassword: confirmPassword,
       );
 
@@ -177,29 +214,26 @@ class LoginViewComponent extends HookWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final TextEditingController firstNameController =
-        useTextEditingController();
-    final TextEditingController lastNameController = useTextEditingController();
-    final TextEditingController emailController = useTextEditingController();
+    final TextEditingController firstName = useTextEditingController();
+    final TextEditingController lastName = useTextEditingController();
+    final TextEditingController email = useTextEditingController();
     final TextEditingController password = useTextEditingController();
     final TextEditingController confirmPassword = useTextEditingController();
 
-    // Focus nodes with hooks
     final FocusNode firstNameFocusNode = useFocusNode();
     final FocusNode lastNameFocusNode = useFocusNode();
     final FocusNode emailFocusNode = useFocusNode();
     final FocusNode passwordFocusNode = useFocusNode();
     final FocusNode passwordConfirmFocusNode = useFocusNode();
 
-    // Use hook for focus change management
     final GlobalKey<FormState> formKey = useMemoized(GlobalKey<FormState>.new);
 
     Future<void> submitForm() async {
-      await signUpLogin(
+      await _callSignUpLogin(
         context: context,
-        lastNameController: lastNameController,
-        emailController: emailController,
-        firstNameController: firstNameController,
+        lastName: lastName,
+        email: email,
+        firstName: firstName,
         password: password,
         confirmPassword: confirmPassword,
         formKey: formKey,
@@ -209,9 +243,9 @@ class LoginViewComponent extends HookWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 32),
       child: SingleChildScrollView(
-        child: BlocBuilder<PilluAuthBloc, AuthLocalState>(
-          builder: (final BuildContext context, final AuthLocalState state) {
-            final AuthDataState currState = state as AuthDataState;
+        child: BlocBuilder<PilluAuthBloc, AuthDataState>(
+          builder: (final BuildContext context, final AuthDataState state) {
+            final AuthDataState currState = state;
 
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -243,7 +277,7 @@ class LoginViewComponent extends HookWidget {
                         Column(
                           children: <Widget>[
                             LuxuryTextField(
-                              controller: firstNameController,
+                              controller: firstName,
                               focusNode: firstNameFocusNode,
                               labelText: 'First Name',
                               hintText: 'Enter your first name',
@@ -257,7 +291,7 @@ class LoginViewComponent extends HookWidget {
 
                             // Last Name Text Field
                             LuxuryTextField(
-                              controller: lastNameController,
+                              controller: lastName,
                               focusNode: lastNameFocusNode,
                               labelText: 'Last Name',
                               hintText: 'Enter your last name',
@@ -273,7 +307,7 @@ class LoginViewComponent extends HookWidget {
 
                       // Email Text Field
                       LuxuryTextField(
-                        controller: emailController,
+                        controller: email,
                         focusNode: emailFocusNode,
                         labelText: 'Email',
                         hintText: 'Enter your email',
@@ -331,36 +365,130 @@ class LoginViewComponent extends HookWidget {
                 ),
                 const SizedBox(height: 16),
                 Center(
-                  child: TextButton(
-                    onPressed: () async {
-                      await handleSignUpOrLogin(
-                        context: context,
-                        emailController: emailController,
-                        confirmPassword: confirmPassword,
-                        firstNameController: firstNameController,
-                        lastNameController: lastNameController,
-                        password: password,
-                        formKey: formKey,
-                        isExecute: true,
+                  child: BlocBuilder<PilluAuthBloc, AuthDataState>(
+                    builder: (
+                      final BuildContext context,
+                      final AuthDataState currState,
+                    ) {
+                      final bool isLoading = currState.isLoading;
+                      final ThemeData theme = Theme.of(context);
+
+                      return TweenAnimationBuilder<double>(
+                        tween: Tween<double>(
+                          begin: 1,
+                          end: isLoading ? 0.95 : 1.0,
+                        ),
+                        duration: const Duration(milliseconds: 200),
+                        curve: Curves.easeOut,
+                        builder: (
+                          final BuildContext context,
+                          final double scale,
+                          final Widget? child,
+                        ) =>
+                            Transform.scale(
+                          scale: scale,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeOutCubic,
+                            decoration: BoxDecoration(
+                              color:
+                                  theme.colorScheme.primary.withOpacity(0.08),
+                              borderRadius: BorderRadius.circular(32),
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                  color: theme.colorScheme.primary
+                                      .withOpacity(0.15),
+                                  blurRadius: 20,
+                                  offset: const Offset(0, 10),
+                                ),
+                              ],
+                            ),
+                            child: Material(
+                              borderRadius: BorderRadius.circular(32),
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(32),
+                                splashColor: theme.splashColor,
+                                hoverColor: theme.hoverColor,
+                                highlightColor:
+                                    theme.highlightColor.withOpacity(0.1),
+                                onTap: () async {
+                                  await _signInSignUp(
+                                    context: context,
+                                    emailController: email,
+                                    confirmPassword: confirmPassword,
+                                    firstNameController: firstName,
+                                    lastNameController: lastName,
+                                    password: password,
+                                    formKey: formKey,
+                                    isExecute: true,
+                                  );
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 16,
+                                    horizontal: 32,
+                                  ),
+                                  child: AnimatedSwitcher(
+                                    duration: const Duration(milliseconds: 300),
+                                    transitionBuilder: (
+                                      final Widget child,
+                                      final Animation<double> animation,
+                                    ) =>
+                                        FadeTransition(
+                                      opacity: animation,
+                                      child: child,
+                                    ),
+                                    child: isLoading
+                                        ? Row(
+                                            key: const ValueKey<String>(
+                                              'loading',
+                                            ),
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              SizedBox(
+                                                width: 15,
+                                                height: 15,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  strokeWidth: 2,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation<
+                                                          Color>(
+                                                    theme.primaryColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(width: 12),
+                                              Text(
+                                                'Shifting gears, wait up...',
+                                                style: buildJostTextStyle(
+                                                  color:
+                                                      theme.colorScheme.primary,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        : Text(
+                                            currState.isRestartEvent
+                                                ? 'Start Your Adventure!'
+                                                : 'Restart Your Adventure!',
+                                            key: const ValueKey<String>('text'),
+                                            style: buildJostTextStyle(
+                                              color: theme.primaryColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                          ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       );
                     },
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 14, horizontal: 32),
-                      backgroundColor:
-                          Theme.of(context).primaryColor.withAlpha(10),
-                      // Subtle background color
-                    ),
-                    child: Text(
-                      (!currState.isRestartEvent)
-                          ? 'Restart Your Adventure!'
-                          : 'Start Your Adventure!',
-                      style: buildJostTextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 16, // Larger text for better readability
-                        fontWeight: FontWeight.w600, // Bold for emphasis
-                      ),
-                    ),
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -370,44 +498,92 @@ class LoginViewComponent extends HookWidget {
                 ),
                 const SizedBox(height: 16),
                 Center(
-                  child: TextButton(
-                    onPressed: () async {
-                      final AuthDataState currState =
-                          context.read<PilluAuthBloc>().state as AuthDataState;
-
-                      if (currState.isRestartEvent) {
-                        await handleSignUpOrLogin(
-                          context: context,
-                          lastNameController: lastNameController,
-                          emailController: emailController,
-                          firstNameController: firstNameController,
-                          password: password,
-                          confirmPassword: confirmPassword,
-                          formKey: formKey,
-                          isExecute: false,
-                        );
-
-                        return;
-                      }
-                      if (context.mounted) {
-                        context.read<PilluAuthBloc>().add(IsRestartEvent());
-                      }
-                    },
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 14, horizontal: 32),
-                      backgroundColor:
-                          Theme.of(context).primaryColor.withAlpha(10),
-                      // Subtle background color
+                  child: TweenAnimationBuilder<double>(
+                    tween: Tween<double>(
+                      begin: 1,
+                      end: 1,
                     ),
-                    child: Text(
-                      (currState.isRestartEvent)
-                          ? 'Restart Your Adventure!'
-                          : 'Start Your Adventure!',
-                      style: buildJostTextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 16, // Larger text for better readability
-                        fontWeight: FontWeight.w600, // Bold for emphasis
+                    duration: const Duration(milliseconds: 200),
+                    curve: Curves.easeOut,
+                    builder: (final BuildContext context, final double scale,
+                            final Widget? child) =>
+                        Transform.scale(
+                      scale: scale,
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeOutCubic,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.08),
+                          borderRadius: BorderRadius.circular(32),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(0.15),
+                              blurRadius: 20,
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
+                        ),
+                        child: Material(
+                          borderRadius: BorderRadius.circular(32),
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(32),
+                            splashColor: Theme.of(context).splashColor,
+                            hoverColor: Theme.of(context).hoverColor,
+                            highlightColor: Theme.of(context)
+                                .highlightColor
+                                .withOpacity(0.1),
+                            onTap: () async {
+                              if (currState.isRestartEvent) {
+                                await _signInSignUp(
+                                  context: context,
+                                  lastNameController: lastName,
+                                  emailController: email,
+                                  firstNameController: firstName,
+                                  password: password,
+                                  confirmPassword: confirmPassword,
+                                  formKey: formKey,
+                                  isExecute: false,
+                                );
+                                return;
+                              }
+                              if (context.mounted) {
+                                context
+                                    .read<PilluAuthBloc>()
+                                    .add(IsRestartEvent());
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 32,
+                              ),
+                              child: AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 300),
+                                transitionBuilder: (final Widget child,
+                                        final Animation<double> animation) =>
+                                    FadeTransition(
+                                        opacity: animation, child: child),
+                                child: Text(
+                                  currState.isRestartEvent
+                                      ? 'Start Your Adventure!'
+                                      : 'Restart Your Adventure!',
+                                  key: const ValueKey<String>('text'),
+                                  style: buildJostTextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),

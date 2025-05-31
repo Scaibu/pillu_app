@@ -1,13 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart' as fire_auth show User;
-
-sealed class AuthLocalState extends Equatable {
-  @override
-  List<Object?> get props => <Object?>[];
-}
-
-class AuthDataState extends AuthLocalState {
-  AuthDataState({
+class AuthDataState extends Equatable {
+  const AuthDataState({
     this.loggingIn = false,
     this.registering = false,
     this.user,
@@ -15,26 +9,29 @@ class AuthDataState extends AuthLocalState {
     this.unAuthenticated = true,
     this.hasError = false,
     this.isRestartEvent = false,
+    this.isLoading = false,
   });
 
   final bool loggingIn;
-  final bool isRestartEvent;
   final bool registering;
   final bool unAuthenticated;
   final bool hasError;
+  final bool isRestartEvent;
+  final bool isLoading;
   final fire_auth.User? user;
   final String? message;
 
   @override
   List<Object?> get props => <Object?>[
-        loggingIn,
-        registering,
-        user,
-        message,
-        unAuthenticated,
-        hasError,
-        isRestartEvent,
-      ];
+    loggingIn,
+    registering,
+    user,
+    message,
+    unAuthenticated,
+    hasError,
+    isRestartEvent,
+    isLoading,
+  ];
 
   AuthDataState copyWith({
     final fire_auth.User? user,
@@ -44,6 +41,7 @@ class AuthDataState extends AuthLocalState {
     final bool? unAuthenticated,
     final bool? hasError,
     final bool? isRestartEvent,
+    final bool? isLoading,
   }) =>
       AuthDataState(
         loggingIn: loggingIn ?? this.loggingIn,
@@ -53,5 +51,6 @@ class AuthDataState extends AuthLocalState {
         unAuthenticated: unAuthenticated ?? this.unAuthenticated,
         hasError: hasError ?? this.hasError,
         isRestartEvent: isRestartEvent ?? this.isRestartEvent,
+        isLoading: isLoading ?? this.isLoading, // NEW
       );
 }

@@ -11,9 +11,8 @@ class AppDrawerData extends StatelessWidget {
             PilluAuthBloc(PilluAuthRepository()),
         builder: (final BuildContext context, final PilluAuthBloc bloc) =>
             ThemeWrapper(
-          child: BlocSelector<PilluAuthBloc, AuthLocalState, User?>(
-            selector: (final AuthLocalState state) =>
-                (state as AuthDataState).user,
+          child: BlocSelector<PilluAuthBloc, AuthDataState, User?>(
+            selector: (final AuthDataState state) => state.user,
             builder: (final BuildContext context, final User? state) {
               if (state == null) {
                 return const Drawer(child: LoginViewComponent());

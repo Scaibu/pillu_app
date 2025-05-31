@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:pillu_app/auth/model/image_model.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
@@ -229,6 +233,126 @@ Future<String?> showMessageBox({
               ),
             ),
           ),
+        ),
+      ),
+    ),
+  );
+}
+
+Future<String?> uploadUserProfilePicture({
+  required final BuildContext context,
+  required final String id,
+}) async {
+  final ThemeData theme = Theme.of(context);
+  final ImagePicker picker = ImagePicker();
+
+  Future<String?> uploadToFirebase({
+    required final XFile file,
+    required final String uid,
+  }) async {
+    try {
+      final Reference ref =
+          FirebaseStorage.instance.ref().child('profile_images/$uid.jpg');
+
+      // Delete if already exists
+      try {
+        await ref.delete();
+      } catch (_) {
+        // Ignore if file doesn't exist
+      }
+
+      final UploadTask uploadTask = ref.putFile(File(file.path));
+      final TaskSnapshot snapshot = await uploadTask.whenComplete(() {});
+      return await snapshot.ref.getDownloadURL();
+    } catch (e) {
+      debugPrint('Upload failed: $e');
+      return null;
+    }
+  }
+
+  return showDialog<String>(
+    context: context,
+    builder: (final BuildContext context) => Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 32),
+      backgroundColor: theme.colorScheme.surface,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              'Choose a profile picture',
+              style: buildJostTextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Gallery
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              onTap: () async {
+                final XFile? file =
+                    await picker.pickImage(source: ImageSource.gallery);
+                if (file != null) {
+                  final String? imageUrl = await uploadToFirebase(
+                    file: file,
+                    uid: id,
+                  );
+                  if (context.mounted) {
+                    Navigator.of(context).pop(imageUrl);
+                  }
+                }
+              },
+              leading: const Icon(Icons.photo_library),
+              title: Text(
+                'Pick from Gallery',
+                style: buildJostTextStyle(fontSize: 14),
+              ),
+            ),
+
+            // Camera
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              onTap: () async {
+                final XFile? file =
+                    await picker.pickImage(source: ImageSource.camera);
+                if (file != null) {
+                  final String? imageUrl = await uploadToFirebase(
+                    file: file,
+                    uid: id,
+                  );
+                  if (context.mounted) {
+                    Navigator.of(context).pop(imageUrl);
+                  }
+                }
+              },
+              leading: const Icon(Icons.camera_alt),
+              title: Text(
+                'Take a Photo',
+                style: buildJostTextStyle(fontSize: 14),
+              ),
+            ),
+
+            // Random Image
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              onTap: () async {
+                final String? randomUrl = await ImageModel.fetchRandomImage();
+                if (context.mounted) {
+                  Navigator.of(context).pop(randomUrl);
+                }
+              },
+              leading: const Icon(Icons.shuffle),
+              title: Text(
+                'Use Random Picture',
+                style: buildJostTextStyle(fontSize: 14),
+              ),
+            ),
+          ],
         ),
       ),
     ),

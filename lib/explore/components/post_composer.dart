@@ -25,40 +25,38 @@ class PostComposer extends HookWidget {
       return;
     }
 
-    final AuthLocalState userState = context.read<PilluAuthBloc>().state;
+    final AuthDataState userState = context.read<PilluAuthBloc>().state;
     final types.User? user = await FirebaseChatCore.instance.user();
 
-    if (userState is AuthDataState) {
-      if (context.mounted) {
-        context.read<ExploreBloc>().add(
-              CreatePost(
-                postWithUser: PostWithUser(
-                  post: Post(
-                    id: const Uuid().v4(),
-                    authorId: user?.id ?? userState.user?.uid ?? '',
-                    type: PostType.text,
-                    createdAt: DateTime.now(),
-                    text: controller.text,
-                    appTabId: state.selectedTabId ?? '',
-                    appTabType: _appTabType(state),
-                  ),
-                  user: user ??
-                      types.User(
-                        id: user?.id ?? userState.user?.uid ?? '',
-                        firstName: user?.firstName,
-                        lastName: user?.lastName,
-                        imageUrl: user?.imageUrl,
-                      ),
+    if (context.mounted) {
+      context.read<ExploreBloc>().add(
+            CreatePost(
+              postWithUser: PostWithUser(
+                post: Post(
+                  id: const Uuid().v4(),
+                  authorId: user?.id ?? userState.user?.uid ?? '',
+                  type: PostType.text,
+                  createdAt: DateTime.now(),
+                  text: controller.text,
+                  appTabId: state.selectedTabId ?? '',
+                  appTabType: _appTabType(state),
                 ),
-                tabId: state.selectedTabId ?? '',
+                user: user ??
+                    types.User(
+                      id: user?.id ?? userState.user?.uid ?? '',
+                      firstName: user?.firstName,
+                      lastName: user?.lastName,
+                      imageUrl: user?.imageUrl,
+                    ),
               ),
-            );
-      }
+              tabId: state.selectedTabId ?? '',
+            ),
+          );
+    }
 
-      controller.clear();
-      if (context.mounted) {
-        context.read<ExploreBloc>().add(TogglePostComposer(isSelected: false));
-      }
+    controller.clear();
+    if (context.mounted) {
+      context.read<ExploreBloc>().add(TogglePostComposer(isSelected: false));
     }
   }
 

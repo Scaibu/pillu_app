@@ -10,9 +10,9 @@ class AppBody extends StatelessWidget {
             PilluAuthBloc(PilluAuthRepository()),
         builder: (final BuildContext context, final PilluAuthBloc bloc) =>
             ThemeWrapper(
-          child: BlocBuilder<PilluAuthBloc, AuthLocalState>(
-            builder: (final BuildContext context, final AuthLocalState state) {
-              if (state is AuthDataState && state.user != null) {
+          child: BlocBuilder<PilluAuthBloc, AuthDataState>(
+            builder: (final BuildContext context, final AuthDataState state) {
+              if (state.user != null) {
                 return const ChatRoomList();
               }
               return const LoginViewComponent();

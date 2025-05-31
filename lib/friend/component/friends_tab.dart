@@ -13,8 +13,8 @@ class FriendsTab extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     final FriendBloc bloc = BlocProvider.of<FriendBloc>(context);
 
-    return BlocSelector<PilluAuthBloc, AuthLocalState, auth.User?>(
-      selector: (final AuthLocalState state) => (state as AuthDataState).user,
+    return BlocSelector<PilluAuthBloc, AuthDataState, auth.User?>(
+      selector: (final AuthDataState state) => state.user,
       builder: (final BuildContext context, final auth.User? userState) {
         bloc.add(LoadFriendsListEvent(userState?.uid ?? ''));
 

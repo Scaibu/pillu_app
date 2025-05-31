@@ -13,8 +13,8 @@ class SentRequestsTab extends StatelessWidget {
     final FriendBloc bloc = BlocProvider.of<FriendBloc>(context);
     final ThemeData theme = Theme.of(context);
 
-    return BlocSelector<PilluAuthBloc, AuthLocalState, auth.User?>(
-      selector: (final AuthLocalState state) => (state as AuthDataState).user,
+    return BlocSelector<PilluAuthBloc, AuthDataState, auth.User?>(
+      selector: (final AuthDataState state) => state.user,
       builder: (final BuildContext context, final auth.User? userState) {
         bloc.add(LoadSentFriendRequestsEvent(userState?.uid ?? ''));
 

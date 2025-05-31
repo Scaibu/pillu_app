@@ -17,8 +17,8 @@ class UsersTab extends StatelessWidget {
   Widget build(final BuildContext context) {
     context.read<FriendBloc>().add(FriendInitEvent());
 
-    return BlocSelector<PilluAuthBloc, AuthLocalState, auth.User?>(
-      selector: (final AuthLocalState state) => (state as AuthDataState).user,
+    return BlocSelector<PilluAuthBloc, AuthDataState, auth.User?>(
+      selector: (final AuthDataState state) => state.user,
       builder: (final BuildContext context, final auth.User? userState) =>
           BlocBuilder<FriendBloc, FriendState>(
         builder: (final BuildContext context, final FriendState state) {

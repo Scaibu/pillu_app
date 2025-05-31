@@ -1,28 +1,28 @@
 import 'dart:async';
 
-import 'package:pillu_app/auth/model/image_model.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 
-class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
-  PilluAuthBloc(this.authRepository) : super(AuthDataState()) {
+class PilluAuthBloc extends Bloc<AuthEvent, AuthDataState> {
+  PilluAuthBloc(this.authRepository) : super(const AuthDataState()) {
     on<AuthAuthenticated>(_onAuthStarted);
     on<UserLogOutEvent>(_logOut);
+    on<AuthLoadingEvent>(
+        (final AuthLoadingEvent event, final Emitter<AuthDataState> emit) {
+      emit(state.copyWith(isLoading: event.isLoading));
+    });
+
     on<IsRestartEvent>(
-      (final IsRestartEvent event, final Emitter<AuthLocalState> emit) {
-        if (state is AuthDataState) {
-          final AuthDataState currState = state as AuthDataState;
-          emit(currState.copyWith(isRestartEvent: true));
-        }
+      (final IsRestartEvent event, final Emitter<AuthDataState> emit) {
+        final AuthDataState currState = state;
+        emit(currState.copyWith(isRestartEvent: true));
       },
     );
 
     on<StartCurrentEvent>(
-      (final StartCurrentEvent event, final Emitter<AuthLocalState> emit) {
-        if (state is AuthDataState) {
-          final AuthDataState currState = state as AuthDataState;
-          emit(currState.copyWith(isRestartEvent: false));
-        }
+      (final StartCurrentEvent event, final Emitter<AuthDataState> emit) {
+        final AuthDataState currState = state;
+        emit(currState.copyWith(isRestartEvent: false));
       },
     );
     _listenToAuthStateChanges();
@@ -106,38 +106,22 @@ class PilluAuthBloc extends Bloc<AuthEvent, AuthLocalState> {
 
   Future<void> _onAuthStarted(
     final AuthAuthenticated event,
-    final Emitter<AuthLocalState> emit,
+    final Emitter<AuthDataState> emit,
   ) async {
     if (event.user != null) {
       emit(AuthDataState(user: event.user, unAuthenticated: false));
     } else {
-      emit(AuthDataState());
+      emit(const AuthDataState());
     }
-  }
-
-  Future<void> createChatUser(
-    final AuthApi api, {
-    required final PilluUserModel pilluUser,
-  }) async {
-    final types.User user = types.User(
-      imageUrl: pilluUser.imageUrl.isNotEmpty
-          ? pilluUser.imageUrl
-          : (await ImageModel.fetchRandomImage() ?? ''),
-      firstName: pilluUser.firstName,
-      lastName: pilluUser.lastName,
-      id: pilluUser.id,
-    );
-
-    await api.createChatUser(user: user);
   }
 
   Future<void> _logOut(
     final UserLogOutEvent event,
-    final Emitter<AuthLocalState> emit,
+    final Emitter<AuthDataState> emit,
   ) async {
     _cachedChatUser = null;
     _chatUserController.add(null);
     await FirebaseAuth.instance.signOut();
-    emit(AuthDataState());
+    emit(const AuthDataState());
   }
 }

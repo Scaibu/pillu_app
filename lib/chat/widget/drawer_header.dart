@@ -7,8 +7,8 @@ class DrawerHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) =>
-      BlocSelector<PilluAuthBloc, AuthLocalState, User?>(
-        selector: (final AuthLocalState state) => (state as AuthDataState).user,
+      BlocSelector<PilluAuthBloc, AuthDataState, User?>(
+        selector: (final AuthDataState state) => state.user,
         builder: (final BuildContext context, final User? state) {
           if (state == null) {
             return const Offstage();

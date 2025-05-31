@@ -18,4 +18,14 @@ class AuthAuthenticated extends AuthEvent {
 class UserLogOutEvent extends AuthEvent {}
 
 class IsRestartEvent extends AuthEvent {}
+
 class StartCurrentEvent extends AuthEvent {}
+
+class AuthLoadingEvent extends AuthEvent {
+  AuthLoadingEvent({required this.isLoading});
+
+  final bool isLoading;
+
+  @override
+  List<Object?> get props => <Object?>[isLoading];
+}
