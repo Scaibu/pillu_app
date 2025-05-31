@@ -9,26 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- freind request api and UI is added">
-      <change afterPath="$PROJECT_DIR$/lib/shared/converter/timestamp_converter.dart" afterDir="false" />
+    <list default="true" id="d4e4b3a5-1677-4a58-9736-cf1cf38abce5" name="Changes" comment="- minor ui is updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/auth/view/users.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/auth/view/users.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/chat/widget/chat_room_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/chat_room_list.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/flutter_firebase_chat_core-main/lib/src/firebase_chat_core.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_firebase_chat_core-main/lib/src/firebase_chat_core.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/bloc/friend_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/bloc/friend_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/component/blocked_users_tab.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/component/blocked_users_tab.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/component/friend_requests_tab.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/component/friend_requests_tab.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/component/friends_tab.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/component/friends_tab.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/component/sent_requests_tab.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/component/sent_requests_tab.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/component/users_tab.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/component/users_tab.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/model/blockedUser/blocked_user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/model/blockedUser/blocked_user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/model/blockedUser/blocked_user.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/model/blockedUser/blocked_user.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/model/friendRequest/friend_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/model/friendRequest/friend_request.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/model/friendRequest/friend_request.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/model/friendRequest/friend_request.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/model/sentRequest/sent_request.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/model/sentRequest/sent_request.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/model/sentRequest/sent_request.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/model/sentRequest/sent_request.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/friend/repository/friend_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/friend/repository/friend_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/util.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/util.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/chat/widget/drawer_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/profile/profile_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/profile/profile_view.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,14 +141,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1724261648987</updated>
-    </task>
-    <task id="LOCAL-00004" summary="- minor changes">
-      <option name="closed" value="true" />
-      <created>1724316445981</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1724316445981</updated>
     </task>
     <task id="LOCAL-00005" summary="- minor changes">
       <option name="closed" value="true" />
@@ -549,7 +526,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748638258637</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="- minor ui is updated">
+      <option name="closed" value="true" />
+      <created>1748677999295</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1748677999295</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -594,7 +579,8 @@
     <MESSAGE value="- now use can upload image in their text in explore tab" />
     <MESSAGE value="- login as sign-up flow is added" />
     <MESSAGE value="- freind request api and UI is added" />
-    <option name="LAST_COMMIT_MESSAGE" value="- freind request api and UI is added" />
+    <MESSAGE value="- minor ui is updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="- minor ui is updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

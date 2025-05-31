@@ -13,35 +13,57 @@ class DrawerItem extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(final BuildContext context) => InkWell(
+  Widget build(final BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12), // Smooth rounded edges
+        borderRadius: BorderRadius.circular(14),
+        // Slightly larger radius for smoothness
+        splashColor: theme.colorScheme.primary.withOpacity(0.2),
+        // Subtle splash
+        highlightColor: theme.colorScheme.primary.withOpacity(0.1),
+        // Light highlight on tap
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+          // Bigger touch area
           child: Row(
             children: <Widget>[
               Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(12),
+                // Larger padding for icon touch target
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary.withAlpha(20),
-                  // Soft background for icon
+                  color: theme.colorScheme.primary.withOpacity(0.15),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
                   icon,
-                  size: 24,
-                  color: Theme.of(context).colorScheme.primary,
+                  size: 21,
+                  color: theme.colorScheme.primary,
                 ),
               ),
-              const SizedBox(width: 16), // Space between icon and text
+              const SizedBox(width: 20), // Increased spacing for clarity
               Expanded(
                 child: Text(
                   title,
-                  style: buildJostTextStyle(),
+                  style: buildJostTextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: theme.colorScheme.onSurface,
+                  ),
                 ),
+              ),
+              Icon(
+                Icons.chevron_right,
+                size: 21,
+                color: theme.colorScheme.onSurface.withOpacity(0.4),
               ),
             ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }

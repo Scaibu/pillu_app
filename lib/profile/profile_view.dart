@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:pillu_app/auth/model/image_model.dart';
 import 'package:pillu_app/config/bloc_config.dart';
 import 'package:pillu_app/core/library/flutter_chat_types.dart' as types;
 import 'package:pillu_app/core/library/pillu_lib.dart';
 import 'package:pillu_app/profile/bloc/profile_bloc.dart';
 import 'package:pillu_app/profile/bloc/profile_event.dart';
+import 'package:uuid/uuid.dart';
 
 class ProfilePage extends HookWidget {
   const ProfilePage({super.key});
@@ -28,16 +31,60 @@ class ProfilePage extends HookWidget {
 
   Future<void> _updateProfilePicture(
     final BuildContext context,
-    final User? state,
+    final types.User? state,
   ) async {
-    if (context.mounted) {
-      await FirebaseChatCore.instance.updateUserInFirestore(
-        user: types.User(
-          id: state?.uid ?? '',
-          imageUrl: await ImageModel.fetchRandomImage() ?? '',
-        ),
-        context: (context.mounted) ? context : null,
-      );
+    if (state == null || state.id.isEmpty || !context.mounted) {
+      return;
+    }
+
+    try {
+      final ImagePicker picker = ImagePicker();
+      final XFile? pickedFile =
+          await picker.pickImage(source: ImageSource.gallery);
+      if (pickedFile == null) {
+        return;
+      }
+
+      final File imageFile = File(pickedFile.path);
+      final FirebaseStorage storage = FirebaseStorage.instance;
+
+      // Delete existing image if available
+      if (state.imageUrl != null && state.imageUrl!.isNotEmpty) {
+        try {
+          final Uri uri = Uri.parse(state.imageUrl!);
+          final List<String> segments = uri.pathSegments;
+          final int index = segments.indexOf('o');
+          if (index != -1 && index + 1 < segments.length) {
+            final String encodedPath = segments[index + 1];
+            final String filePath = Uri.decodeComponent(encodedPath);
+            await storage.ref(filePath).delete();
+          }
+        } catch (e) {
+          debugPrint('Failed to delete previous image: $e');
+        }
+      }
+
+      // Upload new image
+      final String uniqueName = '${const Uuid().v4()}.jpg';
+      final String filePath = 'user/${state.id}/posts/images/$uniqueName';
+      final UploadTask uploadTask = storage.ref(filePath).putFile(imageFile);
+      final TaskSnapshot snapshot = await uploadTask;
+      final String imageUrl = await snapshot.ref.getDownloadURL();
+
+      if (context.mounted) {
+        await FirebaseChatCore.instance.updateUserInFirestore(
+          user: types.User(
+            id: state.id,
+            imageUrl: imageUrl,
+          ),
+          context: context,
+        );
+      }
+    } catch (e) {
+      debugPrint('Error updating profile picture: $e');
+      if (context.mounted) {
+        toast(context, message: 'Failed to update profile picture.');
+      }
     }
   }
 
@@ -141,7 +188,7 @@ class ProfilePage extends HookWidget {
                           children: <Widget>[
                             GestureDetector(
                               onTap: () async {
-                                await _updateProfilePicture(context, state);
+                                await _updateProfilePicture(context, data);
                               },
                               child: Center(
                                 child: SizedBox(
@@ -181,7 +228,7 @@ class ProfilePage extends HookWidget {
                                             onPressed: () async {
                                               await _updateProfilePicture(
                                                 context,
-                                                state,
+                                                data,
                                               );
                                             },
                                             icon: Icon(

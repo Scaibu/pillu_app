@@ -17,6 +17,7 @@ class DrawerList extends StatelessWidget {
               await createPage(context, const ProfilePage());
             },
           ),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(
             icon: Icons.explore,
             title: 'Explore',
@@ -24,6 +25,7 @@ class DrawerList extends StatelessWidget {
               await createPage(context, const ExplorePage());
             },
           ),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(
             icon: Icons.people,
             title: 'Discover & Community',
@@ -31,29 +33,35 @@ class DrawerList extends StatelessWidget {
               await createPage(context, const FriendPage());
             },
           ),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(icon: Icons.call, title: 'Call', onTap: () {}),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(
             icon: Icons.privacy_tip,
             title: 'Anonymous & Temporary Chats',
             onTap: () {},
           ),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(
             icon: Icons.business,
             title: 'Business & Work Chat',
             onTap: () {},
           ),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(
             icon: Icons.star,
             title: 'Special Features & Add-ons',
             onTap: () {},
           ),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(
             icon: Icons.lock,
             title: 'Secure & Encrypted Messaging',
             onTap: () {},
           ),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           DrawerItem(icon: Icons.settings, title: 'Settings', onTap: () {}),
-          const Divider(),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           BlocBuilder<PilluAuthBloc, AuthLocalState>(
             builder: (final BuildContext context, final Object? state) =>
                 DrawerItem(
@@ -64,6 +72,7 @@ class DrawerList extends StatelessWidget {
               },
             ),
           ),
+          const Divider(height: 1, thickness: 1, indent: 72, endIndent: 16),
           const SizedBox(height: 50),
         ],
       );
